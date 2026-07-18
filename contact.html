@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us - Nirmitsu</title>
+    <link rel="icon" href="assets/favicon.png" type="image/png" />
+    <link
+      rel="preload"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+      <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        rel="stylesheet"
+      />
+    </noscript>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+      html,
+      body {
+        font-size: 16px;
+      }
+
+      @font-face {
+        font-family: "MADE Regular";
+        src: url("fonts/MADE-Regular.otf") format("opentype");
+        font-weight: normal;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: "MADE";
+        src: url("fonts/MADE.otf") format("opentype");
+        font-weight: bold;
+        font-style: normal;
+      }
+
+      :root {
+        --primary-color: #13cbe8;
+        --secondary-color: #000000;
+        --light-bg: #ffffff;
+      }
+
+      body {
+        font-family: "MADE Regular", sans-serif;
+        background-color: var(--light-bg);
+      }
+
+      /* Typography Scale */
+      h1,
+      .h1 {
+        font-size: 2.5rem;
+      }
+      h2,
+      .h2 {
+        font-size: 2rem;
+      }
+      h3,
+      .h3 {
+        font-size: 1.75rem;
+      }
+      h4,
+      .h4 {
+        font-size: 1.5rem;
+      }
+      h5,
+      .h5 {
+        font-size: 1.25rem;
+      }
+      h6,
+      .h6 {
+        font-size: 1rem;
+      }
+
+      .display-3 {
+        font-size: 2.5rem;
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+      }
+
+      .btn-primary {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+        font-family: "MADE", sans-serif;
+        color: black;
+        padding: 1rem 2.5rem;
+        font-size: 1.1rem;
+      }
+
+      .btn-primary:hover {
+        background-color: #25c7ae;
+        border-color: #25c7ae;
+        color: black;
+      }
+
+      /* Navigation Styles */
+      .nav-link {
+        color: var(--secondary-color) !important;
+        font-family: "MADE Regular", sans-serif;
+        font-size: 0.94rem;
+        padding: 0.5rem 0.7rem !important;
+      }
+
+      .nav-link:hover {
+        color: var(--primary-color) !important;
+      }
+
+      .navbar {
+        padding: 0.5rem 0;
+      }
+
+      .navbar-brand img {
+        max-width: 150px;
+        height: auto;
+      }
+
+      .dropdown-menu {
+        border: none;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .dropdown-item {
+        font-family: "MADE Regular", sans-serif;
+        padding: 0.75rem 1.5rem;
+      }
+
+      .dropdown-item:hover {
+        background-color: var(--primary-color);
+        color: black;
+      }
+      /* WhatsApp Button Styles */
+      .whatsapp-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+      }
+
+      .whatsapp-button a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 60px;
+        height: 60px;
+        background-color: #25d366;
+        border-radius: 50%;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+      }
+
+      .whatsapp-button i {
+        font-size: 32px;
+        color: white;
+      }
+
+      .whatsapp-button a:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        background-color: #22c55e;
+      }
+
+      /* Tooltip Styles */
+      .whatsapp-tooltip {
+        position: absolute;
+        right: 75px;
+        bottom: 5px;
+        background: white;
+        padding: 10px 15px;
+        border-radius: 8px;
+        font-size: 14px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        color: #333;
+        width: 200px;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .whatsapp-tooltip::after {
+        content: "";
+        position: absolute;
+        right: -8px;
+        top: 50%;
+        transform: translateY(-50%);
+        border-left: 8px solid white;
+        border-top: 8px solid transparent;
+        border-bottom: 8px solid transparent;
+      }
+
+      /* Show tooltip on hover */
+      .whatsapp-button:hover .whatsapp-tooltip {
+        opacity: 1;
+        visibility: visible;
+        right: 85px;
+      }
+
+      /* Mobile Responsiveness */
+      @media (max-width: 768px) {
+        .whatsapp-button {
+          bottom: 15px;
+          right: 15px;
+        }
+
+        .whatsapp-button a {
+          width: 50px;
+          height: 50px;
+        }
+
+        .whatsapp-button i {
+          font-size: 28px;
+        }
+
+        .whatsapp-tooltip {
+          display: none;
+        }
+      }
+
+      .whatsapp-button a {
+        color: rgba(13, 110, 253, 0);
+      }
+
+      .footer {
+        background-color: #ffffff;
+        padding: 3rem 0;
+        color: #4a4a4a;
+      }
+
+      .footer h5 {
+        color: #000;
+        font-family: "MADE", sans-serif;
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+      }
+
+      .footer-links {
+        list-style: none;
+        padding: 0;
+      }
+
+      .footer-links li {
+        margin-bottom: 0.5rem;
+      }
+
+      .footer-links a {
+        color: #4a4a4a;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .footer-links a:hover {
+        color: #13cbe8;
+      }
+
+      .social-icons {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .social-icons a {
+        color: #4a4a4a;
+        transition: color 0.3s ease;
+      }
+
+      .social-icons a:hover {
+        color: #13cbe8;
+      }
+
+      .copyright {
+        text-align: center;
+        margin-top: 2rem;
+        padding-top: 2rem;
+        border-top: 1px solid #e0e0e0;
+      }
+
+      /* Contact specific styles */
+      .contact-info-card {
+        background: white;
+        border-radius: 16px;
+        padding: 2rem;
+        height: 100%;
+        transition: transform 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .contact-info-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .contact-icon {
+        width: 60px;
+        height: 60px;
+        background: rgba(19, 203, 232, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+      }
+
+      .contact-icon i {
+        font-size: 24px;
+        color: var(--primary-color);
+      }
+
+      .map-container {
+        border-radius: 16px;
+        overflow: hidden;
+        height: 450px;
+      }
+
+      .map-container iframe {
+        width: 100%;
+        height: 100%;
+        border: 0;
+      }
+
+      .quote-form {
+        background: white;
+        border-radius: 16px;
+        padding: 2rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      }
+      .form-control {
+        padding: 0.8rem 1.2rem;
+        border-radius: 8px;
+        border: 1px solid #e0e0e0;
+      }
+
+      .form-control:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 0.2rem rgba(19, 203, 232, 0.25);
+      }
+      .tech-banner {
+        position: relative;
+        padding: 120px 0;
+        color: white;
+        overflow: hidden;
+      }
+
+      .tech-banner .banner-video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+      }
+
+      .tech-banner::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: -1;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          <img src="assets/logo.webp" alt="Logo" />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="technology">Our Technologies</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+              >
+                Our Solution
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="additive-manufacturing"
+                    >Additive Manufacturing</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="3d-modeling"
+                    >3D Modelling & Design</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="materials">Materials</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="gallery">Gallery</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="case-studies">Case Studies</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact">Contact Us</a>
+            </li>
+          </ul>
+          <div class="ms-lg-4">
+            <a href="contact" class="btn btn-primary rounded-pill"
+              >Get Quote</a
+            >
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Banner Section -->
+    <section
+      class="tech-banner"
+      data-gsap
+      style="
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.6),
+            rgba(0, 0, 0, 0.6)
+          ),
+          url('assets/why-nirtimsu.webp');
+        background-size: cover;
+        background-position: center;
+      "
+    >
+      <div class="container text-center">
+        <h1 class="display-3 fw-bold mb-4">Contact Us</h1>
+        <p class="lead">
+          Advanced materials for superior manufacturing solutions
+        </p>
+      </div>
+    </section>
+
+    <!-- Contact Info Section -->
+    <section class="py-5">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="contact-info-card">
+              <div class="contact-icon">
+                <i class="fas fa-phone"></i>
+              </div>
+              <h3 class="h5 mb-3">Phone</h3>
+              <p class="mb-0">+917391086524 / +918322990536</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="contact-info-card">
+              <div class="contact-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <h3 class="h5 mb-3">Email</h3>
+              <p class="mb-0">support@nirmitsu.com</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="contact-info-card">
+              <div class="contact-icon">
+                <i class="fas fa-location-dot"></i>
+              </div>
+              <h3 class="h5 mb-3">Address</h3>
+              <p class="mb-0">
+                32-36, Ella High Street Mall, Ella Cidade, NH4A Highway Old Goa
+                by-pass road Ella, Kadamba, Goa 403402
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Map and Form Section -->
+    <section class="py-5 bg-light">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-lg-6">
+            <div class="map-container h-100">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5086.279838146152!2d73.90950597512396!3d15.4980369851017!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bbfbf2d91d33943%3A0x9ab75da1738e48dd!2sNirmitsu%20Design%20Labs%20Private%20Limited!5e1!3m2!1sen!2sin!4v1767784072270!5m2!1sen!2sin"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                style="
+                  width: 100%;
+                  height: 100%;
+                  min-height: 500px;
+                  border: 0;
+                  border-radius: 8px;
+                "
+              ></iframe>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="quote-form h-100 bg-white p-4 rounded">
+              <h2 class="h3 mb-4">Get Instant Quote</h2>
+              <form id="quoteForm">
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Your Name"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <input
+                    type="email"
+                    class="form-control"
+                    placeholder="Email Address"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <input
+                    type="tel"
+                    class="form-control"
+                    placeholder="Phone Number"
+                  />
+                </div>
+                <div class="mb-3">
+                  <select class="form-select">
+                    <option selected>Select Service</option>
+                    <option>Additive Manufacturing</option>
+                    <option>3D Modelling & Design</option>
+                    <option>Prototyping</option>
+                    <option>Other's</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <textarea
+                    class="form-control"
+                    rows="4"
+                    placeholder="Project Details"
+                  ></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">
+                  Submit Request
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+            <img
+              src="assets/logo.webp"
+              alt="Logo"
+              class="mb-3"
+              style="max-width: 200px"
+            />
+            <p>
+              Your trusted partner in additive manufacturing and 3D printing
+              solutions.
+            </p>
+          </div>
+          <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+            <h5>Quick Links</h5>
+            <ul class="footer-links">
+              <li><a href="/">Home</a></li>
+              <li><a href="/about">About Us</a></li>
+              <li><a href="/materials">Materials</a></li>
+              <li><a href="/case-studies">Case Studies</a></li>
+              <li><a href="/contact">Contact</a></li>
+              <li><a href="/careers">Career</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+            <h5>Our Solutions</h5>
+            <ul class="footer-links">
+              <li><a href="/3d-modeling">3D Modelling & Design</a></li>
+              <li>
+                <a href="/additive-manufacturing"
+                  >Additive Manufacturing</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <h5>Contact Us</h5>
+            <p>
+              32-36, Ella High Street Mall, Ella Cidade, NH4A Highway Old Goa
+              by-pass road Ella, Kadamba, Goa 403402
+            </p>
+            <p>
+              Email:
+              <a href="mailto:support@nirmitsu.com">support@nirmitsu.com</a>
+            </p>
+            <p>
+              Phone:
+              <a href="tel:+917391086524">+917391086524 / +918322990536</a>
+            </p>
+            <div class="social-icons">
+              <a href="#" aria-label="Facebook"
+                ><svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+                  ></path></svg
+              ></a>
+              <a href="#" aria-label="Twitter"
+                ><svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"
+                  ></path></svg
+              ></a>
+              <a
+                href="https://www.linkedin.com/company/nirmitsu-design-labs-pvt-ltd/"
+                aria-label="LinkedIn"
+                ><svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+                  ></path>
+                  <rect x="2" y="9" width="4" height="12"></rect>
+                  <circle cx="4" cy="4" r="2"></circle></svg
+              ></a>
+            </div>
+          </div>
+        </div>
+        <div class="copyright">
+          <p>&copy; 2026 Nirmitsu. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+    <div class="whatsapp-button">
+      <div class="whatsapp-tooltip">
+        Hi! Chat with us on WhatsApp for quick support 👋
+      </div>
+      <a
+        href="https://wa.me/+917391086524"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <i class="fab fa-whatsapp"></i>
+      </a>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+
+    <!-- GSAP Animation -->
+    <script></script>
+    <script>
+      document
+        .getElementById("quoteForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          // Get form values
+          const name = this.querySelector('input[type="text"]').value;
+          const email = this.querySelector('input[type="email"]').value;
+          const phone = this.querySelector('input[type="tel"]').value;
+          const service = this.querySelector("select").value;
+          const details = this.querySelector("textarea").value;
+
+          // Create message
+          let message = `Hello, my name is ${name}. I'm interested in ${service}.`;
+
+          if (details) {
+            message += `\n\nProject Details: ${details}`;
+          }
+
+          message += `\n\nMy contact information:\nEmail: ${email}`;
+
+          if (phone) {
+            message += `\nPhone: ${phone}`;
+          }
+
+          message += `\n\nPlease contact me regarding my project requirements. Thank you!`;
+
+          // Encode the message for URL
+          const encodedMessage = encodeURIComponent(message);
+
+          // Open WhatsApp with the message
+          window.open(
+            `https://wa.me/+917391086524?text=${encodedMessage}`,
+            "_blank"
+          );
+        });
+    </script>
+  </body>
+</html>

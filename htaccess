@@ -1,0 +1,26 @@
+
+
+# php -- BEGIN cPanel-generated handler, do not edit
+# Set the “ea-php82” package as the default “PHP” programming language.
+<IfModule mime_module>
+  AddHandler application/x-httpd-ea-php82___lsphp .php .php8 .phtml
+</IfModule>
+# php -- END cPanel-generated handler, do not edit
+
+# Enable URL Rewriting
+RewriteEngine On
+RewriteBase /
+
+# 1. Redirect direct requests for index.html or /index to the root /
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/index\.html [NC,OR]
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/index\s [NC]
+RewriteRule ^(index\.html|index)?$ / [R=301,L]
+
+# 2. Redirect direct requests for *.html to clean extensionless URLs (e.g., /about.html -> /about)
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/([^.]+)\.html [NC]
+RewriteRule ^ %1 [R=301,L]
+
+# 3. Internally rewrite extensionless requests to .html (e.g., /about -> about.html)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^([^/]+)$ $1.html [L]

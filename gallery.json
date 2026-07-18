@@ -1,0 +1,82 @@
+{
+  "Aerospace & Defense": [
+    "assets/our-work/AeroDef/Picture32.png",
+    "assets/our-work/AeroDef/Picture34.png",
+    "assets/our-work/AeroDef/Picture35.png",
+    "assets/our-work/AeroDef/Picture36.png",
+    "assets/our-work/AeroDef/Picture37.png",
+    "assets/our-work/AeroDef/Picture38.png"
+  ],
+  "Architecture & Design": [
+    "assets/our-work/ArchDes/Picture55.png",
+    "assets/our-work/ArchDes/Picture56.png",
+    "assets/our-work/ArchDes/Picture57.png"
+  ],
+  "Automotive": [
+    "assets/our-work/Automotive/Picture39.png",
+    "assets/our-work/Automotive/Picture40.png"
+  ],
+  "Foundry & Casting": [
+    "assets/our-work/FoundryCasting/Picture1.png",
+    "assets/our-work/FoundryCasting/Picture2.png",
+    "assets/our-work/FoundryCasting/Picture3.png",
+    "assets/our-work/FoundryCasting/Picture4.png",
+    "assets/our-work/FoundryCasting/Picture5.png",
+    "assets/our-work/FoundryCasting/Picture6.png",
+    "assets/our-work/FoundryCasting/Picture7.png",
+    "assets/our-work/FoundryCasting/Picture8.png"
+  ],
+  "Industrial & Tooling": [
+    "assets/our-work/IndustrialTooling/Picture22.png",
+    "assets/our-work/IndustrialTooling/Picture23.png",
+    "assets/our-work/IndustrialTooling/Picture24.png",
+    "assets/our-work/IndustrialTooling/Picture25.png",
+    "assets/our-work/IndustrialTooling/Picture26.png",
+    "assets/our-work/IndustrialTooling/Picture27.png",
+    "assets/our-work/IndustrialTooling/Picture28.png",
+    "assets/our-work/IndustrialTooling/Picture29.png",
+    "assets/our-work/IndustrialTooling/Picture30.png",
+    "assets/our-work/IndustrialTooling/Picture31.png"
+  ],
+  "Lifestyle": [
+    "assets/our-work/Lifestyle/Picture58.png",
+    "assets/our-work/Lifestyle/Picture59.png",
+    "assets/our-work/Lifestyle/Picture60.png",
+    "assets/our-work/Lifestyle/Picture61.png"
+  ],
+  "Marine": [
+    "assets/our-work/Marine/Picture41.png",
+    "assets/our-work/Marine/Picture42.png",
+    "assets/our-work/Marine/Picture43.png",
+    "assets/our-work/Marine/Picture44.png",
+    "assets/our-work/Marine/Picture45.png",
+    "assets/our-work/Marine/Picture46.png",
+    "assets/our-work/Marine/Picture47.png"
+  ],
+  "Medical": [
+    "assets/our-work/Medical/Picture50.png",
+    "assets/our-work/Medical/Picture51.png",
+    "assets/our-work/Medical/Picture52.png",
+    "assets/our-work/Medical/Picture53.png",
+    "assets/our-work/Medical/Picture54.png"
+  ],
+  "Product Development": [
+    "assets/our-work/ProductDev/Picture9.png",
+    "assets/our-work/ProductDev/Picture10.png",
+    "assets/our-work/ProductDev/Picture11.png",
+    "assets/our-work/ProductDev/Picture12.png",
+    "assets/our-work/ProductDev/Picture13.png",
+    "assets/our-work/ProductDev/Picture14.png",
+    "assets/our-work/ProductDev/Picture15.png",
+    "assets/our-work/ProductDev/Picture16.png",
+    "assets/our-work/ProductDev/Picture17.png",
+    "assets/our-work/ProductDev/Picture18.png",
+    "assets/our-work/ProductDev/Picture19.png",
+    "assets/our-work/ProductDev/Picture20.png",
+    "assets/our-work/ProductDev/Picture21.png"
+  ],
+  "Robotics": [
+    "assets/our-work/Picture48.png",
+    "assets/our-work/Picture49.png"
+  ]
+}

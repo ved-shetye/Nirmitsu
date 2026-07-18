@@ -1,0 +1,1770 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Additive Manufacturing - Nirmitsu</title>
+    <link rel="icon" href="assets/favicon.png" type="image/png" />
+    <link
+      rel="preload"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+      <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        rel="stylesheet"
+      />
+    </noscript>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+      /* Base Styles */
+      html,
+      body {
+        font-size: 16px;
+      }
+
+      @font-face {
+        font-family: "MADE Regular";
+        src: url("fonts/MADE-Regular.otf") format("opentype");
+        font-weight: normal;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: "MADE";
+        src: url("fonts/MADE.otf") format("opentype");
+        font-weight: bold;
+        font-style: normal;
+      }
+
+      :root {
+        --primary-color: #13cbe8;
+        --secondary-color: #000000;
+        --light-bg: #ffffff;
+      }
+
+      body {
+        font-family: "MADE Regular", sans-serif;
+        background-color: var(--light-bg);
+      }
+
+      /* Typography Scale */
+      h1,
+      .h1 {
+        font-size: 2.5rem;
+      }
+      h2,
+      .h2 {
+        font-size: 2rem;
+      }
+      h3,
+      .h3 {
+        font-size: 1.75rem;
+      }
+      h4,
+      .h4 {
+        font-size: 1.5rem;
+      }
+      h5,
+      .h5 {
+        font-size: 1.25rem;
+      }
+      h6,
+      .h6 {
+        font-size: 1rem;
+      }
+
+      .display-3 {
+        font-size: 2.5rem;
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+      }
+
+      /* Button Styles */
+      .btn-primary {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+        font-family: "MADE", sans-serif;
+        color: black;
+        padding: 1rem 2.5rem;
+        font-size: 1.1rem;
+      }
+
+      .btn-primary:hover {
+        background-color: #25c7ae;
+        border-color: #25c7ae;
+        color: black;
+      }
+
+      /* Navigation Styles */
+      .nav-link {
+        color: var(--secondary-color) !important;
+        font-family: "MADE Regular", sans-serif;
+        font-size: 0.94rem;
+        padding: 0.5rem 0.7rem !important;
+      }
+
+      .nav-link:hover {
+        color: var(--primary-color) !important;
+      }
+
+      .navbar {
+        padding: 0.5rem 0;
+      }
+
+      .navbar-brand img {
+        max-width: 150px;
+        height: auto;
+      }
+
+      .dropdown-menu {
+        border: none;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .dropdown-item {
+        font-family: "MADE Regular", sans-serif;
+        padding: 0.75rem 1.5rem;
+      }
+
+      .dropdown-item:hover {
+        background-color: var(--primary-color);
+        color: black;
+      }
+
+      /* Banner styles from technology.html */
+      .tech-banner {
+        position: relative;
+        padding: 120px 0;
+        color: white;
+        overflow: hidden;
+      }
+
+      .tech-banner .banner-video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+      }
+
+      .tech-banner::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: -1;
+      }
+
+      /* Additional styles for additive manufacturing page */
+      .benefit-card {
+        background: white;
+        border-radius: 16px;
+        padding: 2rem;
+        height: 100%;
+        transition: transform 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .benefit-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .icon-wrapper {
+        width: 60px;
+        height: 60px;
+        background: rgba(19, 203, 232, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
+      }
+      /* Service Icons Section */
+      .service-icon {
+        width: 80px;
+        height: 80px;
+        background: rgba(19, 203, 232, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+        transition: transform 0.3s ease;
+      }
+
+      .service-icon i {
+        font-size: 2rem;
+        color: var(--primary-color);
+      }
+
+      .service-card:hover .service-icon {
+        transform: scale(1.1);
+        background: var(--primary-color);
+      }
+
+      .service-card:hover .service-icon i {
+        color: white;
+      }
+
+      /* Info Section */
+      .info-section {
+        background-color: #f8f9fa;
+        padding: 5rem 0;
+      }
+
+      .info-card {
+        background: white;
+        border-radius: 16px;
+        padding: 2rem;
+        height: 100%;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+
+      .info-card:hover {
+        transform: translateY(-5px);
+      }
+
+      /* Technology Section */
+      /* .tech-pill {
+            background: rgba(19, 203, 232, 0.1);
+            color: var(--primary-color);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            display: inline-block;
+            margin: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .tech-pill:hover {
+            background: var(--primary-color);
+            color: white;
+        } */
+      .tech-pill {
+        border-radius: 8px;
+        padding: 1rem 1.5rem;
+        color: var(--secondary-color);
+        background-color: white;
+        border: 1px solid #eee;
+        transition: all 0.3s ease;
+      }
+
+      .tech-pill:hover {
+        background-color: rgba(19, 203, 232, 0.1);
+        border-color: var(--primary-color);
+      }
+
+      .tech-pill.active {
+        background-color: var(--primary-color);
+        color: white;
+      }
+
+      .tech-pill .nav-link small {
+        font-size: 0.875rem;
+      }
+
+      @media (max-width: 991px) {
+        .tech-tabs {
+          flex-direction: row;
+          overflow-x: auto;
+          padding-bottom: 1rem;
+          margin-bottom: 2rem;
+          -webkit-overflow-scrolling: touch;
+          scrollbar-width: none; /* Firefox */
+          -ms-overflow-style: none; /* IE and Edge */
+        }
+
+        .tech-tabs::-webkit-scrollbar {
+          display: none; /* Chrome, Safari, Opera */
+        }
+
+        .tech-tabs .nav-link {
+          flex: 0 0 auto;
+          min-width: 120px;
+          margin-right: 0.5rem;
+          padding: 0.75rem 1rem;
+        }
+
+        .tech-tabs .nav-link:last-child {
+          margin-right: 0;
+        }
+
+        /* Adjust content spacing */
+        .tech-card {
+          margin-top: 1rem;
+        }
+
+        /* Make content more compact on mobile */
+        .tech-content {
+          padding: 1.5rem;
+        }
+
+        .tech-icon {
+          width: 50px;
+          height: 50px;
+        }
+
+        /* Adjust typography for better mobile reading */
+        .tech-content h3.h4 {
+          font-size: 1.25rem;
+        }
+
+        .tech-content p {
+          font-size: 0.95rem;
+        }
+      }
+
+      /* New 2x2 grid layout for mobile devices */
+      @media (max-width: 767px) {
+        .tech-tabs {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          grid-gap: 10px;
+          overflow-x: visible;
+          padding-bottom: 0;
+        }
+
+        .tech-tabs .nav-link {
+          margin-right: 0;
+          width: 100%;
+          min-width: auto;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          padding: 1rem 0.5rem;
+        }
+
+        .tech-pill {
+          display: block !important;
+          white-space: normal;
+          height: 100%;
+        }
+
+        .tech-pill .h5 {
+          font-size: 1rem;
+          margin-bottom: 0.25rem;
+        }
+
+        .tech-pill small {
+          font-size: 0.75rem !important;
+          display: block !important;
+          line-height: 1.2;
+        }
+
+        /* Adjust spacing for the content area */
+        .tab-content {
+          margin-top: 1rem;
+        }
+
+        /* Make small text visible on mobile */
+        .tech-pill .d-none.d-sm-block {
+          display: block !important;
+          font-size: 0.75rem;
+          line-height: 1.2;
+          margin-top: 0.25rem;
+        }
+
+        /* Improve active state visibility */
+        .tech-tabs .nav-link.tech-pill.active {
+          border: 2px solid var(--primary-color);
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+      }
+      .tech-card {
+        background: white;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+        height: 100%;
+      }
+
+      .tech-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .tech-image {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+      }
+
+      .tech-content {
+        padding: 2rem;
+      }
+      /* Add these footer styles to your existing CSS in the head section */
+      .footer {
+        background-color: #ffffff;
+        padding: 3rem 0;
+        color: #4a4a4a;
+      }
+
+      .footer h5 {
+        color: #000;
+        font-family: "MADE", sans-serif;
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+      }
+
+      .footer-links {
+        list-style: none;
+        padding: 0;
+      }
+
+      .footer-links li {
+        margin-bottom: 0.5rem;
+      }
+
+      .footer-links a {
+        color: #4a4a4a;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .footer-links a:hover {
+        color: #13cbe8;
+      }
+
+      .social-icons {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .social-icons a {
+        color: #4a4a4a;
+        transition: color 0.3s ease;
+      }
+
+      .social-icons a:hover {
+        color: #13cbe8;
+      }
+
+      .copyright {
+        text-align: center;
+        margin-top: 2rem;
+        padding-top: 2rem;
+        border-top: 1px solid #e0e0e0;
+      }
+
+      @media (max-width: 768px) {
+        .footer {
+          padding: 2rem 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          <img src="assets/logo.webp" alt="Logo" />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="technology">Our Technologies</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+              >
+                Our Solution
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="additive-manufacturing"
+                    >Additive Manufacturing</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="3d-modeling"
+                    >3D Modelling & Design</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="materials">Materials</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="gallery">Gallery</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="case-studies">Case Studies</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact">Contact Us</a>
+            </li>
+          </ul>
+          <div class="ms-lg-4">
+            <a href="contact" class="btn btn-primary rounded-pill"
+              >Get Quote</a
+            >
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- Banner Section -->
+    <section class="tech-banner" data-gsap>
+      <img
+        src="assets/additive-manufacturing-banner.png"
+        alt="Technology Banner"
+        class="banner-video"
+      />
+      <div class="container text-center">
+        <h1 class="display-3 fw-bold mb-4">
+          Additive Manufacturing Using Cutting-Edge Technology
+        </h1>
+        <p class="lead">
+          Transform your ideas into reality with our advanced manufacturing
+          solutions
+        </p>
+      </div>
+    </section>
+
+    <!-- What is AM Section -->
+    <section class="py-5 info-section">
+      <div class="container">
+        <h2 class="display-4 fw-bold mb-4 text-center">
+          What is Additive Manufacturing?
+        </h2>
+        <div class="row align-items-center">
+          <!-- Left side content -->
+          <div class="col-lg-6 mb-4 mb-lg-0">
+            <p class="lead mb-4">
+              Additive Manufacturing (AM), is a process of creating objects
+              layer by layer from digital designs. Unlike traditional
+              subtractive manufacturing, it adds material only where needed,
+              reducing waste and enabling complex designs.
+            </p>
+
+            <div class="row g-3 g-md-4">
+              <!-- Feature 1 -->
+              <div class="col-6">
+                <div class="feature-card p-3">
+                  <div class="d-flex align-items-start">
+                    <div class="icon-wrapper flex-shrink-0 me-3">
+                      <i class="fas fa-cogs text-primary"></i>
+                    </div>
+                    <div>
+                      <h3 class="h5 mb-2">Efficient & Customizable</h3>
+                      <p class="small text-muted mb-0 d-none d-md-block">
+                        Tailored solutions for your specific needs
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Feature 2 -->
+              <div class="col-6">
+                <div class="feature-card p-3">
+                  <div class="d-flex align-items-start">
+                    <div class="icon-wrapper flex-shrink-0 me-3">
+                      <i class="fas fa-layer-group text-primary"></i>
+                    </div>
+                    <div>
+                      <h3 class="h5 mb-2">Diverse Materials</h3>
+                      <p class="small text-muted mb-0 d-none d-md-block">
+                        Wide range of material options
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Feature 3 -->
+              <div class="col-6">
+                <div class="feature-card p-3">
+                  <div class="d-flex align-items-start">
+                    <div class="icon-wrapper flex-shrink-0 me-3">
+                      <i class="fas fa-industry text-primary"></i>
+                    </div>
+                    <div>
+                      <h3 class="h5 mb-2">Wide Applications</h3>
+                      <p class="small text-muted mb-0 d-none d-md-block">
+                        Solutions across industries
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Feature 4 -->
+              <div class="col-6">
+                <div class="feature-card p-3">
+                  <div class="d-flex align-items-start">
+                    <div class="icon-wrapper flex-shrink-0 me-3">
+                      <i class="fas fa-print text-primary"></i>
+                    </div>
+                    <div>
+                      <h3 class="h5 mb-2">Advanced Technology</h3>
+                      <p class="small text-muted mb-0 d-none d-md-block">
+                        Cutting-edge manufacturing
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right side image -->
+          <div class="col-lg-6">
+            <div class="position-relative mt-4 mt-lg-0">
+              <img
+                src="assets/why-additive-manufac.png"
+                alt="Additive Manufacturing Process"
+                class="img-fluid rounded shadow-lg"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <style>
+        .info-section {
+          background-color: #f8f9fa;
+        }
+
+        .feature-card {
+          background: white;
+          border-radius: 12px;
+          transition: all 0.3s ease;
+          height: 100%;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+          border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .feature-card:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .icon-wrapper {
+          width: 40px;
+          height: 40px;
+          background: rgba(19, 203, 232, 0.1);
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all 0.3s ease;
+        }
+
+        .icon-wrapper i {
+          font-size: 1.2rem;
+          color: var(--primary-color);
+        }
+
+        .feature-card:hover .icon-wrapper {
+          background: var(--primary-color);
+        }
+
+        .feature-card:hover .icon-wrapper i {
+          color: white;
+        }
+
+        /* Mobile Optimizations */
+        @media (max-width: 767px) {
+          .display-4 {
+            font-size: 2rem;
+          }
+
+          .lead {
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+          }
+
+          .feature-card {
+            padding: 0.75rem !important;
+          }
+
+          .icon-wrapper {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.5rem !important;
+          }
+
+          .icon-wrapper i {
+            font-size: 1rem;
+          }
+
+          .feature-card h3 {
+            font-size: 0.9rem;
+            margin-bottom: 0 !important;
+          }
+
+          .img-fluid {
+            height: auto !important;
+            width: 100% !important;
+            object-fit: cover;
+            border-radius: 12px;
+          }
+        }
+
+        /* Tablet Optimizations */
+        @media (min-width: 768px) and (max-width: 991px) {
+          .display-4 {
+            font-size: 2.5rem;
+          }
+
+          .feature-card h3 {
+            font-size: 1rem;
+          }
+
+          .img-fluid {
+            height: 400px !important;
+            width: 100% !important;
+            object-fit: cover;
+          }
+        }
+      </style>
+    </section>
+
+    <!-- Services Section -->
+    <section class="py-5">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-6 col-md-2 text-center">
+            <div class="service-icon">
+              <i class="fas fa-industry"></i>
+            </div>
+            <h3 class="h5">Contract Manufacturing</h3>
+          </div>
+          <div class="col-6 col-md-2 text-center">
+            <div class="service-icon">
+              <i class="fas fa-boxes"></i>
+            </div>
+            <h3 class="h5">High-Volume Production</h3>
+          </div>
+          <div class="col-6 col-md-2 text-center">
+            <div class="service-icon">
+              <i class="fas fa-bolt"></i>
+            </div>
+            <h3 class="h5">Rapid Prototyping</h3>
+          </div>
+          <div class="col-6 col-md-2 text-center">
+            <div class="service-icon">
+              <i class="fas fa-pencil-ruler"></i>
+            </div>
+            <h3 class="h5">Customizable Design</h3>
+          </div>
+          <div class="col-6 col-md-2 text-center">
+            <div class="service-icon">
+              <i class="fas fa-cog"></i>
+            </div>
+            <h3 class="h5">CNC Machining</h3>
+          </div>
+          <div class="col-6 col-md-2 text-center">
+            <div class="service-icon">
+              <i class="fas fa-search"></i>
+            </div>
+            <h3 class="h5">Quality Inspection</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section class="py-5 bg-light" data-gsap>
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 class="display-4 fw-bold mb-3">
+            Additive Manufacturing Technology
+          </h2>
+          <p class="lead text-muted col-lg-8 mx-auto">
+            Building objects layer by layer from digital models with precise,
+            waste-efficient production using various materials
+          </p>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-3">
+            <div class="nav tech-tabs me-lg-3" id="v-pills-tab" role="tablist">
+              <button
+                class="nav-link tech-pill active mb-lg-3 text-start w-100"
+                id="v-pills-fdm-tab"
+                data-bs-toggle="pill"
+                data-bs-target="#v-pills-fdm"
+                type="button"
+                role="tab"
+              >
+                <span class="h5 mb-0">FDM</span>
+                <small class="d-none d-sm-block text-muted"
+                  >Fused Deposition Modeling</small
+                >
+              </button>
+              <button
+                class="nav-link tech-pill mb-lg-3 text-start w-100"
+                id="v-pills-sls-tab"
+                data-bs-toggle="pill"
+                data-bs-target="#v-pills-sls"
+                type="button"
+                role="tab"
+              >
+                <span class="h5 mb-0">SLS</span>
+                <small class="d-none d-sm-block text-muted"
+                  >Selective Laser Sintering</small
+                >
+              </button>
+              <button
+                class="nav-link tech-pill mb-lg-3 text-start w-100"
+                id="v-pills-sla-tab"
+                data-bs-toggle="pill"
+                data-bs-target="#v-pills-sla"
+                type="button"
+                role="tab"
+              >
+                <span class="h5 mb-0">SLA</span>
+                <small class="d-none d-sm-block text-muted"
+                  >Stereolithography</small
+                >
+              </button>
+              <button
+                class="nav-link tech-pill mb-lg-3 text-start w-100"
+                id="v-pills-dlp-tab"
+                data-bs-toggle="pill"
+                data-bs-target="#v-pills-dlp"
+                type="button"
+                role="tab"
+              >
+                <span class="h5 mb-0">DLP</span>
+                <small class="d-none d-sm-block text-muted"
+                  >Digital Light Processing</small
+                >
+              </button>
+            </div>
+          </div>
+
+          <div class="col-lg-9">
+            <div class="tab-content" id="v-pills-tabContent">
+              <div
+                class="tab-pane fade show active"
+                id="v-pills-fdm"
+                role="tabpanel"
+              >
+                <div class="tech-card">
+                  <div class="tech-content">
+                    <h3 class="h4 mb-4">Fused Deposition Modeling (FDM)</h3>
+                    <p class="mb-4">
+                      FDM technology creates parts by extruding thermoplastic
+                      filaments layer by layer to build up the desired object.
+                    </p>
+
+                    <div class="mt-4">
+                      <h4 class="h5 mb-3">Best suited for:</h4>
+                      <ul class="list-unstyled">
+                        <li class="mb-2">
+                          <i class="fas fa-check text-primary me-2"></i>
+                          Functional prototypes
+                        </li>
+                        <li class="mb-2">
+                          <i class="fas fa-check text-primary me-2"></i>
+                          Manufacturing tools
+                        </li>
+                        <li class="mb-2">
+                          <i class="fas fa-check text-primary me-2"></i> End-use
+                          parts
+                        </li>
+                        <li class="mb-2">
+                          <i class="fas fa-check text-primary me-2"></i> Large
+                          components
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tab-pane fade" id="v-pills-sls" role="tabpanel">
+                <div class="tech-card">
+                  <div class="tech-content">
+                    <h3 class="h4 mb-4">Selective Laser Sintering (SLS)</h3>
+                    <p class="mb-4">
+                      SLS uses a high-power laser to fuse small particles of
+                      polymer powder into a solid structure.
+                    </p>
+
+                    <div class="mt-4">
+                      <h4 class="h5 mb-3">Perfect for:</h4>
+                      <ul class="list-unstyled">
+                        <li class="mb-2">
+                          <i class="fas fa-check text-primary me-2"></i> Complex
+                          geometries
+                        </li>
+                        <li class="mb-2">
+                          <i class="fas fa-check text-primary me-2"></i>
+                          Functional prototypes
+                        </li>
+                        <li class="mb-2">
+                          <i class="fas fa-check text-primary me-2"></i> End-use
+                          parts
+                        </li>
+                        <li class="mb-2">
+                          <i class="fas fa-check text-primary me-2"></i>
+                          High-strength components
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tab-pane fade" id="v-pills-sla" role="tabpanel">
+                <div class="tech-card">
+                  <div class="tech-content">
+                    <h3 class="h4 mb-4">Stereolithography (SLA)</h3>
+                    <p class="mb-4">
+                      SLA technology uses a laser to cure liquid resin into
+                      hardened plastic, creating highly detailed parts.
+                    </p>
+
+                    <div class="mt-4">
+                      <h4 class="h5 mb-3">Ideal for:</h4>
+                      <ul class="list-unstyled">
+                        <li class="mb-2">
+                          <i class="fas fa-check text-primary me-2"></i> High
+                          detail models
+                        </li>
+                        <li class="mb-2">
+                          <i class="fas fa-check text-primary me-2"></i> Smooth
+                          surface finish
+                        </li>
+                        <li class="mb-2">
+                          <i class="fas fa-check text-primary me-2"></i> Visual
+                          prototypes
+                        </li>
+                        <li class="mb-2">
+                          <i class="fas fa-check text-primary me-2"></i> Small,
+                          intricate parts
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tab-pane fade" id="v-pills-dlp" role="tabpanel">
+                <div class="tech-card">
+                  <div class="tech-content">
+                    <h3 class="h4 mb-4">Digital Light Processing (DLP)</h3>
+                    <p class="mb-4">
+                      DLP uses a digital light projector screen to flash a
+                      single image of each layer across the entire platform at
+                      once.
+                    </p>
+
+                    <div class="mt-4">
+                      <h4 class="h5 mb-3">Excellent for:</h4>
+                      <ul class="list-unstyled">
+                        <li class="mb-2">
+                          <i class="fas fa-check text-primary me-2"></i> Fast
+                          production
+                        </li>
+                        <li class="mb-2">
+                          <i class="fas fa-check text-primary me-2"></i> High
+                          accuracy
+                        </li>
+                        <li class="mb-2">
+                          <i class="fas fa-check text-primary me-2"></i> Dental
+                          applications
+                        </li>
+                        <li class="mb-2">
+                          <i class="fas fa-check text-primary me-2"></i> Jewelry
+                          casting
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Industries Section (from home page) -->
+    <section class="industries-section py-5">
+      <div class="container">
+        <h2 class="text-center fw-bold mb-5">Industries we work with</h2>
+
+        <!-- Cards Container -->
+        <div class="row g-4 mb-5">
+          <!-- Aerospace & Defence -->
+          <div class="col-lg-4 col-md-6">
+            <div
+              class="industry-card shadow-sm position-relative rounded-4 overflow-hidden bg-white p-4 text-center h-100"
+            >
+              <div class="mb-4 d-flex justify-content-center">
+                <div
+                  class="p-4 rounded-circle"
+                  style="background-color: rgba(46, 234, 205, 0.1)"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="48"
+                    height="48"
+                    viewBox="0 0 39 39"
+                    fill="none"
+                    stroke="#13CBE8"
+                    stroke-width="0"
+                  >
+                    <path
+                      fill="#13CBE8"
+                      d="M38.976,0.209L35.51,0.806l-9.12,7.552l-7.228-1.276l-6.296-1.116L7.07,4.937L3.109,8.313l16.148,7.411l-9.66,11.755c-0.255,0.254-0.487,0.506-0.691,0.756l-6.035-2.452L0,28.654l6.453,2.957l0.271,0.271L4.686,34.12l0.931,0.848l1.998-2.195l0.78,0.779l2.719,5.215l2.661-2.666l-3.104-6.138c0.158-0.11,0.311-0.231,0.448-0.373l12.534-9.847l0.169,0.168l8.425,16.709l2.96-3.547l-1.209-6.192l-1.207-6.187l-1.593-8.157l-0.049-0.052l7.023-8.408L38.976,0.209z"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <h3 class="h5 mb-3">AEROSPACE & DEFENCE</h3>
+              <p class="text-muted">
+                Advanced solutions for aerospace and defense applications
+              </p>
+            </div>
+          </div>
+
+          <!-- Healthcare -->
+          <div class="col-lg-4 col-md-6">
+            <div
+              class="industry-card shadow-sm position-relative rounded-4 overflow-hidden bg-white p-4 text-center h-100"
+            >
+              <div class="mb-4 d-flex justify-content-center">
+                <div
+                  class="p-4 rounded-circle"
+                  style="background-color: rgba(46, 234, 205, 0.1)"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="48"
+                    height="48"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#13CBE8"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                  </svg>
+                </div>
+              </div>
+              <h3 class="h5 mb-3">HEALTHCARE & MEDICAL DEVICES</h3>
+              <p class="text-muted">
+                Precision manufacturing for medical equipment
+              </p>
+            </div>
+          </div>
+
+          <!-- Energy -->
+          <div class="col-lg-4 col-md-6">
+            <div
+              class="industry-card shadow-sm position-relative rounded-4 overflow-hidden bg-white p-4 text-center h-100"
+            >
+              <div class="mb-4 d-flex justify-content-center">
+                <div
+                  class="p-4 rounded-circle"
+                  style="background-color: rgba(46, 234, 205, 0.1)"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="48"
+                    height="48"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#13CBE8"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+                  </svg>
+                </div>
+              </div>
+              <h3 class="h5 mb-3">ENERGY</h3>
+              <p class="text-muted">
+                Custom solutions for energy sector components
+              </p>
+            </div>
+          </div>
+
+          <!-- Robotics -->
+          <div class="col-lg-4 col-md-6">
+            <div
+              class="industry-card shadow-sm position-relative rounded-4 overflow-hidden bg-white p-4 text-center h-100"
+            >
+              <div class="mb-4 d-flex justify-content-center">
+                <div
+                  class="p-4 rounded-circle"
+                  style="background-color: rgba(46, 234, 205, 0.1)"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="48"
+                    height="48"
+                    viewBox="0 0 512 512"
+                    fill="none"
+                  >
+                    <path
+                      fill="#13CBE8"
+                      d="M401.61,206.609l-52.822-72.632c12.202-14.206,19.602-32.653,19.602-52.807C368.39,36.413,331.977,0,287.219,0 c-42.161,0-76.905,32.315-80.796,73.476l-97.708,106.591c-30.659,11.607-52.52,41.258-52.52,75.933s21.861,64.326,52.52,75.933 l73.483,80.164H56.195V512h337.171v-99.902h-47.954l-128.46-140.137c1.034-5.162,1.585-10.497,1.585-15.961 s-0.551-10.798-1.585-15.961l71.245-77.723c10.732-0.129,20.97-2.335,30.323-6.26l42.808,58.863 c-18.196,10.923-30.402,30.845-30.402,53.569v49.951h37.463v-49.951c0-13.772,11.204-24.976,24.976-24.976 c13.772,0,24.976,11.204,24.976,24.976v49.951h37.463v-49.951C455.805,236.855,432.154,210.658,401.61,206.609z M93.659,256 c0-24.1,19.607-43.707,43.707-43.707S181.073,231.9,181.073,256s-19.607,43.707-43.707,43.707S93.659,280.1,93.659,256z M355.902,449.561v24.976H93.659v-24.976H355.902z M294.589,412.098H233.02l-71.934-78.471 c15.117-4.629,28.362-13.564,38.319-25.365L294.589,412.098z M199.406,203.739c-9.957-11.801-23.201-20.736-38.319-25.365 l54.376-59.317c7.237,13.652,18.253,24.993,31.649,32.641L199.406,203.739z M287.219,124.878c-24.1,0-43.707-19.607-43.707-43.707 s19.607-43.707,43.707-43.707c24.1,0,43.707,19.607,43.707,43.707S311.32,124.878,287.219,124.878z"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <h3 class="h5 mb-3">ROBOTICS & AUTOMATION</h3>
+              <p class="text-muted">Specialized parts for robotics systems</p>
+            </div>
+          </div>
+
+          <!-- Industrial Manufacturing -->
+          <div class="col-lg-4 col-md-6">
+            <div
+              class="industry-card shadow-sm position-relative rounded-4 overflow-hidden bg-white p-4 text-center h-100"
+            >
+              <div class="mb-4 d-flex justify-content-center">
+                <div
+                  class="p-4 rounded-circle"
+                  style="background-color: rgba(46, 234, 205, 0.1)"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="48"
+                    height="48"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#13CBE8"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7-7H4a2 2 0 0 0-2 2v17z"
+                    ></path>
+                    <path d="M16 8h6"></path>
+                    <path d="M12 18h4"></path>
+                    <path d="M8 18h2"></path>
+                    <path d="M10 14h4"></path>
+                    <path d="M16 14h2"></path>
+                  </svg>
+                </div>
+              </div>
+              <h3 class="h5 mb-3">INDUSTRIAL MANUFACTURING</h3>
+              <p class="text-muted">Comprehensive industrial solutions</p>
+            </div>
+          </div>
+
+          <!-- Automotive -->
+          <div class="col-lg-4 col-md-6">
+            <div
+              class="industry-card shadow-sm position-relative rounded-4 overflow-hidden bg-white p-4 text-center h-100"
+            >
+              <div class="mb-4 d-flex justify-content-center">
+                <div
+                  class="p-4 rounded-circle"
+                  style="background-color: rgba(46, 234, 205, 0.1)"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="48"
+                    height="48"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#13CBE8"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M14 16H9m10 0h3v-3.15a1 1 0 00-.84-.99L16 11l-2.7-3.6a1 1 0 00-.8-.4H5.24a2 2 0 00-1.8 1.1l-.8 1.63A6 6 0 002 12.42V16h3"
+                    ></path>
+                    <circle cx="6.5" cy="16.5" r="2.5"></circle>
+                    <circle cx="16.5" cy="16.5" r="2.5"></circle>
+                  </svg>
+                </div>
+              </div>
+              <h3 class="h5 mb-3">AUTOMOTIVE & MOBILITY</h3>
+              <p class="text-muted">
+                Innovative solutions for automotive manufacturing
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Button Container with proper spacing -->
+        <div class="text-center mt-5">
+          <a href="/contact" class="btn btn-primary rounded-pill px-5 py-3"
+            >Learn more about our industries</a
+          >
+        </div>
+      </div>
+
+      <style>
+        .industries-section {
+          padding: 6rem 0;
+          background-color: #fff;
+        }
+
+        .industry-card {
+          transition: all 0.3s ease;
+          border: 1px solid rgba(0, 0, 0, 0.05);
+          height: 100%;
+          background: #fff;
+          padding: 2rem;
+        }
+
+        .industry-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .industry-card .rounded-circle {
+          transition: all 0.3s ease;
+        }
+
+        .industry-card:hover .rounded-circle {
+          transform: scale(1.1);
+          background-color: rgba(46, 234, 205, 0.2);
+        }
+
+        .industry-card h3 {
+          font-size: 1.1rem;
+          font-weight: 600;
+          color: #1a202c;
+        }
+
+        .industry-card p {
+          font-size: 0.95rem;
+          line-height: 1.6;
+          color: #4a5568;
+        }
+
+        .btn-primary {
+          background-color: #13cbe8;
+          border-color: #13cbe8;
+          color: #000;
+          font-weight: 500;
+          padding: 1rem 2.5rem;
+          transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+          background-color: #25c5ac;
+          border-color: #25c5ac;
+          transform: translateY(-2px);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+          .industries-section {
+            padding: 4rem 0;
+          }
+
+          .industry-card {
+            padding: 1.5rem;
+          }
+
+          .btn-primary {
+            padding: 0.75rem 2rem;
+          }
+        }
+        /* WhatsApp Button Styles */
+        .whatsapp-button {
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          z-index: 1000;
+        }
+
+        .whatsapp-button a {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 60px;
+          height: 60px;
+          background-color: #25d366;
+          border-radius: 50%;
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+          transition: all 0.3s ease;
+        }
+
+        .whatsapp-button i {
+          font-size: 32px;
+          color: white;
+        }
+
+        .whatsapp-button a:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+          background-color: #22c55e;
+        }
+
+        /* Tooltip Styles */
+        .whatsapp-tooltip {
+          position: absolute;
+          right: 75px;
+          bottom: 5px;
+          background: white;
+          padding: 10px 15px;
+          border-radius: 8px;
+          font-size: 14px;
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+          color: #333;
+          width: 200px;
+          opacity: 0;
+          visibility: hidden;
+          transition: all 0.3s ease;
+        }
+
+        .whatsapp-tooltip::after {
+          content: "";
+          position: absolute;
+          right: -8px;
+          top: 50%;
+          transform: translateY(-50%);
+          border-left: 8px solid white;
+          border-top: 8px solid transparent;
+          border-bottom: 8px solid transparent;
+        }
+
+        /* Show tooltip on hover */
+        .whatsapp-button:hover .whatsapp-tooltip {
+          opacity: 1;
+          visibility: visible;
+          right: 85px;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+          .whatsapp-button {
+            bottom: 15px;
+            right: 15px;
+          }
+
+          .whatsapp-button a {
+            width: 50px;
+            height: 50px;
+          }
+
+          .whatsapp-button i {
+            font-size: 28px;
+          }
+
+          .whatsapp-tooltip {
+            display: none;
+          }
+        }
+
+        .whatsapp-button a {
+          color: rgba(13, 110, 253, 0);
+        }
+      </style>
+    </section>
+
+    <!-- FAQs Section (from home page) -->
+    <section class="faq-section py-5">
+      <div class="container">
+        <h2 class="text-center fw-bold mb-5">Frequently Asked Questions</h2>
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="accordion" id="faqAccordion">
+              <!-- FAQ Item 1 -->
+              <div class="accordion-item border-0 mb-3 rounded-4 shadow-sm">
+                <h3 class="accordion-header">
+                  <button
+                    class="accordion-button rounded-4"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#faq1"
+                  >
+                    What services do you offer?
+                  </button>
+                </h3>
+                <div
+                  id="faq1"
+                  class="accordion-collapse collapse show"
+                  data-bs-parent="#faqAccordion"
+                >
+                  <div class="accordion-body">
+                    We specialize in advanced digital and additive
+                    manufacturing, offering precision design support,
+                    small-batch production, production of industrial-grade
+                    end-use parts, and rapid prototyping solutions tailored to
+                    your needs.
+                  </div>
+                </div>
+              </div>
+
+              <!-- FAQ Item 2 -->
+              <div class="accordion-item border-0 mb-3 rounded-4 shadow-sm">
+                <h3 class="accordion-header">
+                  <button
+                    class="accordion-button collapsed rounded-4"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#faq2"
+                  >
+                    What do you need from the client's end to start working on a
+                    project?
+                  </button>
+                </h3>
+                <div
+                  id="faq2"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#faqAccordion"
+                >
+                  <div class="accordion-body">
+                    We need Engineering drawings or a 3D file (STL, STEP, OBJ,
+                    FBX, 3MF, STEP)
+                  </div>
+                </div>
+              </div>
+
+              <!-- FAQ Item 3 -->
+              <div class="accordion-item border-0 mb-3 rounded-4 shadow-sm">
+                <h3 class="accordion-header">
+                  <button
+                    class="accordion-button collapsed rounded-4"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#faq3"
+                  >
+                    Do you offer support for small-scale or low-volume
+                    production?
+                  </button>
+                </h3>
+                <div
+                  id="faq3"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#faqAccordion"
+                >
+                  <div class="accordion-body">
+                    Yes, we cater to both small-scale and large-scale
+                    manufacturing needs, offering flexible solutions for your
+                    projects.
+                  </div>
+                </div>
+              </div>
+
+              <!-- FAQ Item 4 -->
+              <div class="accordion-item border-0 mb-3 rounded-4 shadow-sm">
+                <h3 class="accordion-header">
+                  <button
+                    class="accordion-button collapsed rounded-4"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#faq4"
+                  >
+                    How long does it take to complete a project?
+                  </button>
+                </h3>
+                <div
+                  id="faq4"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#faqAccordion"
+                >
+                  <div class="accordion-body">
+                    The timeline depends on the complexity and scale of your
+                    project, but our raid prototyping capabilities ensure
+                    competitive lead times without compromising quality.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pre-Footer CTA -->
+    <!-- Pre-Footer CTA Section -->
+    <section class="pre-footer-cta py-5">
+      <div class="container">
+        <div class="row g-4 align-items-center">
+          <div class="col-lg-6">
+            <h2 class="fw-bold mb-4">
+              Looking for a trusted additive manufacturer?<br />Partner with us
+              Today
+            </h2>
+            <p class="lead mb-4">
+              Get started with your project by filling out our quick quote form.
+              Our team will get back to you within 24 hours.
+            </p>
+            <a href="#quoteForm" class="btn btn-primary btn-lg rounded-pill"
+              >Get Free Quote</a
+            >
+          </div>
+
+          <div class="col-lg-5 offset-lg-1">
+            <div class="quote-form-card bg-white p-4 rounded-4 shadow">
+              <h3 class="h4 mb-4">Request a Quote</h3>
+              <form id="quoteForm">
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    class="form-control rounded-pill"
+                    placeholder="Your Name"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <input
+                    type="email"
+                    class="form-control rounded-pill"
+                    placeholder="Email Address"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <input
+                    type="tel"
+                    class="form-control rounded-pill"
+                    placeholder="Phone Number"
+                  />
+                </div>
+                <div class="mb-3">
+                  <select class="form-select rounded-pill">
+                    <option selected>Select Service</option>
+                    <option>Additive Manufacturing</option>
+                    <option>⁠Prototyping</option>
+                    <option>3D Modelling & Design</option>
+                    <option>Other's</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <textarea
+                    class="form-control rounded-3"
+                    rows="3"
+                    placeholder="Project Details"
+                  ></textarea>
+                </div>
+                <button
+                  type="submit"
+                  class="btn btn-primary w-100 rounded-pill"
+                >
+                  Submit Request
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+            <img
+              src="assets/logo.webp"
+              alt="Logo"
+              class="mb-3"
+              style="max-width: 200px"
+            />
+            <p>
+              Your trusted partner in additive manufacturing and 3D printing
+              solutions.
+            </p>
+          </div>
+          <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+            <h5>Quick Links</h5>
+            <ul class="footer-links">
+              <li><a href="/">Home</a></li>
+              <li><a href="/about">About Us</a></li>
+              <li><a href="/materials">Materials</a></li>
+              <li><a href="/case-studies">Case Studies</a></li>
+              <li><a href="/contact">Contact</a></li>
+              <li><a href="/careers">Career</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+            <h5>Our Solutions</h5>
+            <ul class="footer-links">
+              <li><a href="/3d-modeling">3D Modelling & Design</a></li>
+              <li>
+                <a href="/additive-manufacturing"
+                  >Additive Manufacturing</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <h5>Contact Us</h5>
+            <p>
+              32-36, Ella High Street Mall, Ella Cidade, NH4A Highway Old Goa
+              by-pass road Ella, Kadamba, Goa 403402
+            </p>
+            <p>
+              Email:
+              <a href="mailto:support@nirmitsu.com">support@nirmitsu.com</a>
+            </p>
+            <p>
+              Phone:
+              <a href="tel:+917391086524">+917391086524 / +918322990536</a>
+            </p>
+            <div class="social-icons">
+              <a href="#" aria-label="Facebook"
+                ><svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+                  ></path></svg
+              ></a>
+              <a href="#" aria-label="Twitter"
+                ><svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"
+                  ></path></svg
+              ></a>
+              <a
+                href="https://www.linkedin.com/company/nirmitsu-design-labs-pvt-ltd/"
+                aria-label="LinkedIn"
+                ><svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+                  ></path>
+                  <rect x="2" y="9" width="4" height="12"></rect>
+                  <circle cx="4" cy="4" r="2"></circle></svg
+              ></a>
+            </div>
+          </div>
+        </div>
+        <div class="copyright">
+          <p>&copy; 2026 Nirmitsu. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+    <div class="whatsapp-button">
+      <div class="whatsapp-tooltip">
+        Hi! Chat with us on WhatsApp for quick support 👋
+      </div>
+      <a
+        href="https://wa.me/+917391086524"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <i class="fab fa-whatsapp"></i>
+      </a>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+
+    <!-- GSAP Animation -->
+    <script>
+      gsap.registerPlugin(ScrollTrigger);
+
+      gsap.from(".benefit-card", {
+        scrollTrigger: {
+          trigger: ".benefit-card",
+          start: "top bottom-=100",
+          toggleActions: "play none none reverse",
+        },
+        y: 50,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.2,
+      });
+    </script>
+    <script>
+      document
+        .getElementById("quoteForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          // Get form values
+          const name = this.querySelector('input[type="text"]').value;
+          const email = this.querySelector('input[type="email"]').value;
+          const phone = this.querySelector('input[type="tel"]').value;
+          const service = this.querySelector("select").value;
+          const details = this.querySelector("textarea").value;
+
+          // Create message
+          let message = `Hello, my name is ${name}. I'm interested in ${service}.`;
+
+          if (details) {
+            message += `\n\nProject Details: ${details}`;
+          }
+
+          message += `\n\nMy contact information:\nEmail: ${email}`;
+
+          if (phone) {
+            message += `\nPhone: ${phone}`;
+          }
+
+          message += `\n\nPlease contact me regarding my project requirements. Thank you!`;
+
+          // Encode the message for URL
+          const encodedMessage = encodeURIComponent(message);
+
+          // Open WhatsApp with the message
+          window.open(
+            `https://wa.me/+917391086524?text=${encodedMessage}`,
+            "_blank"
+          );
+        });
+    </script>
+  </body>
+</html>

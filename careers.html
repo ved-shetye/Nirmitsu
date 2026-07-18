@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Careers - Nirmitsu</title>
+    <link rel="icon" href="assets/favicon.png" type="image/png" />
+    <link
+      rel="preload"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+      <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        rel="stylesheet"
+      />
+    </noscript>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+      /* Base Styles */
+      html,
+      body {
+        font-size: 16px;
+      }
+
+      @font-face {
+        font-family: "MADE Regular";
+        src: url("fonts/MADE-Regular.otf") format("opentype");
+        font-weight: normal;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: "MADE";
+        src: url("fonts/MADE.otf") format("opentype");
+        font-weight: bold;
+        font-style: normal;
+      }
+
+      :root {
+        --primary-color: #13cbe8;
+        --secondary-color: #000000;
+        --light-bg: #ffffff;
+      }
+
+      body {
+        font-family: "MADE Regular", sans-serif;
+        background-color: var(--light-bg);
+      }
+
+      /* Typography Scale */
+      h1,
+      .h1 {
+        font-size: 2.5rem;
+      }
+
+      h2,
+      .h2 {
+        font-size: 2rem;
+      }
+
+      h3,
+      .h3 {
+        font-size: 1.75rem;
+      }
+
+      h4,
+      .h4 {
+        font-size: 1.5rem;
+      }
+
+      h5,
+      .h5 {
+        font-size: 1.25rem;
+      }
+
+      h6,
+      .h6 {
+        font-size: 1rem;
+      }
+
+      .display-3 {
+        font-size: 2.5rem;
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+      }
+
+      /* Button Styles */
+      .btn-primary {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+        font-family: "MADE", sans-serif;
+        color: black;
+        padding: 1rem 2.5rem;
+        font-size: 1.1rem;
+      }
+
+      .btn-primary:hover {
+        background-color: #25c7ae;
+        border-color: #25c7ae;
+        color: black;
+      }
+
+      /* Navigation Styles */
+      .nav-link {
+        color: var(--secondary-color) !important;
+        font-family: "MADE Regular", sans-serif;
+        font-size: 0.95rem;
+        padding: 0.5rem 0.7rem !important;
+      }
+
+      .nav-link:hover {
+        color: var(--primary-color) !important;
+      }
+
+      .navbar {
+        padding: 0.5rem 0;
+      }
+
+      .navbar-brand img {
+        max-width: 150px;
+        height: auto;
+      }
+
+      .dropdown-menu {
+        border: none;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .dropdown-item {
+        font-family: "MADE Regular", sans-serif;
+        padding: 0.75rem 1.5rem;
+      }
+
+      .dropdown-item:hover {
+        background-color: var(--primary-color);
+        color: black;
+      }
+
+      /* Career-specific styles */
+      .career-banner {
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+          url("assets/career.jpeg");
+        background-size: cover;
+        background-position: center;
+        padding: 120px 0;
+        color: white;
+      }
+
+      .job-card {
+        background: white;
+        border-radius: 16px;
+        padding: 2rem;
+        margin-bottom: 1.5rem;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      .job-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .job-tag {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        border-radius: 50px;
+        font-size: 0.875rem;
+        margin-right: 0.5rem;
+        margin-bottom: 0.5rem;
+        background-color: rgba(19, 203, 232, 0.1);
+        color: #13cbe8;
+      }
+
+      .value-card {
+        background: white;
+        border-radius: 16px;
+        padding: 2rem;
+        text-align: center;
+        height: 100%;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      .value-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .value-icon {
+        width: 80px;
+        height: 80px;
+        background: rgba(19, 203, 232, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+        transition: all 0.3s ease;
+      }
+
+      .value-card:hover .value-icon {
+        background: #13cbe8;
+      }
+
+      .value-card:hover .value-icon i {
+        color: white;
+      }
+
+      .value-icon i {
+        font-size: 2rem;
+        color: #13cbe8;
+      }
+
+      .filter-btn {
+        padding: 0.75rem 1.5rem;
+        border-radius: 50px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        background: white;
+        margin: 0 0.5rem 1rem;
+        transition: all 0.3s ease;
+      }
+
+      .filter-btn:hover,
+      .filter-btn.active {
+        background: #13cbe8;
+        color: white;
+        border-color: #13cbe8;
+      }
+
+      @media (max-width: 768px) {
+        .career-banner {
+          padding: 60px 0;
+        }
+
+        .career-banner h1.display-3 {
+          font-size: 2rem;
+          line-height: 1.2;
+        }
+
+        .career-banner .lead {
+          font-size: 1rem;
+          line-height: 1.5;
+        }
+
+        .job-card {
+          padding: 1.5rem;
+        }
+
+        .value-icon {
+          width: 60px;
+          height: 60px;
+        }
+
+        .value-icon i {
+          font-size: 1.5rem;
+        }
+
+        .job-details {
+          padding: 1rem;
+        }
+
+        .job-card .btn {
+          padding: 0.5rem 1rem;
+          font-size: 0.9rem;
+        }
+
+        /* Improved responsive styles */
+        .filter-btn {
+          padding: 0.5rem 1rem;
+          margin: 0 0.25rem 0.75rem;
+          font-size: 0.9rem;
+        }
+
+        .job-card .d-flex {
+          flex-direction: column;
+          align-items: flex-start !important;
+        }
+
+        .job-card .btn-primary {
+          margin-top: 1rem;
+          align-self: stretch;
+          text-align: center;
+        }
+
+        h1.display-3 {
+          font-size: 2rem;
+        }
+
+        .lead {
+          font-size: 1rem;
+        }
+
+        .job-details ul li {
+          padding-left: 1.25rem;
+        }
+
+        .job-details h4 {
+          font-size: 1.1rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .career-banner {
+          padding: 50px 0;
+        }
+
+        .career-banner h1.display-3 {
+          font-size: 1.8rem;
+        }
+
+        .filter-btn {
+          margin: 0 0.2rem 0.5rem;
+          font-size: 0.8rem;
+          padding: 0.4rem 0.8rem;
+        }
+
+        .job-tag {
+          padding: 0.3rem 0.7rem;
+          font-size: 0.8rem;
+          margin-right: 0.4rem;
+        }
+
+        .job-card {
+          padding: 1.25rem;
+        }
+
+        .value-card {
+          padding: 1.5rem;
+        }
+      }
+
+      .job-details {
+        padding: 1.5rem;
+        background: rgba(19, 203, 232, 0.05);
+        border-radius: 12px;
+        margin-top: 1rem;
+      }
+
+      .job-details ul {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      .job-details ul li {
+        position: relative;
+        padding-left: 1.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .job-details ul li:before {
+        content: "•";
+        color: var(--primary-color);
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+
+      .collapse {
+        transition: all 0.3s ease;
+      }
+
+      .btn-primary.active {
+        background-color: #0d6efd;
+        color: white;
+      }
+
+      .collapse {
+        display: none;
+      }
+
+      .collapse.show {
+        display: block;
+      }
+
+      .collapsing {
+        height: 0;
+        overflow: hidden;
+        transition: height 0.35s ease;
+      }
+
+      .job-details {
+        margin-top: 1rem;
+        padding: 1.5rem;
+        background: rgba(19, 203, 232, 0.05);
+        border-radius: 12px;
+        transition: all 0.3s ease;
+      }
+
+      /* Filter scrolling for mobile */
+      @media (max-width: 768px) {
+        .filters-container {
+          position: relative;
+          overflow: hidden;
+          margin-bottom: 2rem;
+        }
+
+        .filters-scroll {
+          display: flex;
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+          padding-bottom: 1rem;
+          margin-bottom: -1rem;
+          /* To hide scrollbar space */
+          justify-content: flex-start;
+          scroll-snap-type: x mandatory;
+          scrollbar-width: none;
+          /* Firefox */
+          -ms-overflow-style: none;
+          /* IE and Edge */
+          padding-right: 40px;
+          /* Space for the gradient */
+        }
+
+        .filters-scroll::-webkit-scrollbar {
+          display: none;
+          /* Chrome, Safari, Opera */
+        }
+
+        .filter-btn {
+          flex: 0 0 auto;
+          scroll-snap-align: start;
+        }
+
+        .filters-container::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          right: 0;
+          height: 100%;
+          width: 40px;
+          background: linear-gradient(
+            to right,
+            rgba(248, 249, 250, 0),
+            rgba(248, 249, 250, 1)
+          );
+          pointer-events: none;
+          z-index: 1;
+        }
+      }
+
+      /* Tablet styles */
+      @media (min-width: 769px) and (max-width: 991px) {
+        .filter-btn {
+          padding: 0.6rem 1.2rem;
+          margin: 0 0.3rem 0.8rem;
+          font-size: 0.95rem;
+        }
+
+        .job-card .btn-primary {
+          padding: 0.7rem 1.5rem;
+        }
+
+        .job-tag {
+          padding: 0.4rem 0.8rem;
+        }
+
+        .value-card {
+          padding: 1.75rem;
+        }
+
+        h2 {
+          font-size: 1.75rem;
+        }
+      }
+
+      /* Final responsive fixes */
+      .w-md-auto {
+        width: auto !important;
+      }
+
+      @media (min-width: 768px) {
+        .w-md-auto {
+          width: auto !important;
+        }
+      }
+
+      /* Footer Styles */
+      .footer {
+        background-color: #ffffff;
+        padding: 3rem 0;
+        color: #4a4a4a;
+      }
+
+      .footer h5 {
+        color: #000;
+        font-family: "MADE", sans-serif;
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+      }
+
+      .footer-links {
+        list-style: none;
+        padding: 0;
+      }
+
+      .footer-links li {
+        margin-bottom: 0.5rem;
+      }
+
+      .footer-links a {
+        color: #4a4a4a;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .footer-links a:hover {
+        color: #13cbe8;
+      }
+
+      .social-icons {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .social-icons a {
+        color: #4a4a4a;
+        transition: color 0.3s ease;
+      }
+
+      .social-icons a:hover {
+        color: #13cbe8;
+      }
+
+      .copyright {
+        text-align: center;
+        margin-top: 2rem;
+        padding-top: 2rem;
+        border-top: 1px solid #e0e0e0;
+      }
+
+      /* WhatsApp Button Styles */
+      .whatsapp-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+      }
+
+      .whatsapp-button a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 60px;
+        height: 60px;
+        background-color: #25d366;
+        border-radius: 50%;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+        color: rgba(13, 110, 253, 0);
+      }
+
+      .whatsapp-button i {
+        font-size: 32px;
+        color: white;
+      }
+
+      .whatsapp-button a:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        background-color: #22c55e;
+      }
+
+      .whatsapp-tooltip {
+        position: absolute;
+        right: 75px;
+        bottom: 5px;
+        background: white;
+        padding: 10px 15px;
+        border-radius: 8px;
+        font-size: 14px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        color: #333;
+        width: 200px;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .whatsapp-tooltip::after {
+        content: "";
+        position: absolute;
+        right: -8px;
+        top: 50%;
+        transform: translateY(-50%);
+        border-left: 8px solid white;
+        border-top: 8px solid transparent;
+        border-bottom: 8px solid transparent;
+      }
+
+      .whatsapp-button:hover .whatsapp-tooltip {
+        opacity: 1;
+        visibility: visible;
+        right: 85px;
+      }
+
+      /* Responsive Styles */
+      @media (max-width: 768px) {
+        .whatsapp-button {
+          bottom: 15px;
+          right: 15px;
+        }
+
+        .whatsapp-button a {
+          width: 50px;
+          height: 50px;
+        }
+
+        .whatsapp-button i {
+          font-size: 28px;
+        }
+
+        .whatsapp-tooltip {
+          display: none;
+        }
+
+        .btn-primary {
+          padding: 0.75rem 2rem;
+        }
+      }
+
+      .pre-footer-cta {
+        background-color: #f8f9fa;
+      }
+
+      @media (min-width: 992px) {
+        .ms-lg-4 {
+          margin-left: 1.5rem !important;
+        }
+      }
+
+      .job-details .fw-bold {
+        color: #13cbe8;
+        font-size: 0.95rem;
+      }
+
+      @media (max-width: 768px) {
+        .job-details .fw-bold {
+          font-size: 0.9rem;
+        }
+      }
+
+      .job-collapse {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease-out, opacity 0.3s ease,
+          margin 0.3s ease;
+        opacity: 0;
+        margin-top: 0;
+      }
+
+      .job-collapse.show {
+        max-height: 2000px; /* Large enough to contain content */
+        opacity: 1;
+        margin-top: 1rem;
+      }
+
+      @media (max-width: 768px) {
+        .job-details .fw-bold {
+          font-size: 0.9rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          <img src="assets/logo.webp" alt="Logo" />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="technology">Our Technologies</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+              >
+                Our Solution
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="additive-manufacturing"
+                    >Additive Manufacturing</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="3d-modeling"
+                    >3D Modelling & Design</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="materials">Materials</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="gallery">Gallery</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="case-studies">Case Studies</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact">Contact Us</a>
+            </li>
+          </ul>
+          <div class="ms-lg-4">
+            <a href="contact" class="btn btn-primary rounded-pill"
+              >Get Quote</a
+            >
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Career Banner -->
+    <section class="career-banner">
+      <div class="container text-center">
+        <h1 class="display-3 fw-bold mb-3 mb-md-4">Be part of our mission</h1>
+        <p class="lead px-md-5 mx-md-5">
+          We're looking for passionate people to join us on our mission. We
+          value flat hierarchies, clear communication, and full ownership and
+          responsibility.
+        </p>
+      </div>
+    </section>
+
+    <!-- Our Values Section -->
+    <section class="py-5">
+      <div class="container">
+        <h2 class="text-center fw-bold mb-5">Our Values</h2>
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="value-card">
+              <div class="value-icon">
+                <i class="fas fa-rocket"></i>
+              </div>
+              <h3 class="h4 mb-3">Innovation First</h3>
+              <p class="text-muted">
+                We embrace new ideas and technologies to push boundaries and
+                create better solutions.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="value-card">
+              <div class="value-icon">
+                <i class="fas fa-users"></i>
+              </div>
+              <h3 class="h4 mb-3">Team Excellence</h3>
+              <p class="text-muted">
+                We believe in collaboration, mutual respect, and supporting each
+                other's growth.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="value-card">
+              <div class="value-icon">
+                <i class="fas fa-chart-line"></i>
+              </div>
+              <h3 class="h4 mb-3">Growth Mindset</h3>
+              <p class="text-muted">
+                We encourage continuous learning and personal development.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Open Positions Section -->
+    <section class="py-5 bg-light">
+      <div class="container">
+        <h2 class="text-center fw-bold mb-5">Open Positions</h2>
+
+        <!-- Job Filters -->
+        <div class="text-center mb-5 filters-container">
+          <div class="filters-scroll">
+            <button class="filter-btn active">View all</button>
+            <button class="filter-btn">Engineering</button>
+            <button class="filter-btn">Production</button>
+          </div>
+        </div>
+
+        <!-- Job Listings -->
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <!-- Job Card 1 -->
+            <div class="job-card">
+              <div
+                class="d-flex justify-content-between align-items-start flex-column flex-md-row mb-3"
+              >
+                <div class="mb-3 mb-md-0">
+                  <h3 class="h4 mb-2">Lead Design Engineer</h3>
+                  <div class="mb-2">
+                    <span class="job-tag">Old Goa</span>
+                    <span class="job-tag">Engineering</span>
+                    <span class="job-tag">Full-time</span>
+                  </div>
+                </div>
+                <button
+                  class="btn btn-primary rounded-pill w-100 w-md-auto"
+                  data-bs-toggle="job-collapse"
+                  data-bs-target="#leadEngineerDetails"
+                >
+                  View Details
+                </button>
+              </div>
+
+              <!-- Collapsible Content -->
+              <div class="job-collapse" id="leadEngineerDetails">
+                <div class="job-details mt-3">
+                  <h4 class="h5 mb-3">Job Role:</h4>
+                  <p class="text-muted">
+                    As a Design Engineer and Machine Operator, you will be part
+                    of a small, dynamic engineering team (2-3 engineers). Your
+                    primary responsibility is to develop innovative product
+                    designs using CAD software and operate manufacturing
+                    machines to produce high-quality prototypes and parts. You
+                    will balance technical design tasks with hands-on machine
+                    operation, ensuring that designs are functional and
+                    manufacturable.
+                  </p>
+
+                  <h4 class="h5 mb-3 mt-4">Key Responsibilities:</h4>
+                  <p class="fw-bold mb-2">Design Engineering:</p>
+                  <ul class="text-muted mb-4">
+                    <li>
+                      Develop and create product designs, components, and
+                      technical drawings
+                    </li>
+                    <li>
+                      Use CAD software (Fusion 360, SolidWorks, CATIA) to model
+                      and visualize designs
+                    </li>
+                    <li>
+                      Conduct simulations to validate design integrity and
+                      functionality
+                    </li>
+                    <li>
+                      Prepare design documentation, including technical reports
+                      and drawings
+                    </li>
+                    <li>
+                      Collaborate with the design team to ensure innovative and
+                      practical solutions
+                    </li>
+                  </ul>
+
+                  <p class="fw-bold mb-2">Machine Operation:</p>
+                  <ul class="text-muted mb-4">
+                    <li>
+                      Set up and operate manufacturing machines to produce parts
+                      according to design specifications
+                    </li>
+                    <li>
+                      Monitor machine performance and make adjustments as needed
+                      for optimal output
+                    </li>
+                    <li>
+                      Conduct routine maintenance and minor troubleshooting of
+                      machinery
+                    </li>
+                    <li>
+                      Perform quality checks on manufactured components to
+                      ensure precision and accuracy
+                    </li>
+                    <li>
+                      Maintain accurate logs of production activities and
+                      machine performance
+                    </li>
+                  </ul>
+
+                  <p class="fw-bold mb-2">Collaboration and Reporting:</p>
+                  <ul class="text-muted mb-4">
+                    <li>
+                      Work closely with other engineers in the team to align
+                      design and production processes
+                    </li>
+                    <li>
+                      Communicate progress, challenges, and outcomes directly to
+                      the Director
+                    </li>
+                    <li>
+                      Ensure compliance with safety and quality standards
+                      throughout the process
+                    </li>
+                  </ul>
+
+                  <h4 class="h5 mb-3 mt-4">Qualifications:</h4>
+                  <ul class="text-muted">
+                    <li>
+                      Bachelor's Degree in Mechanical Engineering, Industrial
+                      Design, or a related field
+                    </li>
+                    <li>
+                      Proficiency in CAD software: Fusion 360, SolidWorks, CATIA
+                    </li>
+                    <li>
+                      Hands-on experience in operating manufacturing machinery
+                    </li>
+                    <li>
+                      Strong problem-solving abilities and attention to detail
+                    </li>
+                    <li>
+                      Ability to manage both design and machine operation tasks
+                      efficiently
+                    </li>
+                    <li>Excellent communication and teamwork skills</li>
+                  </ul>
+
+                  <div class="mt-4 text-center text-md-start">
+                    <a
+                      href="mailto:support@nirmitsu.com "
+                      class="btn btn-primary rounded-pill"
+                      >Apply Now</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Job Card 2 -->
+            <div class="job-card">
+              <div
+                class="d-flex justify-content-between align-items-start flex-column flex-md-row mb-3"
+              >
+                <div class="mb-3 mb-md-0">
+                  <h3 class="h4 mb-2">Junior Design Engineer</h3>
+                  <div class="mb-2">
+                    <span class="job-tag">Old Goa</span>
+                    <span class="job-tag">Engineering</span>
+                    <span class="job-tag">Finishing</span>
+                    <span class="job-tag">Full-time</span>
+                  </div>
+                </div>
+                <button
+                  class="btn btn-primary rounded-pill w-100 w-md-auto"
+                  data-bs-toggle="job-collapse"
+                  data-bs-target="#juniorEngineerDetails"
+                >
+                  View Details
+                </button>
+              </div>
+
+              <!-- Collapsible Content -->
+              <div class="job-collapse" id="juniorEngineerDetails">
+                <div class="job-details mt-3">
+                  <h4 class="h5 mb-3">Job Role:</h4>
+                  <p class="text-muted">
+                    As a Junior Design Engineer and Post-Processing Technician,
+                    you will support the small engineering team (2-3 engineers)
+                    by assisting in product design and performing
+                    post-processing tasks. Your role involves creating CAD
+                    models, preparing technical documentation, and ensuring the
+                    quality finish of produced parts through deburring,
+                    polishing, and inspection.
+                  </p>
+
+                  <h4 class="h5 mb-3 mt-4">Key Responsibilities:</h4>
+                  <p class="fw-bold mb-2">Design Support:</p>
+                  <ul class="text-muted mb-4">
+                    <li>
+                      Assist in creating technical drawings and models using
+                      Fusion 360, SolidWorks, and CATIA
+                    </li>
+                    <li>
+                      Support senior engineers by preparing design modifications
+                      and updates
+                    </li>
+                    <li>
+                      Conduct basic calculations and assist in prototype testing
+                    </li>
+                    <li>
+                      Document design changes and maintain records accurately
+                    </li>
+                  </ul>
+
+                  <p class="fw-bold mb-2">Post-Processing Work:</p>
+                  <ul class="text-muted mb-4">
+                    <li>
+                      Perform finishing tasks, including deburring, grinding,
+                      and polishing of parts
+                    </li>
+                    <li>
+                      Inspect completed parts for surface quality and
+                      dimensional accuracy
+                    </li>
+                    <li>
+                      Operate post-processing tools and equipment safely and
+                      efficiently
+                    </li>
+                    <li>
+                      Maintain a clean and organized work area, ensuring
+                      compliance with safety regulations
+                    </li>
+                    <li>
+                      Keep records of processed parts and quality control checks
+                    </li>
+                  </ul>
+
+                  <p class="fw-bold mb-2">Team Collaboration and Reporting:</p>
+                  <ul class="text-muted mb-4">
+                    <li>
+                      Collaborate with the design team to ensure the accurate
+                      execution of design specifications
+                    </li>
+                    <li>
+                      Report progress and quality concerns directly to the
+                      Director
+                    </li>
+                    <li>
+                      Engage in team discussions to improve the efficiency of
+                      design and finishing processes
+                    </li>
+                  </ul>
+
+                  <h4 class="h5 mb-3 mt-4">Qualifications:</h4>
+                  <ul class="text-muted">
+                    <li>
+                      Diploma in Mechanical Engineering, Design Engineering, or
+                      related field
+                    </li>
+                    <li>
+                      Basic proficiency in CAD software: Fusion 360, SolidWorks,
+                      CATIA
+                    </li>
+                    <li>
+                      Experience in post-processing or related hands-on tasks
+                    </li>
+                    <li>Manual dexterity and attention to detail</li>
+                    <li>
+                      Ability to follow instructions precisely and maintain
+                      quality standards
+                    </li>
+                    <li>
+                      Good communication skills and willingness to work
+                      collaboratively within a small team
+                    </li>
+                  </ul>
+
+                  <div class="mt-4 text-center text-md-start">
+                    <a
+                      href="mailto:support@nirmitsu.com "
+                      class="btn btn-primary rounded-pill"
+                      >Apply Now</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Job Card 3 -->
+            <div class="job-card">
+              <div
+                class="d-flex justify-content-between align-items-start flex-column flex-md-row mb-3"
+              >
+                <div class="mb-3 mb-md-0">
+                  <h3 class="h4 mb-2">Machine Operator</h3>
+                  <div class="mb-2">
+                    <span class="job-tag">Old Goa</span>
+                    <span class="job-tag">Production</span>
+                    <span class="job-tag">Manufacturing</span>
+                    <span class="job-tag">Full-time</span>
+                  </div>
+                </div>
+                <button
+                  class="btn btn-primary rounded-pill w-100 w-md-auto"
+                  data-bs-toggle="job-collapse"
+                  data-bs-target="#machineOperatorDetails"
+                >
+                  View Details
+                </button>
+              </div>
+
+              <!-- Collapsible Content -->
+              <div class="job-collapse" id="machineOperatorDetails">
+                <div class="job-details mt-3">
+                  <h4 class="h5 mb-3">Job Role:</h4>
+                  <p class="text-muted">
+                    The Machine Operator is responsible for operating and
+                    maintaining machinery to produce high-quality products
+                    efficiently. The role requires adherence to safety standards
+                    and routine machine inspections.
+                  </p>
+
+                  <h4 class="h5 mb-3 mt-4">Key Responsibilities:</h4>
+                  <ul class="text-muted">
+                    <li>
+                      Set up and operate manufacturing machines according to
+                      specifications
+                    </li>
+                    <li>
+                      Monitor machine performance and make adjustments as needed
+                    </li>
+                    <li>Perform routine maintenance and troubleshooting</li>
+                    <li>Inspect finished products for quality and accuracy</li>
+                    <li>
+                      Keep accurate production logs and report any issues to the
+                      Director
+                    </li>
+                    <li>Adhere to safety and operational protocols</li>
+                  </ul>
+
+                  <h4 class="h5 mb-3 mt-4">Qualifications:</h4>
+                  <ul class="text-muted">
+                    <li>High school diploma or equivalent</li>
+                    <li>
+                      Proven experience as a machine operator in a manufacturing
+                      setting
+                    </li>
+                    <li>
+                      Ability to read and interpret blueprints and technical
+                      documents
+                    </li>
+                    <li>
+                      Strong mechanical aptitude and problem-solving skills
+                    </li>
+                    <li>Attention to detail and commitment to quality</li>
+                  </ul>
+
+                  <div class="mt-4 text-center text-md-start">
+                    <a
+                      href="mailto:support@nirmitsu.com "
+                      class="btn btn-primary rounded-pill"
+                      >Apply Now</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Job Card 4 -->
+            <div class="job-card">
+              <div
+                class="d-flex justify-content-between align-items-start flex-column flex-md-row mb-3"
+              >
+                <div class="mb-3 mb-md-0">
+                  <h3 class="h4 mb-2">Post-Processing Technician</h3>
+                  <div class="mb-2">
+                    <span class="job-tag">Old Goa</span>
+                    <span class="job-tag">Production</span>
+                    <span class="job-tag">Finishing</span>
+                    <span class="job-tag">Full-time</span>
+                  </div>
+                </div>
+                <button
+                  class="btn btn-primary rounded-pill w-100 w-md-auto"
+                  data-bs-toggle="job-collapse"
+                  data-bs-target="#technicianDetails"
+                >
+                  View Details
+                </button>
+              </div>
+
+              <!-- Collapsible Content -->
+              <div class="job-collapse" id="technicianDetails">
+                <div class="job-details mt-3">
+                  <h4 class="h5 mb-3">Job Role:</h4>
+                  <p class="text-muted">
+                    The Post-Processing Technician is responsible for finishing
+                    products, including deburring, polishing, and quality
+                    inspection, ensuring they meet design specifications and
+                    quality standards.
+                  </p>
+
+                  <h4 class="h5 mb-3 mt-4">Key Responsibilities:</h4>
+                  <ul class="text-muted">
+                    <li>
+                      Perform post-processing tasks such as deburring, grinding,
+                      and polishing
+                    </li>
+                    <li>
+                      Inspect finished parts for surface quality and dimensional
+                      accuracy
+                    </li>
+                    <li>
+                      Operate finishing equipment and hand tools safely and
+                      efficiently
+                    </li>
+                    <li>Maintain a clean and organized workspace</li>
+                    <li>Record production data and quality checks</li>
+                    <li>Follow safety and process guidelines</li>
+                  </ul>
+
+                  <h4 class="h5 mb-3 mt-4">Qualifications:</h4>
+                  <ul class="text-muted">
+                    <li>High school diploma or equivalent</li>
+                    <li>
+                      Experience in post-processing or a similar role is a plus
+                    </li>
+                    <li>Manual dexterity and attention to detail</li>
+                    <li>Familiarity with hand tools and finishing equipment</li>
+                    <li>
+                      Ability to follow instructions and maintain quality
+                      standards
+                    </li>
+                  </ul>
+
+                  <div class="mt-4 text-center text-md-start">
+                    <a
+                      href="mailto:support@nirmitsu.com "
+                      class="btn btn-primary rounded-pill"
+                      >Apply Now</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pre-Footer CTA Section -->
+    <section class="pre-footer-cta py-5">
+      <div class="container">
+        <div class="row g-4 align-items-center">
+          <div class="col-lg-6">
+            <h2 class="fw-bold mb-4">
+              Looking for a trusted additive manufacturer?<br />Partner with us
+              Today
+            </h2>
+            <p class="lead mb-4">
+              Get started with your project by filling out our quick quote form.
+              Our team will get back to you within 24 hours.
+            </p>
+            <a href="#quoteForm" class="btn btn-primary btn-lg rounded-pill"
+              >Get Free Quote</a
+            >
+          </div>
+
+          <div class="col-lg-5 offset-lg-1">
+            <div class="quote-form-card bg-white p-4 rounded-4 shadow">
+              <h3 class="h4 mb-4">Request a Quote</h3>
+              <form id="quoteForm">
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    class="form-control rounded-pill"
+                    placeholder="Your Name"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <input
+                    type="email"
+                    class="form-control rounded-pill"
+                    placeholder="Email Address"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <input
+                    type="tel"
+                    class="form-control rounded-pill"
+                    placeholder="Phone Number"
+                  />
+                </div>
+                <div class="mb-3">
+                  <select class="form-select rounded-pill">
+                    <option selected>Select Service</option>
+                    <option>Additive Manufacturing</option>
+                    <option>⁠Prototyping</option>
+                    <option>3D Modelling & Design</option>
+                    <option>Other's</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <textarea
+                    class="form-control rounded-3"
+                    rows="3"
+                    placeholder="Project Details"
+                  ></textarea>
+                </div>
+                <button
+                  type="submit"
+                  class="btn btn-primary w-100 rounded-pill"
+                >
+                  Submit Request
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+            <img
+              src="assets/logo.webp"
+              alt="Logo"
+              class="mb-3"
+              style="max-width: 200px"
+            />
+            <p>
+              Your trusted partner in additive manufacturing and 3D printing
+              solutions.
+            </p>
+          </div>
+          <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+            <h5>Quick Links</h5>
+            <ul class="footer-links">
+              <li><a href="/">Home</a></li>
+              <li><a href="/about">About Us</a></li>
+              <li><a href="/materials">Materials</a></li>
+              <li><a href="/case-studies">Case Studies</a></li>
+              <li><a href="/contact">Contact</a></li>
+              <li><a href="/careers">Career</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+            <h5>Our Solutions</h5>
+            <ul class="footer-links">
+              <li><a href="/3d-modeling">3D Modelling & Design</a></li>
+              <li>
+                <a href="/additive-manufacturing"
+                  >Additive Manufacturing</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <h5>Contact Us</h5>
+            <p>
+              32-36, Ella High Street Mall, Ella Cidade, NH4A Highway Old Goa
+              by-pass road Ella, Kadamba, Goa 403402
+            </p>
+            <p>
+              Email:
+              <a href="mailto:support@nirmitsu.com">support@nirmitsu.com</a>
+            </p>
+            <p>
+              Phone:
+              <a href="tel:+917391086524">+917391086524 / +918322990536</a>
+            </p>
+            <div class="social-icons">
+              <a href="#" aria-label="Facebook"
+                ><svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+                  ></path></svg
+              ></a>
+              <a href="#" aria-label="Twitter"
+                ><svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"
+                  ></path></svg
+              ></a>
+              <a
+                href="https://www.linkedin.com/company/nirmitsu-design-labs-pvt-ltd/"
+                aria-label="LinkedIn"
+                ><svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+                  ></path>
+                  <rect x="2" y="9" width="4" height="12"></rect>
+                  <circle cx="4" cy="4" r="2"></circle></svg
+              ></a>
+            </div>
+          </div>
+        </div>
+        <div class="copyright">
+          <p>&copy; 2026 Nirmitsu. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <div class="whatsapp-button">
+      <div class="whatsapp-tooltip">
+        Hi! Chat with us on WhatsApp for quick support 👋
+      </div>
+      <a
+        href="https://wa.me/+917391086524"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <i class="fab fa-whatsapp"></i>
+      </a>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Filter functionality -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Custom job collapse functionality
+        const viewDetailsButtons = document.querySelectorAll(
+          '[data-bs-toggle="job-collapse"]'
+        );
+        const jobCollapses = document.querySelectorAll(".job-collapse");
+
+        // Add click event to all detail buttons
+        viewDetailsButtons.forEach((button) => {
+          button.addEventListener("click", function () {
+            // Get target collapse element
+            const targetId = this.getAttribute("data-bs-target");
+            const targetCollapse = document.querySelector(targetId);
+
+            if (targetCollapse) {
+              // Toggle display using classes
+              if (targetCollapse.classList.contains("show")) {
+                targetCollapse.classList.remove("show");
+                this.textContent = "View Details";
+                this.classList.remove("active");
+              } else {
+                targetCollapse.classList.add("show");
+                this.textContent = "Hide Details";
+                this.classList.add("active");
+              }
+            }
+          });
+        });
+
+        const filterButtons = document.querySelectorAll(".filter-btn");
+        const jobCards = document.querySelectorAll(".job-card");
+
+        filterButtons.forEach((button) => {
+          button.addEventListener("click", () => {
+            // Remove active class from all buttons
+            filterButtons.forEach((btn) => btn.classList.remove("active"));
+            // Add active class to clicked button
+            button.classList.add("active");
+
+            const category = button.textContent.toLowerCase();
+
+            // Show all jobs if "View all" is selected
+            if (category === "view all") {
+              jobCards.forEach((card) => (card.style.display = "block"));
+              return;
+            }
+
+            // Filter jobs based on category
+            jobCards.forEach((card) => {
+              const cardCategories = Array.from(
+                card.querySelectorAll(".job-tag")
+              ).map((tag) => tag.textContent.toLowerCase());
+
+              if (cardCategories.includes(category)) {
+                card.style.display = "block";
+              } else {
+                card.style.display = "none";
+              }
+            });
+
+            // Reset all job details to hidden when filtering
+            jobCollapses.forEach((collapse) => {
+              collapse.classList.remove("show");
+            });
+
+            // Reset all buttons to "View Details"
+            viewDetailsButtons.forEach((btn) => {
+              btn.textContent = "View Details";
+              btn.classList.remove("active");
+            });
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

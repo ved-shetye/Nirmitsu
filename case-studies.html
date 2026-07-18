@@ -1,0 +1,1664 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Case Studies - Nirmitsu</title>
+    <link rel="icon" href="assets/favicon.png" type="image/png" />
+    <link
+      rel="preload"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+      <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        rel="stylesheet"
+      />
+    </noscript>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+      html,
+      body {
+        font-size: 16px;
+        overflow-x: hidden;
+      }
+
+      @font-face {
+        font-family: "MADE Regular";
+        src: url("fonts/MADE-Regular.otf") format("opentype");
+        font-weight: normal;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: "MADE";
+        src: url("fonts/MADE.otf") format("opentype");
+        font-weight: bold;
+        font-style: normal;
+      }
+
+      :root {
+        --primary-color: #13cbe8;
+        --secondary-color: #000000;
+        --tertiary-color: #FFFFFF
+        --light-bg: #ffffff;
+        --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      }
+
+      body {
+        font-family: "MADE Regular", sans-serif;
+        background-color: var(--light-bg);
+      }
+
+      /* Typography Scale */
+      h1, h2, h3, h4, h5, h6 {
+        font-family: "MADE", sans-serif;
+        color: var(--tertiary-color);
+      }
+      
+      p {
+        color: #4a4a4a;
+        line-height: 1.65;
+      }
+
+      h1, .h1 { font-size: 2.5rem; }
+      h2, .h2 { font-size: 2rem; }
+      h3, .h3 { font-size: 1.75rem; }
+      h4, .h4 { font-size: 1.5rem; }
+      h5, .h5 { font-size: 1.25rem; }
+      h6, .h6 { font-size: 1rem; }
+
+      .display-3 {
+        font-size: 3.5rem;
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+      }
+
+      .btn-primary {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+        font-family: "MADE", sans-serif;
+        color: black;
+        padding: 0.8rem 2rem;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+      }
+
+      .btn-primary:hover {
+        background-color: #25c7ae;
+        border-color: #25c7ae;
+        color: black;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(19, 203, 232, 0.3);
+      }
+
+      /* Navigation Styles */
+      .nav-link {
+        color: var(--secondary-color) !important;
+        font-family: "MADE Regular", sans-serif;
+        font-size: 0.95rem;
+        padding: 0.5rem 0.7rem !important;
+      }
+
+      .nav-link:hover {
+        color: var(--primary-color) !important;
+      }
+
+      .navbar {
+        padding: 0.5rem 0;
+      }
+
+      .navbar-brand img {
+        max-width: 150px;
+        height: auto;
+      }
+
+      .dropdown-menu {
+        border: none;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .dropdown-item {
+        font-family: "MADE Regular", sans-serif;
+        padding: 0.75rem 1.5rem;
+      }
+
+      .dropdown-item:hover {
+        background-color: var(--primary-color);
+        color: black;
+      }
+
+      /* Banner Section */
+      .tech-banner {
+        position: relative;
+        padding: 110px 0;
+        color: white;
+        overflow: hidden;
+      }
+
+      .tech-banner::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.75);
+        z-index: 1;
+      }
+
+      .tech-banner .container {
+        position: relative;
+        z-index: 2;
+      }
+
+      /* Case Study Slider Styles */
+      .cs-section {
+        padding: 50px 0;
+        background-color: #fcfdfe;
+      }
+
+      .cs-section-head {
+        margin-bottom: 40px;
+      }
+
+      .cs-section-label {
+        font-size: 0.85rem;
+        font-family: "MADE", sans-serif;
+        letter-spacing: 2px;
+        color: var(--primary-color);
+        text-transform: uppercase;
+        margin-bottom: 8px;
+      }
+
+      .cs-section-title {
+        font-size: 2.25rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .cs-slider-outer {
+        position: relative;
+      }
+
+      .cs-slider {
+        position: relative;
+        border-radius: 20px;
+        overflow: hidden;
+        border: 1px solid rgba(19, 203, 232, 0.15);
+        box-shadow: var(--card-shadow);
+        background: #ffffff;
+      }
+
+      .cs-slides {
+        position: relative;
+        min-height: 475px;
+      }
+
+      .cs-slide {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        padding: 60px;
+        opacity: 0;
+        transform: translateX(40px);
+        transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1), transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+        pointer-events: none;
+      }
+
+      .cs-slide.active {
+        opacity: 1;
+        transform: translateX(0);
+        pointer-events: auto;
+      }
+
+      .cs-slide.exit-left {
+        opacity: 0;
+        transform: translateX(-40px);
+      }
+
+      .cs-slide.exit-right {
+        opacity: 0;
+        transform: translateX(40px);
+      }
+
+      .cs-slide-bg {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, #ffffff 0%, #f9fbfd 50%, rgba(19, 203, 232, 0.05) 100%);
+        z-index: 1;
+        transition: transform 0.6s ease;
+      }
+
+      .cs-slide:hover .cs-slide-bg {
+        transform: scale(1.02);
+      }
+
+      .cs-slide-glow {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(ellipse 55% 55% at 90% 30%, rgba(19, 203, 232, 0.08) 0%, transparent 70%);
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .cs-slide-deco {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .cs-slide-deco::before {
+        content: '';
+        position: absolute;
+        right: -80px;
+        top: -80px;
+        width: 380px;
+        height: 380px;
+        border: 1px solid rgba(19, 203, 232, 0.1);
+        border-radius: 50%;
+      }
+
+      .cs-slide-deco::after {
+        content: '';
+        position: absolute;
+        right: -40px;
+        top: -40px;
+        width: 250px;
+        height: 250px;
+        border: 1px solid rgba(19, 203, 232, 0.15);
+        border-radius: 50%;
+      }
+
+      .cs-slide-bg-num {
+        position: absolute;
+        right: 40px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-family: "MADE", sans-serif;
+        font-size: 15rem;
+        font-weight: 700;
+        color: rgba(19, 203, 232, 0.06);
+        line-height: 1;
+        letter-spacing: -10px;
+        pointer-events: none;
+        user-select: none;
+        z-index: 1;
+      }
+
+      .cs-slide-content {
+        position: relative;
+        z-index: 2;
+        max-width: 65%;
+      }
+
+      .cs-slide-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 14px;
+        background: rgba(19, 203, 232, 0.08);
+        border: 1px solid rgba(19, 203, 232, 0.2);
+        border-radius: 100px;
+        font-size: 0.72rem;
+        font-weight: 700;
+        font-family: "MADE", sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: #0b9cb3;
+        margin-bottom: 20px;
+      }
+
+      .cs-slide-badge::before {
+        content: '';
+        width: 6px;
+        height: 6px;
+        background: var(--primary-color);
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+
+      .cs-slide-title {
+        font-size: 2.25rem;
+        font-family: "MADE", sans-serif;
+        line-height: 1.15;
+        margin-bottom: 15px;
+      }
+
+      .cs-slide-sub {
+        font-size: 0.95rem;
+        color: #666;
+        margin-bottom: 25px;
+        font-family: "MADE Regular", sans-serif;
+      }
+
+      .cs-outcomes {
+        margin-bottom: 30px;
+        list-style: none;
+        padding: 0;
+      }
+
+      .cs-outcomes li {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        font-size: 0.9rem;
+        color: #4a4a4a;
+        padding: 6px 0;
+      }
+
+      .cs-outcomes li::before {
+        content: '\f058';
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        color: var(--primary-color);
+        font-size: 1rem;
+        margin-top: 2px;
+        flex-shrink: 0;
+      }
+
+      /* Slider Controls */
+      .cs-controls {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 30px;
+        padding: 0 10px;
+      }
+
+      .cs-arrow-container {
+        display: flex;
+        gap: 12px;
+      }
+
+      .cs-arrow {
+        width: 48px;
+        height: 48px;
+        background: #fff;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.25s ease;
+        color: var(--secondary-color);
+      }
+
+      .cs-arrow:hover {
+        background: var(--primary-color);
+        border-color: var(--primary-color);
+        color: #000;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(19, 203, 232, 0.25);
+      }
+
+      .cs-arrow svg {
+        width: 18px;
+        height: 18px;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 2.5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .cs-indicators {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .cs-ind {
+        padding: 8px 16px;
+        font-family: "MADE", sans-serif;
+        font-size: 0.85rem;
+        color: #666;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        border-radius: 8px;
+        cursor: pointer;
+        background: #fff;
+        transition: all 0.25s ease;
+      }
+
+      .cs-ind:hover {
+        border-color: var(--primary-color);
+        color: var(--primary-color);
+      }
+
+      .cs-ind.active {
+        background: var(--primary-color);
+        border-color: var(--primary-color);
+        color: #000;
+        font-weight: bold;
+        box-shadow: 0 4px 10px rgba(19, 203, 232, 0.2);
+      }
+
+      .cs-progress {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 0.85rem;
+        color: #666;
+        font-weight: 600;
+      }
+
+      .cs-progress-bar {
+        width: 100px;
+        height: 4px;
+        background: rgba(0, 0, 0, 0.08);
+        border-radius: 2px;
+        overflow: hidden;
+      }
+
+      .cs-progress-fill {
+        height: 100%;
+        background: var(--primary-color);
+        border-radius: 2px;
+        width: 16.66%;
+        transition: width 0.4s ease;
+      }
+
+      /* Filter Grid Section */
+      .grid-section {
+        padding: 80px 0;
+        background-color: #ffffff;
+        border-top: 1px solid rgba(0,0,0,0.05);
+      }
+
+      .filter-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-bottom: 40px;
+      }
+
+      .filter-btn {
+        background: transparent;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        padding: 10px 24px;
+        font-family: "MADE", sans-serif;
+        font-size: 0.9rem;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        color: #4a4a4a;
+      }
+
+      .filter-btn:hover {
+        border-color: var(--primary-color);
+        color: var(--primary-color);
+      }
+
+      .filter-btn.active {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+        color: black;
+        box-shadow: 0 4px 12px rgba(19, 203, 232, 0.25);
+      }
+
+      .cs-card {
+        background: white;
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        box-shadow: var(--card-shadow);
+        height: 100%;
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .cs-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        border-color: rgba(19, 203, 232, 0.3);
+      }
+
+      .cs-card-img-wrapper {
+        position: relative;
+        height: 200px;
+        overflow: hidden;
+        background-color: #f8f9fa;
+      }
+
+      .cs-card-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .cs-card:hover .cs-card-img {
+        transform: scale(1.05);
+      }
+
+      .cs-card-body {
+        padding: 25px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .cs-card-badge {
+        font-size: 0.7rem;
+        font-family: "MADE", sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #0b9cb3;
+        margin-bottom: 12px;
+        display: inline-block;
+        padding: 4px 10px;
+        background: rgba(19, 203, 232, 0.08);
+        border-radius: 4px;
+        align-self: flex-start;
+      }
+
+      .cs-card-title {
+        font-size: 1.25rem;
+        font-family: "MADE", sans-serif;
+        margin-bottom: 10px;
+        line-height: 1.3;
+      }
+
+      .cs-card-tagline {
+        font-size: 0.9rem;
+        color: #666;
+        margin-bottom: 20px;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        flex: 1;
+      }
+
+      .cs-card-footer {
+        padding-top: 15px;
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .cs-read-link {
+        font-family: "MADE", sans-serif;
+        font-size: 0.85rem;
+        color: #000;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        transition: color 0.2s ease;
+      }
+
+      .cs-read-link:hover {
+        color: var(--primary-color);
+      }
+
+      .cs-read-link i {
+        font-size: 0.8rem;
+        transition: transform 0.2s ease;
+      }
+
+      .cs-read-link:hover i {
+        transform: translateX(4px);
+      }
+
+      /* Testimonials section */
+      .feedback-box {
+        background: rgba(19, 203, 232, 0.03);
+        border-left: 4px solid var(--primary-color);
+        padding: 20px;
+        border-radius: 0 12px 12px 0;
+        margin-top: 20px;
+      }
+
+      .feedback-quote {
+        font-style: italic;
+        color: #333;
+        margin-bottom: 10px;
+        font-size: 0.95rem;
+      }
+
+      .feedback-author {
+        font-family: "MADE", sans-serif;
+        font-size: 0.85rem;
+        margin-bottom: 0;
+      }
+
+      .feedback-author span {
+        font-family: "MADE Regular", sans-serif;
+        font-size: 0.8rem;
+        color: #666;
+        display: block;
+        margin-top: 2px;
+      }
+
+      /* Premium Modal Customizations */
+      .modal-content {
+        border-radius: 20px;
+        border: 1px solid rgba(19, 203, 232, 0.25);
+        box-shadow: 0 15px 50px rgba(0,0,0,0.15);
+        overflow: hidden;
+      }
+
+      .modal-header {
+        background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+        color: white;
+        border-bottom: none;
+        padding: 30px;
+        position: relative;
+      }
+
+      .modal-header .btn-close {
+        filter: invert(1) grayscale(1) brightness(2);
+        opacity: 0.8;
+      }
+
+      .modal-header .btn-close:hover {
+        opacity: 1;
+      }
+
+      .modal-body {
+        padding: 40px;
+      }
+
+      .modal-section-title {
+        font-family: "MADE", sans-serif;
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        color: #0b9cb3;
+        letter-spacing: 1px;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .modal-section-title i {
+        font-size: 1rem;
+      }
+
+      .modal-text-block {
+        margin-bottom: 30px;
+      }
+
+      .modal-sidebar {
+        background-color: #f8f9fa;
+        border-radius: 12px;
+        padding: 25px;
+        height: 100%;
+        border: 1px solid rgba(0,0,0,0.05);
+      }
+
+      /* Lead Form Section */
+      .quote-form-section {
+        background-color: #f8f9fa;
+        padding: 80px 0;
+      }
+
+      .quote-form-card {
+        background: white;
+        border-radius: 16px;
+        padding: 2.5rem;
+        box-shadow: var(--card-shadow);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      .form-control, .form-select {
+        padding: 0.8rem 1.2rem;
+        border-radius: 30px;
+        border: 1px solid #e0e0e0;
+      }
+
+      .form-control:focus, .form-select:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 0.2rem rgba(19, 203, 232, 0.2);
+      }
+
+      textarea.form-control {
+        border-radius: 16px;
+      }
+
+      /* WhatsApp Button Styles */
+      .whatsapp-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+      }
+
+      .whatsapp-button a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 60px;
+        height: 60px;
+        background-color: #25d366;
+        border-radius: 50%;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+        text-decoration: none;
+      }
+
+      .whatsapp-button i {
+        font-size: 32px;
+        color: white;
+      }
+
+      .whatsapp-button a:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        background-color: #22c55e;
+      }
+
+      .whatsapp-tooltip {
+        position: absolute;
+        right: 75px;
+        bottom: 5px;
+        background: white;
+        padding: 10px 15px;
+        border-radius: 8px;
+        font-size: 14px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        color: #333;
+        width: 200px;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .whatsapp-tooltip::after {
+        content: "";
+        position: absolute;
+        right: -8px;
+        top: 50%;
+        transform: translateY(-50%);
+        border-left: 8px solid white;
+        border-top: 8px solid transparent;
+        border-bottom: 8px solid transparent;
+      }
+
+      .whatsapp-button:hover .whatsapp-tooltip {
+        opacity: 1;
+        visibility: visible;
+        right: 85px;
+      }
+
+      /* Footer */
+      .footer {
+        background-color: #ffffff;
+        padding: 3rem 0;
+        color: #4a4a4a;
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      .footer h5 {
+        color: #000;
+        font-family: "MADE", sans-serif;
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+      }
+
+      .footer-links {
+        list-style: none;
+        padding: 0;
+      }
+
+      .footer-links li {
+        margin-bottom: 0.5rem;
+      }
+
+      .footer-links a {
+        color: #4a4a4a;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .footer-links a:hover {
+        color: var(--primary-color);
+      }
+
+      .social-icons {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .social-icons a {
+        color: #4a4a4a;
+        transition: color 0.3s ease;
+      }
+
+      .social-icons a:hover {
+        color: var(--primary-color);
+      }
+
+      .copyright {
+        text-align: center;
+        margin-top: 2rem;
+        padding-top: 2rem;
+        border-top: 1px solid #e0e0e0;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 992px) {
+        .cs-slide {
+          padding: 40px;
+        }
+        .cs-slide-content {
+          max-width: 100%;
+        }
+        .cs-slide-bg-num {
+          font-size: 10rem;
+          opacity: 0.4;
+          bottom: 20px;
+          top: auto;
+          transform: none;
+          right: 20px;
+        }
+        .cs-slides {
+          min-height: 520px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .display-3 {
+          font-size: 2.5rem;
+        }
+        .cs-slide {
+          padding: 30px 20px;
+          align-items: flex-end;
+        }
+        .cs-slides {
+          min-height: 550px;
+        }
+        .cs-slide-title {
+          font-size: 1.6rem;
+        }
+        .cs-controls {
+          flex-direction: column;
+          gap: 15px;
+          align-items: center;
+        }
+        .cs-progress {
+          display: none;
+        }
+        .quote-form-card {
+          padding: 1.5rem;
+        }
+        .whatsapp-tooltip {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          <img src="assets/logo.webp" alt="Logo" />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="technology">Our Technologies</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+              >
+                Our Solution
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="additive-manufacturing"
+                    >Additive Manufacturing</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="3d-modeling"
+                    >3D Modelling & Design</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="materials">Materials</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="gallery">Gallery</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="case-studies">Case Studies</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact">Contact Us</a>
+            </li>
+          </ul>
+          <div class="ms-lg-4">
+            <a href="contact" class="btn btn-primary rounded-pill">Get Quote</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Banner Section -->
+    <section
+      class="tech-banner"
+      style="
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.02),
+            rgba(0, 0, 0, 0.02)
+          ),
+          url('assets/mat-21.png');
+        background-size: cover;
+        background-position: center;
+      "
+    >
+      <div class="container text-center">
+        <h1 class="display-3 fw-bold mb-4">Case Studies</h1>
+        <p class="lead max-w-800 mx-auto text-light">
+          Real-world applications of our 3D modelling and additive manufacturing solutions.
+        </p>
+      </div>
+    </section>
+
+    <!-- Featured Case Studies Slider Section -->
+    <section class="cs-section">
+      <div class="container">
+        <div class="cs-section-head text-center text-md-start">
+          <p class="cs-section-label">Selected Works</p>
+          <h2 class="cs-section-title">Case Studies & Deployments</h2>
+        </div>
+
+        <div class="cs-slider-outer">
+          <div class="cs-slider" id="csSlider">
+            <div class="cs-slides" id="csSlides">
+              <!-- Slide 01: Pai Raikar -->
+              <div class="cs-slide active" data-idx="0">
+                <div class="cs-slide-bg"></div>
+                <div class="cs-slide-glow"></div>
+                <div class="cs-slide-deco"></div>
+                <div class="cs-slide-bg-num">01</div>
+                <div class="cs-slide-content">
+                  <div class="cs-slide-badge">Architecture & Design</div>
+                  <h3 class="cs-slide-title">Pai Raikar & Associates / PRA7i</h3>
+                  <p class="cs-slide-sub">Large-Scale Architectural Model for a Presentation</p>
+                  <ul class="cs-outcomes">
+                    <li>Large township-scale model prepared and adapted from client CAD files</li>
+                    <li>Timeline compression: fabricated, hand-finished, packed, and delivered in 6 days</li>
+                    <li>Highly visual physical representation for formal approval discussions</li>
+                  </ul>
+                  <button class="cs-cta" onclick="openCaseDetails('pra7i')">Read Case Study <i class="fas fa-arrow-right"></i></button>
+                </div>
+              </div>
+
+              <!-- Slide 02: Delta Corp -->
+              <div class="cs-slide" data-idx="1">
+                <div class="cs-slide-bg"></div>
+                <div class="cs-slide-glow"></div>
+                <div class="cs-slide-deco"></div>
+                <div class="cs-slide-bg-num">02</div>
+                <div class="cs-slide-content">
+                  <div class="cs-slide-badge">Marine & Hospitality</div>
+                  <h3 class="cs-slide-title">Delta Corp Ltd.</h3>
+                  <p class="cs-slide-sub">Marine Components, Scale Models and Interior Lampshades</p>
+                  <ul class="cs-outcomes">
+                    <li>High-strength functional replacement parts for boat motor shafts designed & printed in 24 hours</li>
+                    <li>Consistent premium lampshades manufactured and installed across Deltin Royale stairwell</li>
+                    <li>Dependable partner supporting both harsh-environment marine and luxury hospitality applications</li>
+                  </ul>
+                  <button class="cs-cta" onclick="openCaseDetails('deltacorp')">Read Case Study <i class="fas fa-arrow-right"></i></button>
+                </div>
+              </div>
+
+              <!-- Slide 03: Goa Carbonic -->
+              <div class="cs-slide" data-idx="2">
+                <div class="cs-slide-bg"></div>
+                <div class="cs-slide-glow"></div>
+                <div class="cs-slide-deco"></div>
+                <div class="cs-slide-bg-num">03</div>
+                <div class="cs-slide-content">
+                  <div class="cs-slide-badge">Industrial Spares</div>
+                  <h3 class="cs-slide-title">Goa Carbonic Industries Pvt. Ltd.</h3>
+                  <p class="cs-slide-sub">Urgent Industrial Spare Part Produced Within a Day</p>
+                  <ul class="cs-outcomes">
+                    <li>Critical broken machinery component reverse-engineered and printed from original sample</li>
+                    <li>Material optimized for mechanical stress and extreme negative temperatures</li>
+                    <li>Completed and delivered on the same day, saving client from expensive production halt</li>
+                  </ul>
+                  <button class="cs-cta" onclick="openCaseDetails('goacarbonic')">Read Case Study <i class="fas fa-arrow-right"></i></button>
+                </div>
+              </div>
+
+              <!-- Slide 04: MyOwnBrews -->
+              <div class="cs-slide" data-idx="3">
+                <div class="cs-slide-bg"></div>
+                <div class="cs-slide-glow"></div>
+                <div class="cs-slide-deco"></div>
+                <div class="cs-slide-bg-num">04</div>
+                <div class="cs-slide-content">
+                  <div class="cs-slide-badge">Product Development</div>
+                  <h3 class="cs-slide-title">MyOwnBrews Pvt. Ltd.</h3>
+                  <p class="cs-slide-sub">Integrated Airlock Lid for Home Fermentation</p>
+                  <ul class="cs-outcomes">
+                    <li>Design refinement, prototyping, and testing across 4 development iterations</li>
+                    <li>Achieved excellent fitment, seal, and food-contact usability</li>
+                    <li>Brought a product from abstract concept to a functional working prototype</li>
+                  </ul>
+                  <button class="cs-cta" onclick="openCaseDetails('myownbrews')">Read Case Study <i class="fas fa-arrow-right"></i></button>
+                </div>
+              </div>
+
+              <!-- Slide 05: Phosic India -->
+              <div class="cs-slide" data-idx="4">
+                <div class="cs-slide-bg"></div>
+                <div class="cs-slide-glow"></div>
+                <div class="cs-slide-deco"></div>
+                <div class="cs-slide-bg-num">05</div>
+                <div class="cs-slide-content">
+                  <div class="cs-slide-badge">Forensic Technology</div>
+                  <h3 class="cs-slide-title">Phosic India Pvt. Ltd.</h3>
+                  <p class="cs-slide-sub">Manufacturing Partner for Continuous Design Iterations</p>
+                  <ul class="cs-outcomes">
+                    <li>Ongoing 6-month partnership providing rapid prototype camera bodies</li>
+                    <li>Adjusted printability, assemblies, and tolerances dynamically across versions</li>
+                    <li>Facilitated clear communication and physical samples for investor rounds</li>
+                  </ul>
+                  <button class="cs-cta" onclick="openCaseDetails('phosic')">Read Case Study <i class="fas fa-arrow-right"></i></button>
+                </div>
+              </div>
+
+              <!-- Slide 06: Aqua Engineers -->
+              <div class="cs-slide" data-idx="5">
+                <div class="cs-slide-bg"></div>
+                <div class="cs-slide-glow"></div>
+                <div class="cs-slide-deco"></div>
+                <div class="cs-slide-bg-num">06</div>
+                <div class="cs-slide-content">
+                  <div class="cs-slide-badge">Surveillance & Robotics</div>
+                  <h3 class="cs-slide-title">Aqua Engineers</h3>
+                  <p class="cs-slide-sub">Custom Manufacturing Support for Aqua Engineers</p>
+                  <ul class="cs-outcomes">
+                    <li>End-use surveillance system components fabricated via SLA/resin printing</li>
+                    <li>Turnaround in less than a day, meeting strict quality and deadline commitments</li>
+                    <li>Achieved smooth, high-resolution finish without post-processing compromises</li>
+                  </ul>
+                  <button class="cs-cta" onclick="openCaseDetails('aqua')">Read Case Study <i class="fas fa-arrow-right"></i></button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Slider Controls -->
+          <div class="cs-controls">
+            <div class="cs-arrow-container">
+              <button class="cs-arrow" id="csPrev" aria-label="Previous slide">
+                <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+              </button>
+              <button class="cs-arrow" id="csNext" aria-label="Next slide">
+                <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+              </button>
+            </div>
+            
+            <div class="cs-indicators" id="csIndicators">
+              <button class="cs-ind active" data-idx="0">01</button>
+              <button class="cs-ind" data-idx="1">02</button>
+              <button class="cs-ind" data-idx="2">03</button>
+              <button class="cs-ind" data-idx="3">04</button>
+              <button class="cs-ind" data-idx="4">05</button>
+              <button class="cs-ind" data-idx="5">06</button>
+            </div>
+
+            <div class="cs-progress">
+              <span id="csProgressLabel">1 / 6</span>
+              <div class="cs-progress-bar">
+                <div class="cs-progress-fill" id="csProgressFill"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Case Study Detail Modal -->
+    <div class="modal fade" id="caseDetailModal" tabindex="-1" aria-labelledby="caseDetailModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div>
+              <span class="cs-slide-badge" id="modalBadge">Category</span>
+              <h3 class="modal-title h2 text-white" id="modalTitle">Project Title</h3>
+              <p class="mb-0 text-light opacity-75" id="modalClient">Client Company Name</p>
+            </div>
+            <button type="button" class="btn-close" data-bs-close="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row g-4">
+              <!-- Left Content Area -->
+              <div class="col-lg-8">
+                <div class="modal-text-block">
+                  <h4 class="modal-section-title"><i class="fas fa-circle-info text-primary"></i> Project Overview</h4>
+                  <p id="modalDescription">Detailed description of the project and collaboration history...</p>
+                </div>
+                
+                <div class="modal-text-block">
+                  <h4 class="modal-section-title"><i class="fas fa-triangle-exclamation text-primary"></i> The Challenge</h4>
+                  <p id="modalChallenge">Details about constraints, speed, durability requirements...</p>
+                </div>
+
+                <div class="modal-text-block">
+                  <h4 class="modal-section-title"><i class="fas fa-gears text-primary"></i> Our Approach</h4>
+                  <p id="modalApproach">How we handled design files, iterations, and manufacturing specifications...</p>
+                </div>
+              </div>
+
+              <!-- Right Sidebar Area -->
+              <div class="col-lg-4">
+                <div class="modal-sidebar">
+                  <div class="modal-text-block mb-4">
+                    <h4 class="modal-section-title"><i class="fas fa-circle-check text-primary"></i> The Outcome</h4>
+                    <p id="modalOutcome" class="small">Description of results, timelines met, and client benefits...</p>
+                  </div>
+                  
+                  <div class="feedback-box">
+                    <h4 class="modal-section-title mb-3"><i class="fas fa-quote-left text-primary"></i> Client Feedback</h4>
+                    <p class="feedback-quote" id="modalFeedback">“Feedback text”</p>
+                    <p class="feedback-author" id="modalAuthor">Sudanshu Pai Raikar</p>
+                    <span id="modalAuthorRole">Architect, PRA7i</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Request a Quote Lead capture Section -->
+    <section class="quote-form-section" id="quoteFormSection">
+      <div class="container">
+        <div class="row g-4 align-items-center">
+          <div class="col-lg-6">
+            <h2 class="fw-bold mb-4">
+              Have a similar engineering challenge?<br />Let's prototype it today.
+            </h2>
+            <p class="lead mb-4">
+              Partner with Nirmitsu Design Labs for responsive 3D printing, high-strength industrial spares, and detail-oriented scale modeling. Get in touch with our engineers.
+            </p>
+            <a href="tel:+917391086524" class="btn btn-primary btn-lg rounded-pill"
+              >Call Now</a
+            >
+          </div>
+
+          <div class="col-lg-5 offset-lg-1">
+            <div class="quote-form-card">
+              <h3 class="h4 mb-4">Request a Consultation</h3>
+              <form id="quoteForm">
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Your Name"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <input
+                    type="email"
+                    class="form-control"
+                    placeholder="Email Address"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <input
+                    type="tel"
+                    class="form-control"
+                    placeholder="Phone Number"
+                  />
+                </div>
+                <div class="mb-3">
+                  <select class="form-select">
+                    <option selected>Select Service Required</option>
+                    <option>Additive Manufacturing</option>
+                    <option>Rapid Prototyping</option>
+                    <option>3D Modelling & Design</option>
+                    <option>Industrial Spares / Tooling</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <textarea
+                    class="form-control"
+                    rows="3"
+                    placeholder="Describe your manufacturing constraints or timeline..."
+                  ></textarea>
+                </div>
+                <button
+                  type="submit"
+                  class="btn btn-primary w-100 rounded-pill"
+                >
+                  Submit Request
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+            <img
+              src="assets/logo.webp"
+              alt="Logo"
+              class="mb-3"
+              style="max-width: 300px"
+            />
+            <p>
+              Your trusted partner in additive manufacturing, prototyping, and design engineering.
+            </p>
+          </div>
+          <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+            <h5>Quick Links</h5>
+            <ul class="footer-links">
+              <li><a href="/">Home</a></li>
+              <li><a href="about">About Us</a></li>
+              <li><a href="materials">Materials</a></li>
+              <li><a href="gallery">Gallery</a></li>
+              <li><a href="case-studies">Case Studies</a></li>
+              <li><a href="contact">Contact</a></li>
+              <li><a href="careers">Career</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+            <h5>Our Solutions</h5>
+            <ul class="footer-links">
+              <li><a href="3d-modeling">3D Modelling & Design</a></li>
+              <li>
+                <a href="additive-manufacturing">Additive Manufacturing</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <h5>Contact Us</h5>
+            <p>
+              32-36, Ella High Street Mall, Ella Cidade, NH4A Highway Old Goa by-pass road Ella, Kadamba, Goa 403402
+            </p>
+            <p>
+              Email:
+              <a href="mailto:support@nirmitsu.com">support@nirmitsu.com</a>
+            </p>
+            <p>
+              Phone:
+              <a href="tel:+917391086524">+917391086524 / +918322990536</a>
+            </p>
+            <div class="social-icons">
+              <a href="#" aria-label="Facebook"
+                ><svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+                  ></path>
+                </svg>
+              </a>
+              <a href="#" aria-label="Twitter"
+                ><svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"
+                  ></path>
+                </svg>
+              </a>
+              <a
+                href="https://www.linkedin.com/company/nirmitsu-design-labs-pvt-ltd/"
+                aria-label="LinkedIn"
+                target="_blank"
+                rel="noopener"
+                ><svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+                  ></path>
+                  <rect x="2" y="9" width="4" height="12"></rect>
+                  <circle cx="4" cy="4" r="2"></circle>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="copyright">
+          <p>&copy; 2026 Nirmitsu. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Floating WhatsApp Widget -->
+    <div class="whatsapp-button">
+      <div class="whatsapp-tooltip">
+        Hi! Chat with us on WhatsApp for quick support 👋
+      </div>
+      <a
+        href="https://wa.me/+917391086524"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <i class="fab fa-whatsapp"></i>
+      </a>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Detailed case studies repository for the interactive modal popup
+      const caseStudiesData = {
+        pra7i: {
+          id: "pra7i",
+          client: "Pai Raikar & Associates / PRA7i",
+          title: "Large-Scale Architectural Model for a Presentation",
+          category: "Architecture & Design",
+          badge: "Architecture & Design",
+          description: "Pai Raikar & Associates / PRA7i approached Nirmitsu Design Labs to develop a large township scale model for an important presentation. The model had to communicate the site layout, proportions, and overall design intent clearly, while maintaining a clean and professional finish suitable for a formal approval discussion. The client provided CAD files and renders, which were then prepared and adapted for manufacturing. Since the model had to be completed within a short timeline, the process required careful file preparation, production planning, 3D printing, assembly, finishing, and coordination.",
+          challenge: "The project had three key requirements: speed, scale, and accuracy. The model needed to closely match the architectural drawings, clearly represent the township layout, and be ready one day before the scheduled presentation. With only seven days available, the work had to move quickly without compromising the final appearance or presentation quality.",
+          approach: "Nirmitsu worked closely with the client to understand the project requirements and prepare the CAD data for 3D printing. The files were corrected where required, and practical design adjustments were made to ensure the model could be manufactured, assembled, and finished within the deadline. The complete model was fully 3D printed, assembled, finished, packed, and delivered in six days.",
+          outcome: "The final model was delivered on time and was received very well during the presentation. It helped the client explain the project more clearly to the approval body by turning the township design into a physical, easy-to-understand representation. The client was highly pleased with the result and appreciated that the model was completed within the required timeline.",
+          feedback: "“Great team and facilities helped with getting our desired product in a timely fashion.”",
+          author: "Sudanshu Pai Raikar",
+          role: "Architect, PRA7i"
+        },
+        deltacorp: {
+          id: "deltacorp",
+          client: "Delta Corp Ltd.",
+          title: "Marine Components, Scale Models and Interior Lampshades",
+          category: "Marine & Hospitality",
+          badge: "Marine & Interiors",
+          description: "Delta Corp Ltd. approached Nirmitsu Design Labs for a range of custom manufacturing requirements across marine components, scale models, and interior decorative elements. The work involved both functional and presentation-focused applications, requiring accuracy, finish, and dependable execution.<br><br>For their feeder vessels, Delta Corp required functional replacement parts connected to the motor shaft of the boats. These components were responsible for transmitting the direction of the motor, making fit, strength, and reliability critical. In addition to the marine components, Nirmitsu also manufactured scale models and decorative lampshades for Deltin Royale. The lampshades were installed across every floor of the stairwell inside Deltin Royale, where the visual finish and consistency of the parts were important to the overall interior environment.",
+          challenge: "The project involved different requirements across different applications. The marine components had to match existing samples accurately and withstand the demands of a marine environment. Since the parts were connected to the motor shaft, strength and durability were important.<br><br>The lampshades required a different approach. They had to be visually clean, consistent, and suitable for a premium hospitality setting inside Deltin Royale. This meant the work had to balance functional manufacturing with aesthetic finishing.",
+          approach: "Delta Corp provided physical samples, which Nirmitsu used to develop the required design files and prepare the parts for manufacturing. Nirmitsu handled everything from the design to the finish on the ready components.<br><br>The marine components were designed and printed, all within a day. The scale models and lampshades were developed over a few weeks, allowing time for production, finishing, and delivery.<br><br>For the decorative lampshades, the focus was on achieving a clean surface finish suitable for interior use. For the marine components, the focus was on matching the original part and ensuring the component could perform reliably in use.",
+          outcome: "The marine components were successfully installed and continue to be used on Delta Corp’s feeder vessels. The client has continued placing additional orders for more feeder vessels, reflecting the reliability and usefulness of the parts.<br><br>The lampshades were installed on every floor of the stairwell inside Deltin Royale, contributing to the interior appearance of the space. Across the project, Nirmitsu supported Delta Corp with custom manufacturing for both functional marine use and premium interior applications.",
+          feedback: "“It was a great pleasure working with Iraj, as his dedication and commitment to client requirements goes beyond what is expected.”",
+          author: "Chintan Shet",
+          role: "Senior Marketing Manager, Delta Corp Limited"
+        },
+        goacarbonic: {
+          id: "goacarbonic",
+          client: "Goa Carbonic Industries Pvt. Ltd.",
+          title: "Urgent Industrial Spare Part Produced Within a Day",
+          category: "Industrial Spares",
+          badge: "Industrial Spares",
+          description: "Goa Carbonic Industries Pvt. Ltd. approached Nirmitsu Design Labs with an urgent requirement for an industrial spare part. The original component had broken, and a replacement was unavailable from the OEM, creating the need for a fast and reliable local manufacturing solution.<br><br>The part was required to fit into an existing machine and withstand extreme negative temperatures, making accuracy and alignment critical. Goa Carbonic provided the original sample along with measurements, which were used to reverse engineer the component and prepare it for manufacturing. Since the spare was needed urgently, the project had to be completed within a very short timeframe without compromising fit, function, or dimensional accuracy.",
+          challenge: "The main challenge was to recreate a broken and unavailable machine component from the available sample while ensuring that it would fit and function correctly inside the machine.<br><br>Before printing, Nirmitsu identified that the nature of the component and its ability to align correctly were critical to the success of the part. Producing the component without addressing this could have resulted in an incorrect fit or poor performance. Careful material selection was also carried out to ensure the printed spare met the functional requirements of the application and could perform reliably in its intended industrial environment. The project required urgency, dimensional accuracy, and a practical understanding of how the part would function in an industrial setting.",
+          approach: "Nirmitsu reverse engineered the spare part from the sample and measurements provided by the client. The component was prepared for 3D printing, with attention given to fit, alignment, and functional use inside the machine.<br><br>The part was fully 3D printed and post-processed to ensure it was suitable for installation and use. The complete job was completed within a few hours, allowing the client to receive the replacement part on the same day.",
+          outcome: "The final spare part was successfully produced, post-processed, and used in the machine. By recreating the component locally within a few hours, Nirmitsu helped the client avoid delays caused by OEM unavailability and long procurement timelines.<br><br>The project demonstrated the value of fast-response additive manufacturing for industrial spares, especially when original parts are broken, unavailable, or difficult to source.",
+          feedback: "“His attention to detail saved me that trouble. I have already recommended him to some of my friends and I’ll continue to do so because he is providing a service that’s desperately needed in Goa and doing a great job at it.”",
+          author: "Ajay Varugis",
+          role: "Executive Director, Goa Carbonic Industries Pvt. Ltd."
+        },
+        myownbrews: {
+          id: "myownbrews",
+          client: "MyOwnBrews Pvt. Ltd.",
+          title: "Integrated Airlock Lid for Home Fermentation",
+          category: "Product Development",
+          badge: "Product Design",
+          description: "MyOwnBrews Pvt. Ltd. approached Nirmitsu Design Labs to develop an integrated airlock lid for home fermentation. The requirement was not limited to producing a part; the product needed to be functional, usable, and suitable for the intended application.<br><br>The client came with an idea, CAD file, and sample, which Nirmitsu used as the starting point for design development and prototyping. The project required custom manufacturing support, where the design could be tested, refined, and improved through multiple iterations before reaching a successful functional prototype. Nirmitsu handled the design, prototyping, printing, post-processing, and development support required to move the product from concept to a working component.",
+          challenge: "The main challenge was to develop a lid that could function reliably in a home fermentation setup. Fitment and airtightness were critical, as the part needed to work correctly with the brewing jug and support the airlock function.<br><br>The project also required attention to usability, product aesthetics, food-contact considerations, and functional testing. Since the part was intended for real use rather than visual demonstration, each design decision had to support both function and user experience. Multiple iterations were required to refine the design and validate the component.",
+          approach: "Nirmitsu worked with the client through a back-and-forth development process, using the provided idea, CAD file, and sample to guide the design. The product was prototyped, tested, adjusted, and improved across four iterations. The part was fully 3D printed and post-processed, with each prototype helping identify improvements in fit, sealing, usability, and overall product performance. This collaborative development process continued over a few months until the client had successful functional prototypes.",
+          outcome: "The final result was a functional integrated airlock lid that met the client’s requirements and helped validate the product concept. The prototypes allowed MyOwnBrews to test and improve the design before moving further in the product development process. The client was pleased with the final components, and the project led to continued collaboration.",
+          feedback: "“Nirmitsu helped us design, prototype and create an integrated airlock lid for home fermentation. Exceeded our expectations in every way throughout the project.”",
+          author: "Vishal Robertson",
+          role: "Co-Founder, MyOwnBrews Pvt. Ltd."
+        },
+        phosic: {
+          id: "phosic",
+          client: "Phosic India Pvt. Ltd.",
+          title: "Manufacturing Partner for Continuous Design Iterations",
+          category: "Forensic Technology",
+          badge: "Forensic Technology",
+          description: "Phosic India Pvt. Ltd., a forensic technology company, worked with Nirmitsu Design Labs for the development of prototype camera bodies. The project required custom manufacturing support through multiple stages of design refinement, investor discussions, and approval rounds.<br><br>The client provided CAD files, which were used as the starting point for manufacturing. Since the parts were prototypes, the focus was not only on producing the design, but also on helping improve printability, fitment, and feasibility across each iteration. Over the course of the collaboration, Nirmitsu supported Phosic with 3D printed prototypes, design suggestions, printability adjustments, and development-stage manufacturing.",
+          challenge: "The project required continuous design iteration. As the product developed, changes were a regular part of the process, and each updated version needed to be manufactured quickly and accurately.<br><br>The main requirements were testing feasibility, producing functional prototypes, achieving accurate fitment, and adapting the design for additive manufacturing. Since the prototypes were part of investor rounds and approval discussions, the parts also needed to support clear product communication.",
+          approach: "Nirmitsu worked closely with Phosic across multiple rounds of development. The CAD files were reviewed, adjusted where required, and prepared for 3D printing. Practical design suggestions were made to improve manufacturability and ensure that each prototype could be printed and evaluated effectively. The parts were fully 3D printed, allowing the client to move through design changes faster than conventional custom manufacturing would typically allow. This gave Phosic the flexibility to test, review, and update the camera body design throughout the development process.",
+          outcome: "The collaboration has continued for over six months, with Nirmitsu supporting multiple design iterations for investor rounds and approvals. The process helped Phosic reduce development time, test feasibility, and move through product changes with greater flexibility. The project developed into an ongoing partnership built around responsive manufacturing, technical support, and fast prototype development.",
+          feedback: "“Great team to work with! Iraj and Siddhanath are always prompt and helpful. Thanks a lot and I hope that we will continue our partnership in the future as well.”",
+          author: "Sudeep Deshpande",
+          role: "Co-founder, Phosic India Pvt. Ltd."
+        },
+        aqua: {
+          id: "aqua",
+          client: "Aqua Engineers",
+          title: "Custom Manufacturing Support for Aqua Engineers",
+          category: "Surveillance & Robotics",
+          badge: "Robotics & Surveillance",
+          description: "Aqua Engineers approached Nirmitsu Design Labs for the manufacturing of a component used in a remote surveillance system. The part was intended for end use, which made quality, accuracy, and reliable execution important.<br><br>The client provided CAD files, and Nirmitsu supported the project through 3D printing. Since the requirement was urgent, the component had to be produced quickly while still meeting the expected quality standard.",
+          challenge: "The main requirement was immediate turnaround without compromising the final part quality. Since the component was intended for use in a remote surveillance system, the print had to be accurate, clean, and suitable for its application. The project required reliable execution, clear communication, and the ability to deliver within a short timeline.",
+          approach: "Nirmitsu used the CAD files provided by Aqua Engineers and manufactured the component using SLA/resin 3D printing. The process was focused on producing a high-quality part within the required timeframe. Since the client needed the part immediately, the work was planned and completed in less than a day.",
+          outcome: "The final component was delivered within the required timeline and was successfully used by the client. Aqua Engineers was pleased with the experience, and both teams are exploring further opportunities to work together.",
+          feedback: "“Working with Nirmitsu was one of the easiest interactions for this category of job that I’ve had with any vendor. Time and quality commitments were adhered to.”",
+          author: "Chrys D’Souza",
+          role: "Founder & Principal Engineer, Aqua Engineers"
+        }
+      };
+
+      // Modal open function
+      function openCaseDetails(id) {
+        const data = caseStudiesData[id];
+        if (!data) return;
+        
+        document.getElementById('modalBadge').textContent = data.badge;
+        document.getElementById('modalTitle').textContent = data.title;
+        document.getElementById('modalClient').textContent = data.client;
+        document.getElementById('modalDescription').innerHTML = data.description;
+        document.getElementById('modalChallenge').innerHTML = data.challenge;
+        document.getElementById('modalApproach').innerHTML = data.approach;
+        document.getElementById('modalOutcome').innerHTML = data.outcome;
+        document.getElementById('modalFeedback').textContent = data.feedback;
+        document.getElementById('modalAuthor').textContent = data.author;
+        document.getElementById('modalAuthorRole').textContent = data.role;
+        
+        const modal = new bootstrap.Modal(document.getElementById('caseDetailModal'));
+        modal.show();
+      }
+
+      // Slider Logic
+      document.addEventListener("DOMContentLoaded", function() {
+        const total = 6;
+        let current = 0;
+        let animating = false;
+        let autoTimer = null;
+        let touchStartX = 0;
+        let touchStartY = 0;
+
+        const slides = document.querySelectorAll(".cs-slide");
+        const indicators = document.querySelectorAll(".cs-ind");
+        const progressFill = document.getElementById("csProgressFill");
+        const progressLabel = document.getElementById("csProgressLabel");
+
+        function updateProgress() {
+          if (progressFill) progressFill.style.width = ((current + 1) / total * 100) + "%";
+          if (progressLabel) progressLabel.textContent = (current + 1) + " / " + total;
+        }
+
+        function goTo(idx, dir) {
+          if (animating || idx === current) return;
+          animating = true;
+
+          const prev = current;
+          const outClass = dir > 0 ? "exit-left" : "exit-right";
+
+          slides[prev].classList.remove("active");
+          slides[prev].classList.add(outClass);
+
+          slides[idx].style.transform = dir > 0 ? "translateX(40px)" : "translateX(-40px)";
+          slides[idx].style.opacity = "0";
+          slides[idx].classList.add("active");
+
+          // Trigger browser layout recalc before transition
+          requestAnimationFrame(function() {
+            requestAnimationFrame(function() {
+              slides[idx].style.transform = "";
+              slides[idx].style.opacity = "";
+            });
+          });
+
+          setTimeout(function() {
+            slides[prev].classList.remove("exit-left", "exit-right");
+            animating = false;
+          }, 500);
+
+          current = idx;
+          
+          indicators.forEach((ind, i) => {
+            ind.classList.toggle("active", i === current);
+          });
+          updateProgress();
+        }
+
+        function nextSlide() {
+          goTo((current + 1) % total, 1);
+        }
+
+        function prevSlide() {
+          goTo((current - 1 + total) % total, -1);
+        }
+
+        // Auto-play controls
+        function startAuto() {
+          autoTimer = setInterval(nextSlide, 7000);
+        }
+
+        function resetAuto() {
+          clearInterval(autoTimer);
+          startAuto();
+        }
+
+        document.getElementById("csNext").addEventListener("click", function() {
+          resetAuto();
+          nextSlide();
+        });
+
+        document.getElementById("csPrev").addEventListener("click", function() {
+          resetAuto();
+          prevSlide();
+        });
+
+        indicators.forEach((ind) => {
+          ind.addEventListener("click", function() {
+            const idx = parseInt(this.getAttribute("data-idx"));
+            resetAuto();
+            goTo(idx, idx > current ? 1 : -1);
+          });
+        });
+
+        // Swipe events for touch devices
+        const slider = document.getElementById("csSlider");
+        slider.addEventListener("touchstart", function(e) {
+          touchStartX = e.touches[0].clientX;
+          touchStartY = e.touches[0].clientY;
+        }, { passive: true });
+
+        slider.addEventListener("touchend", function(e) {
+          const dx = e.changedTouches[0].clientX - touchStartX;
+          const dy = e.changedTouches[0].clientY - touchStartY;
+          if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
+            resetAuto();
+            if (dx < 0) nextSlide(); else prevSlide();
+          }
+        }, { passive: true });
+
+        // Keyboard arrow navigation
+        document.addEventListener("keydown", function(e) {
+          if (e.key === "ArrowRight") {
+            resetAuto();
+            nextSlide();
+          } else if (e.key === "ArrowLeft") {
+            resetAuto();
+            prevSlide();
+          }
+        });
+
+        // Initialize Progress and Auto-Play
+        updateProgress();
+        startAuto();
+
+        // Cards Filtering Logic
+        const filterBtns = document.querySelectorAll(".filter-btn");
+        const gridItems = document.querySelectorAll(".grid-item");
+
+        filterBtns.forEach(btn => {
+          btn.addEventListener("click", function() {
+            filterBtns.forEach(b => b.classList.remove("active"));
+            this.classList.add("active");
+            
+            const filterValue = this.getAttribute("data-filter");
+            
+            gridItems.forEach(item => {
+              if (filterValue === "all" || item.getAttribute("data-category") === filterValue) {
+                item.style.display = "block";
+              } else {
+                item.style.display = "none";
+              }
+            });
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

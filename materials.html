@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materials - Nirmitsu</title>
+    <link rel="icon" href="assets/favicon.png" type="image/png">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" as="style"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    </noscript>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Copy base styles from other pages -->
+    <style>
+                /* Base Styles */
+        html, body {
+            font-size: 16px;
+        }
+
+        @font-face {
+            font-family: 'MADE Regular';
+            src: url('fonts/MADE-Regular.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'MADE';
+            src: url('fonts/MADE.otf') format('opentype');
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        :root {
+            --primary-color: #13CBE8;
+            --secondary-color: #000000;
+            --light-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'MADE Regular', sans-serif;
+            background-color: var(--light-bg);
+        }
+
+        /* Typography Scale */
+        h1, .h1 { font-size: 2.5rem; }
+        h2, .h2 { font-size: 2rem; }
+        h3, .h3 { font-size: 1.75rem; }
+        h4, .h4 { font-size: 1.5rem; }
+        h5, .h5 { font-size: 1.25rem; }
+        h6, .h6 { font-size: 1rem; }
+
+        .display-3 {
+            font-size: 2.5rem;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            font-family: 'MADE', sans-serif;
+            color: black;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+        }
+
+        .btn-primary:hover {
+            background-color: #25c7ae;
+            border-color: #25c7ae;
+            color: black;
+        }
+
+        /* Navigation Styles */
+        .nav-link {
+            color: var(--secondary-color) !important;
+            font-family: 'MADE Regular', sans-serif;
+            font-size: 0.94rem;
+            padding: 0.5rem 0.7rem !important;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
+
+        .navbar {
+            padding: 0.5rem 0;
+        }
+
+        .navbar-brand img {
+            max-width: 150px;
+            height: auto;
+        }
+
+        .dropdown-menu {
+            border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .dropdown-item {
+            font-family: 'MADE Regular', sans-serif;
+            padding: 0.75rem 1.5rem;
+        }
+
+        .dropdown-item:hover {
+            background-color: var(--primary-color);
+            color: black;
+        }
+        /* WhatsApp Button Styles */
+        .whatsapp-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .whatsapp-button a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 60px;
+            height: 60px;
+            background-color: #25D366;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-button i {
+            font-size: 32px;
+            color: white;
+        }
+
+        .whatsapp-button a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            background-color: #22c55e;
+        }
+
+        /* Tooltip Styles */
+        .whatsapp-tooltip {
+            position: absolute;
+            right: 75px;
+            bottom: 5px;
+            background: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            color: #333;
+            width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-tooltip::after {
+            content: '';
+            position: absolute;
+            right: -8px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-left: 8px solid white;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+        }
+
+        /* Show tooltip on hover */
+        .whatsapp-button:hover .whatsapp-tooltip {
+            opacity: 1;
+            visibility: visible;
+            right: 85px;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .whatsapp-button {
+                bottom: 15px;
+                right: 15px;
+            }
+
+            .whatsapp-button a {
+                width: 50px;
+                height: 50px;
+            }
+
+            .whatsapp-button i {
+                font-size: 28px;
+            }
+
+            .whatsapp-tooltip {
+                display: none;
+            }
+        }
+
+        .whatsapp-button a {
+            color: rgba(13, 110, 253, 0);
+        }
+        /* Form Styling */
+        .form-control,
+        .form-select {
+            padding: 0.75rem 1.5rem;
+            border: 1px solid #e0e0e0;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: #13CBE8;
+            box-shadow: 0 0 0 0.25rem rgba(46, 234, 205, 0.25);
+        }
+
+        .footer {
+            background-color: #ffffff;
+            padding: 3rem 0;
+            color: #4a4a4a;
+        }
+
+        .footer h5 {
+            color: #000;
+            font-family: 'MADE', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: #4a4a4a;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #13CBE8;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-icons a {
+            color: #4a4a4a;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #13CBE8;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e0e0e0;
+        }
+        /* Technology Page Specific Styles */
+        .tech-banner {
+            position: relative;
+            padding: 120px 0;
+            color: white;
+            overflow: hidden;
+        }
+
+        .tech-banner .banner-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .tech-banner::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: -1;
+        }
+        /* Add to existing styles */
+         /* Service Icons Section */
+         .service-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(19, 203, 232, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .service-icon i {
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1);
+            background: var(--primary-color);
+        }
+
+        .service-card:hover .service-icon i {
+            color: white;
+        }
+
+        /* Info Section */
+        .info-section {
+            background-color: #f8f9fa;
+            padding: 5rem 0;
+        }
+
+        .info-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            height: 100%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Technology Section */
+        .tech-pill {
+            border-radius: 8px;
+            padding: 1rem 1.5rem;
+            color: var(--secondary-color);
+            background-color: white;
+            border: 1px solid #eee;
+            transition: all 0.3s ease;
+        }
+
+        .tech-pill:hover {
+            background-color: rgba(19, 203, 232, 0.1);
+            border-color: var(--primary-color);
+        }
+
+        .tech-pill.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .tech-pill .nav-link small {
+            font-size: 0.875rem;
+        }
+
+        @media (max-width: 991px) {
+            .tech-pill {
+                display: flex;
+                flex-direction: row !important;
+                overflow-x: auto;
+                white-space: nowrap;
+                margin-bottom: 2rem;
+            }
+            
+            .tech-pill .nav-link {
+                margin-right: 1rem;
+            }
+        }
+        @media (max-width: 991px) {
+            .tech-tabs {
+                flex-direction: row;
+                overflow-x: auto;
+                padding-bottom: 1rem;
+                margin-bottom: 2rem;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none; /* Firefox */
+                -ms-overflow-style: none; /* IE and Edge */
+            }
+
+            .tech-tabs::-webkit-scrollbar {
+                display: none; /* Chrome, Safari, Opera */
+            }
+
+            .tech-tabs .nav-link {
+                flex: 0 0 auto;
+                min-width: 120px;
+                margin-right: 0.5rem;
+                padding: 0.75rem 1rem;
+            }
+
+            .tech-tabs .nav-link:last-child {
+                margin-right: 0;
+            }
+
+            /* Adjust content spacing */
+            .tech-card {
+                margin-top: 1rem;
+            }
+
+            /* Make content more compact on mobile */
+            .tech-content {
+                padding: 1.5rem;
+            }
+
+            .tech-icon {
+                width: 50px;
+                height: 50px;
+            }
+
+            /* Adjust typography for better mobile reading */
+            .tech-content h3.h4 {
+                font-size: 1.25rem;
+            }
+
+            .tech-content p {
+                font-size: 0.95rem;
+            }
+        }
+        .tech-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            height: 100%;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .tech-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .tech-content {
+            padding: 2rem;
+        }
+
+        /* Table Styles */
+        .tables-section {
+            background-color: #f8f9fa;
+        }
+
+        .table {
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            margin-bottom: 0;
+        }
+
+        .table thead tr {
+            background-color: var(--primary-color) !important;
+        }
+
+        .table thead th {
+            color: black;
+            font-family: 'MADE', sans-serif;
+            font-weight: 600;
+            padding: 1rem;
+            border-bottom: none;
+        }
+
+        .table tbody td {
+            padding: 1rem;
+            vertical-align: middle;
+            color: #4a4a4a;
+        }
+
+        .table-bordered {
+            border: 1px solid #dee2e6;
+        }
+
+        .table-bordered td,
+        .table-bordered th {
+            border: 1px solid #dee2e6;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .table thead th,
+            .table tbody td {
+                padding: 0.75rem;
+                font-size: 0.9rem;
+            }
+
+            .h4 {
+                font-size: 1.25rem;
+            }
+        }
+
+        /* Table hover effects */
+        .table tbody tr:hover {
+            background-color: rgba(19, 203, 232, 0.05);
+        }
+
+        /* Table header style */
+        .bg-primary {
+            background-color: var(--primary-color) !important;
+        }
+
+        .text-white {
+            color: black !important;
+        }
+
+        /* Enhanced Mobile Table Styles */
+        @media (max-width: 767px) {
+            .table-responsive {
+                border: 0;
+                margin-bottom: 2rem;
+            }
+            
+            .tables-section .h4 {
+                font-size: 1.2rem;
+                margin-bottom: 1rem;
+            }
+            
+            .table {
+                min-width: 500px; /* Ensures horizontal scrolling on very small screens */
+            }
+            
+            .table thead th {
+                position: sticky;
+                top: 0;
+                z-index: 1;
+                font-size: 0.9rem;
+                padding: 0.75rem 0.5rem;
+            }
+            
+            .table tbody td {
+                font-size: 0.85rem;
+                padding: 0.75rem 0.5rem;
+            }
+            
+            /* Add visual indicator for scrollable tables */
+            .table-responsive::after {
+                content: '← Scroll →';
+                display: block;
+                text-align: center;
+                padding: 0.5rem;
+                color: #6c757d;
+                font-size: 0.8rem;
+                margin-top: 0.5rem;
+                opacity: 0.7;
+            }
+            
+            /* Hide scroll indicator when not needed */
+            .table-responsive:not(.table-responsive-force)::after {
+                display: none;
+            }
+            
+            /* Add shadow to indicate scrollability */
+            .table-responsive {
+                background-image: linear-gradient(to right, white, white),
+                                  linear-gradient(to right, white, white),
+                                  linear-gradient(to right, rgba(0,0,0,0.2), rgba(255,255,255,0)),
+                                  linear-gradient(to left, rgba(0,0,0,0.2), rgba(255,255,255,0));
+                background-position: left center, right center, left center, right center;
+                background-repeat: no-repeat;
+                background-color: white;
+                background-size: 20px 100%, 20px 100%, 10px 100%, 10px 100%;
+                background-attachment: local, local, scroll, scroll;
+            }
+        }
+        
+        /* Improved table styles for all screen sizes */
+        .tables-section {
+            padding: 3rem 0;
+        }
+        
+        .table-bordered th,
+        .table-bordered td {
+            border-color: #dee2e6;
+        }
+        
+        .table thead th {
+            border-bottom: 2px solid #dee2e6;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Add animation for better UX */
+        .table-responsive {
+            transition: all 0.3s ease;
+        }
+
+        /* New 2x2 grid layout for mobile devices */
+        @media (max-width: 767px) {
+            .tech-tabs {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                grid-gap: 10px;
+                overflow-x: visible;
+                padding-bottom: 0;
+            }
+            
+            .tech-tabs .nav-link {
+                margin-right: 0;
+                width: 100%;
+                min-width: auto;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                padding: 1rem 0.5rem;
+            }
+            
+            .tech-pill {
+                display: block !important;
+                white-space: normal;
+                height: 100%;
+            }
+            
+            .tech-pill .h5 {
+                font-size: 1rem;
+                margin-bottom: 0.25rem;
+            }
+            
+            .tech-pill small {
+                font-size: 0.75rem !important;
+                display: block !important;
+                line-height: 1.2;
+            }
+            
+            /* Adjust spacing for the content area */
+            .tab-content {
+                margin-top: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="assets/logo.webp" alt="Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="technology">Our Technologies</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            Our Solution
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="additive-manufacturing">Additive Manufacturing</a></li>
+                            <li><a class="dropdown-item" href="3d-modeling">3D Modelling & Design</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="materials">Materials</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="gallery">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="case-studies">Case Studies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact">Contact Us</a>
+                    </li>
+                </ul>
+                <div class="ms-lg-4">
+                    <a href="contact" class="btn btn-primary rounded-pill">Get Quote</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Banner Section -->
+    <section class="tech-banner" data-gsap>
+        <img src="assets/material-banner.png" alt="Technology Banner" class="banner-video">
+        <div class="container text-center">
+            <h2 class="display-4 fw-bold mb-3">Our State-of-the-Art Materials</h2>
+            <p class="lead">Discover our comprehensive range of high-performance materials</p>
+        </div>
+    </section>
+
+    <!-- Materials Overview Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row g-4">
+                <!-- Metal Materials -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="material-card h-100 shadow-sm rounded-3 overflow-hidden">
+                        <img src="assets/mat-1.webp" class="img-fluid" alt="Metal Materials">
+                        <div class="p-4">
+                            <h3 class="h5 mb-3">Figure 4 Tough FR V0 Black</h3>
+                            <p class="mb-0">Tough black, UL94 V0 rated flame-retardant production plastic</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Composites -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="material-card h-100 shadow-sm rounded-3 overflow-hidden">
+                        <img src="assets/mat-2.webp" class="img-fluid" alt="Composite Materials">
+                        <div class="p-4">
+                            <h3 class="h5 mb-3">Figure 4 JCAST-GRN 20</h3>
+                            <p class="mb-0">Next generation jewelry castable material for high-resolution patterns</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Plastics -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="material-card h-100 shadow-sm rounded-3 overflow-hidden">
+                        <img src="assets/mat-3.webp" class="img-fluid" alt="Plastic Materials">
+                        <div class="p-4">
+                            <h3 class="h5 mb-3">Figure 4 Tough Clear</h3>
+                            <p class="mb-0">A clear, production-grade material offering long-term stability and clarity</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ceramics -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="material-card h-100 shadow-sm rounded-3 overflow-hidden">
+                        <img src="assets/mat-4.webp" class="img-fluid" alt="Ceramic Materials">
+                        <div class="p-4">
+                            <h3 class="h5 mb-3">Figure 4 Tough 60C White</h3>
+                            <p class="mb-0">White plastic for long-term use parts with a good combination of impact strength, elongation, and tensile strength</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-4 mt-3">
+                <!-- Metal Materials -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="material-card h-100 shadow-sm rounded-3 overflow-hidden">
+                        <img src="assets/mat-5.webp" class="img-fluid" alt="Metal Materials">
+                        <div class="p-4">
+                            <h3 class="h5 mb-3">Figure 4 Tough 65C Black</h3>
+                            <p class="mb-0">Black plastic for long-term use parts with a good combination of impact strength, elongation, and tensile strength.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Composites -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="material-card h-100 shadow-sm rounded-3 overflow-hidden">
+                        <img src="assets/mat-6.webp" class="img-fluid" alt="Composite Materials">
+                        <div class="p-4">
+                            <h3 class="h5 mb-3">Figure 4 High Temp 150°C FR Black</h3>
+                            <p class="mb-0">UL94 V0 rated flame-retardant black plastic with >150˚C heat deflection temperature</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Plastics -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="material-card h-100 shadow-sm rounded-3 overflow-hidden">
+                        <img src="assets/mat-7.webp" class="img-fluid" alt="Plastic Materials">
+                        <div class="p-4">
+                            <h3 class="h5 mb-3">Figure 4 Rigid Gray</h3>
+                            <p class="mb-0">High contrast gray plastic for long-term use parts with balanced thermal and mechanical properties.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ceramics -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="material-card h-100 shadow-sm rounded-3 overflow-hidden">
+                        <img src="assets/mat-8.webp" class="img-fluid" alt="Ceramic Materials">
+                        <div class="p-4">
+                            <h3 class="h5 mb-3">Figure 4 Rigid White</h3>
+                            <p class="mb-0">Opaque rigid white production-grade plastic</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-4 mt-3">
+                <!-- Metal Materials -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="material-card h-100 shadow-sm rounded-3 overflow-hidden">
+                        <img src="assets/mat-9.webp" class="img-fluid" alt="Metal Materials">
+                        <div class="p-4">
+                            <h3 class="h5 mb-3">Figure 4 JEWEL MASTER GRY</h3>
+                            <p class="mb-0">Jewelry master patterns and prototypes</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Composites -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="material-card h-100 shadow-sm rounded-3 overflow-hidden">
+                        <img src="assets/mat-10.webp" class="img-fluid" alt="Composite Materials">
+                        <div class="p-4">
+                            <h3 class="h5 mb-3">Figure 4 RUBBER-65A BLK</h3>
+                            <p class="mb-0">Mid tear strength production-grade rubber</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Plastics -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="material-card h-100 shadow-sm rounded-3 overflow-hidden">
+                        <img src="assets/mat-11.webp" class="img-fluid" alt="Plastic Materials">
+                        <div class="p-4">
+                            <h3 class="h5 mb-3">Figure 4 RUBBER-BLK 10</h3>
+                            <p class="mb-0">Durable, hard rubber-like material</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ceramics -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="material-card h-100 shadow-sm rounded-3 overflow-hidden">
+                        <img src="assets/mat-12.webp" class="img-fluid" alt="Ceramic Materials">
+                        <div class="p-4">
+                            <h3 class="h5 mb-3">Figure 4 FLEX-BLK 20</h3>
+                            <p class="mb-0">High stability, durable and flexible plastic</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-4 mt-3">
+                <!-- Metal Materials -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="material-card h-100 shadow-sm rounded-3 overflow-hidden">
+                        <img src="assets/mat-13.webp" class="img-fluid" alt="Metal Materials">
+                        <div class="p-4">
+                            <h3 class="h5 mb-3">Figure 4 HI TEMP 300-AMB</h3>
+                            <p class="mb-0">High temperature resistant translucent plastic with HDT over 300°C</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Composites -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="material-card h-100 shadow-sm rounded-3 overflow-hidden">
+                        <img src="assets/mat-14.webp" class="img-fluid" alt="Composite Materials">
+                        <div class="p-4">
+                            <h3 class="h5 mb-3">Figure 4 EGGSHELL-AMB 10</h3>
+                            <p class="mb-0">Process-optimized material for sacrificial tooling to cast silicone</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Plastics -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="material-card h-100 shadow-sm rounded-3 overflow-hidden">
+                        <img src="assets/mat-15.webp" class="img-fluid" alt="Plastic Materials">
+                        <div class="p-4">
+                            <h3 class="h5 mb-3">Figure 4 PRO-BLK 10</h3>
+                            <p class="mb-0">Production-grade, rigid material for production parts</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ceramics -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="material-card h-100 shadow-sm rounded-3 overflow-hidden">
+                        <img src="assets/mat-16.webp" class="img-fluid" alt="Ceramic Materials">
+                        <div class="p-4">
+                            <h3 class="h5 mb-3">Figure 4 TOUGH-BLK 20</h3>
+                            <p class="mb-0">Strong material with long-term environmental stability.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-4 mt-3">
+                <!-- Metal Materials -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="material-card h-100 shadow-sm rounded-3 overflow-hidden">
+                        <img src="assets/mat-17.webp" class="img-fluid" alt="Metal Materials">
+                        <div class="p-4">
+                            <h3 class="h5 mb-3">Figure 4 MED-WHT 10</h3>
+                            <p class="mb-0">Rigid white material that can be sterilized and tested at high temperature</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Composites -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="material-card h-100 shadow-sm rounded-3 overflow-hidden">
+                        <img src="assets/mat-18.webp" class="img-fluid" alt="Composite Materials">
+                        <div class="p-4">
+                            <h3 class="h5 mb-3">Figure 4 MED-AMB 10</h3>
+                            <p class="mb-0">Rigid, translucent material that can be sterilized and tested at high temperature.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Plastics -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="material-card h-100 shadow-sm rounded-3 overflow-hidden">
+                        <img src="assets/mat-19.webp" class="img-fluid" alt="Plastic Materials">
+                        <div class="p-4">
+                            <h3 class="h5 mb-3">Figure 4 TOUGH-GRY 15</h3>
+                            <p class="mb-0">Economical, production rigid gray material</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ceramics -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="material-card h-100 shadow-sm rounded-3 overflow-hidden">
+                        <img src="assets/mat-20.webp" class="img-fluid" alt="Ceramic Materials">
+                        <div class="p-4">
+                            <h3 class="h5 mb-3">Figure 4 TOUGH-GRY 10</h3>
+                            <p class="mb-0">High speed, production rigid dark gray material</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="material-card h-100 shadow-sm rounded-3 overflow-hidden">
+                        <img src="assets/mat-21.png" class="img-fluid" alt="Ceramic Materials">
+                        <div class="p-4">
+                            <h3 class="h5 mb-3">PEKK with glass fiber</h3>
+                            <p class="mb-0">High temperature resistant, glass fiber reinforced material</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="material-card h-100 shadow-sm rounded-3 overflow-hidden">
+                        <img src="assets/mat-22.png" class="img-fluid" alt="Ceramic Materials">
+                        <div class="p-4">
+                            <h3 class="h5 mb-3">Water soluble pellets</h3>
+                            <p class="mb-0">Water soluble, high temperature resistant, reinforced material</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="material-card h-100 shadow-sm rounded-3 overflow-hidden">
+                        <img src="assets/mat-23.png" class="img-fluid" alt="Ceramic Materials">
+                        <div class="p-4">
+                            <h3 class="h5 mb-3">Polypropylene</h3>
+                            <p class="mb-0">High temperature resistant, glass fiber reinforced material</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="material-card h-100 shadow-sm rounded-3 overflow-hidden">
+                        <img src="assets/mat-24.png" class="img-fluid" alt="Ceramic Materials">
+                        <div class="p-4">
+                            <h3 class="h5 mb-3">ABS with carbon fiber</h3>
+                            <p class="mb-0">High temperature resistant, carbon fiber reinforced material</p>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Material Applications Section -->
+    <section class="py-5 bg-light" data-gsap>
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-4 fw-bold mb-3">Material Applications</h2>
+                <p class="lead text-muted col-lg-8 mx-auto">Discover how our materials are used across different industries</p>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="nav tech-tabs me-lg-3" id="v-pills-tab" role="tablist">
+                        <button class="nav-link tech-pill active mb-lg-3 text-start w-100" id="v-pills-polymers-tab" data-bs-toggle="pill" data-bs-target="#v-pills-polymers" type="button" role="tab">
+                            <span class="h5 mb-0">Polymers</span>
+                            <small class="d-none d-sm-block text-muted">Thermoplastics & thermosets</small>
+                        </button>
+                        <button class="nav-link tech-pill mb-lg-3 text-start w-100" id="v-pills-metals-tab" data-bs-toggle="pill" data-bs-target="#v-pills-metals" type="button" role="tab">
+                            <span class="h5 mb-0">Metals</span>
+                            <small class="d-none d-sm-block text-muted">High-strength materials</small>
+                        </button>
+                        <button class="nav-link tech-pill mb-lg-3 text-start w-100" id="v-pills-composites-tab" data-bs-toggle="pill" data-bs-target="#v-pills-composites" type="button" role="tab">
+                            <span class="h5 mb-0">Composites</span>
+                            <small class="d-none d-sm-block text-muted">Reinforced materials</small>
+                        </button>
+                        <button class="nav-link tech-pill mb-lg-3 text-start w-100" id="v-pills-biomaterials-tab" data-bs-toggle="pill" data-bs-target="#v-pills-biomaterials" type="button" role="tab">
+                            <span class="h5 mb-0">Biomaterials</span>
+                            <small class="d-none d-sm-block text-muted">Medical grade materials</small>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="col-lg-9">
+                    <div class="tab-content" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active" id="v-pills-polymers" role="tabpanel">
+                            <div class="tech-card">
+                                <div class="tech-content">
+                                    <h3 class="h4 mb-4">Polymers</h3>
+                                    <p class="mb-4">Includes thermoplastics and thermosets used for FDM, SLA, and SLS printing.</p>
+                                    
+                                    <div class="mt-4">
+                                        <h4 class="h5 mb-3">Applications:</h4>
+                                        <ul class="list-unstyled">
+                                            <li class="mb-2"><i class="fas fa-check text-primary me-2"></i> Prototyping</li>
+                                            <li class="mb-2"><i class="fas fa-check text-primary me-2"></i> Consumer goods</li>
+                                            <li class="mb-2"><i class="fas fa-check text-primary me-2"></i> Medical devices</li>
+                                            <li class="mb-2"><i class="fas fa-check text-primary me-2"></i> Automotive components</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="v-pills-metals" role="tabpanel">
+                            <div class="tech-card">
+                                <div class="tech-content">
+                                    <h3 class="h4 mb-4">Metals</h3>
+                                    <p class="mb-4">Used in DMLS, SLM, and binder jetting for high-strength and heat-resistant parts.</p>
+                                    
+                                    <div class="mt-4">
+                                        <h4 class="h5 mb-3">Applications:</h4>
+                                        <ul class="list-unstyled">
+                                            <li class="mb-2"><i class="fas fa-check text-primary me-2"></i> Aerospace</li>
+                                            <li class="mb-2"><i class="fas fa-check text-primary me-2"></i> Automotive</li>
+                                            <li class="mb-2"><i class="fas fa-check text-primary me-2"></i> Medical implants</li>
+                                            <li class="mb-2"><i class="fas fa-check text-primary me-2"></i> Tooling applications</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="v-pills-composites" role="tabpanel">
+                            <div class="tech-card">
+                                <div class="tech-content">
+                                    <h3 class="h4 mb-4">Composites</h3>
+                                    <p class="mb-4">Polymers reinforced with materials like carbon fiber, glass fiber, or Kevlar.</p>
+                                    
+                                    <div class="mt-4">
+                                        <h4 class="h5 mb-3">Applications:</h4>
+                                        <ul class="list-unstyled">
+                                            <li class="mb-2"><i class="fas fa-check text-primary me-2"></i> Aerospace</li>
+                                            <li class="mb-2"><i class="fas fa-check text-primary me-2"></i> Automotive</li>
+                                            <li class="mb-2"><i class="fas fa-check text-primary me-2"></i> Sports equipment</li>
+                                            <li class="mb-2"><i class="fas fa-check text-primary me-2"></i> Industrial tooling</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-biomaterials" role="tabpanel">
+                            <div class="tech-card">
+                                <div class="tech-content">
+                                    <h3 class="h4 mb-4">Biomaterials</h3>
+                                    <p class="mb-4">Includes biodegradable plastics, hydrogels, and bioinks for tissue engineering.</p>
+                                    
+                                    <div class="mt-4">
+                                        <h4 class="h5 mb-3">Applications:</h4>
+                                        <ul class="list-unstyled">
+                                            <li class="mb-2"><i class="fas fa-check text-primary me-2"></i> Custom prosthetics</li>
+                                            <li class="mb-2"><i class="fas fa-check text-primary me-2"></i> Medical implants</li>
+                                            <li class="mb-2"><i class="fas fa-check text-primary me-2"></i> Tissue engineering</li>
+                                            <li class="mb-2"><i class="fas fa-check text-primary me-2"></i> Pharmaceutical research</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tables Section -->
+    <section class="tables-section py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-4 fw-bold mb-3">Polymer Pellet Feedstocks</h2>
+                <p class="lead text-muted col-lg-8 mx-auto">We offer a wide range of polymer pellet feedstocks for your additive manufacturing needs.</p>
+            </div>
+            <!-- Polymer Pellet Feedstocks Table -->
+            <div class="table-responsive mb-5">
+                <h3 class="h4 mb-4">Polymer Pellet Feedstocks</h3>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr class="bg-primary text-white">
+                            <th scope="col">FLEXIBLE</th>
+                            <th scope="col">STANDARD</th>
+                            <th scope="col">HIGH PERFORMANCE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Durometers ranging down to 26 Shore A</td>
+                            <td>Commodity thermoplastics</td>
+                            <td>CF/GF ABS</td>
+                        </tr>
+                        <tr>
+                            <td>TPE</td>
+                            <td>PLA</td>
+                            <td>PC</td>
+                        </tr>
+                        <tr>
+                            <td>TPU</td>
+                            <td>ABS</td>
+                            <td>CF/GF PC</td>
+                        </tr>
+                        <tr>
+                            <td>TPC</td>
+                            <td>PETG</td>
+                            <td>Nylons</td>
+                        </tr>
+                        <tr>
+                            <td>PEBA (flexible nylon)</td>
+                            <td>ASA</td>
+                            <td>CF/GF Nylons</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>PP</td>
+                            <td>CF/GF PEKK</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>CF/GF PEI</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>CF/GF PPS</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>PSU</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pre-Footer CTA Section -->
+    <section class="pre-footer-cta py-5 ">
+        <div class="container">
+            <div class="row g-4 align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="fw-bold mb-4">Looking for a trusted additive manufacturer?<br>Partner with us Today</h2>
+                    <p class="lead mb-4">Get started with your project by filling out our quick quote form. Our team
+                        will get back to you within 24 hours.</p>
+                    <a href="#quoteForm" class="btn btn-primary btn-lg rounded-pill">Get Free Quote</a>
+                </div>
+
+                <div class="col-lg-5 offset-lg-1">
+                    <div class="quote-form-card bg-white p-4 rounded-4 shadow">
+                        <h3 class="h4 mb-4">Request a Quote</h3>
+                        <form id="quoteForm">
+                            <div class="mb-3">
+                                <input type="text" class="form-control rounded-pill" placeholder="Your Name" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="email" class="form-control rounded-pill" placeholder="Email Address"
+                                    required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="tel" class="form-control rounded-pill" placeholder="Phone Number">
+                            </div>
+                            <div class="mb-3">
+                                <select class="form-select rounded-pill">
+                                    <option selected>Select Service</option>
+                                    <option>Additive Manufacturing</option>
+                                    <option>⁠Prototyping</option>
+                                    <option>3D Modelling & Design</option>
+                                    <option>Other's</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <textarea class="form-control rounded-3" rows="3"
+                                    placeholder="Project Details"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100 rounded-pill">Submit Request</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                    <img src="assets/logo.webp" alt="Logo" class="mb-3" style="max-width: 200px;">
+                    <p>Your trusted partner in additive manufacturing and 3D printing solutions.</p>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+                    <h5>Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/materials">Materials</a></li>
+                        <li><a href="/case-studies">Case Studies</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                        <li><a href="/careers">Career</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+                    <h5>Our Solutions</h5>
+                    <ul class="footer-links">
+                        <li><a href="/3d-modeling">3D Modelling & Design</a></li>
+                        <li><a href="/additive-manufacturing">Additive Manufacturing</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <h5>Contact Us</h5>
+                    <p> 32-36, Ella High Street Mall, Ella Cidade, NH4A Highway Old Goa by-pass road Ella, Kadamba, Goa 403402</p>
+                    <p>Email: <a href="mailto:support@nirmitsu.com">support@nirmitsu.com</a></p>
+                    <p>Phone: <a href="tel:+917391086524">+917391086524 / +918322990536</a></p>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            </svg></a>
+                        <a href="#" aria-label="Twitter"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
+                                </path>
+                            </svg></a>
+                        <a href="https://www.linkedin.com/company/nirmitsu-design-labs-pvt-ltd/" aria-label="LinkedIn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                                </path>
+                                <rect x="2" y="9" width="4" height="12"></rect>
+                                <circle cx="4" cy="4" r="2"></circle>
+                            </svg></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 Nirmitsu. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <div class="whatsapp-button">
+        <div class="whatsapp-tooltip">
+            Hi! Chat with us on WhatsApp for quick support 👋
+        </div>
+        <a href="https://wa.me/+917391086524" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- GSAP Animation -->
+    <script>
+
+    </script>
+
+    <!-- Add JavaScript for WhatsApp form submission -->
+    <script>
+        document.getElementById('quoteForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = this.querySelector('input[type="text"]').value;
+            const email = this.querySelector('input[type="email"]').value;
+            const phone = this.querySelector('input[type="tel"]').value;
+            const service = this.querySelector('select').value;
+            const details = this.querySelector('textarea').value;
+            
+            // Create message
+            let message = `Hello, my name is ${name}. I'm interested in ${service}.`;
+            
+            if (details) {
+                message += `\n\nProject Details: ${details}`;
+            }
+            
+            message += `\n\nMy contact information:\nEmail: ${email}`;
+            
+            if (phone) {
+                message += `\nPhone: ${phone}`;
+            }
+            
+            message += `\n\nPlease contact me regarding my project requirements. Thank you!`;
+            
+            // Encode the message for URL
+            const encodedMessage = encodeURIComponent(message);
+            
+            // Open WhatsApp with the message
+            window.open(`https://wa.me/+917391086524?text=${encodedMessage}`, '_blank');
+        });
+    </script>
+</body>
+</html> 

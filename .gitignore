@@ -1,0 +1,6 @@
+__MACOSX/
+*.lock-*
+.DS_Store
+node_modules/
+*.phpupgrader
+.agents/
