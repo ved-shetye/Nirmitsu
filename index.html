@@ -190,18 +190,88 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             background-color: #f8f9fa;
             padding: 5rem 0;
             text-align: center;
+            overflow: hidden;
         }
 
-        .partners-section img {
-            max-height: 80px;
+        .marquee-wrapper {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            padding: 1.5rem 0;
+        }
+
+        /* Ambient gradient fades on left & right for a premium overlay feel */
+        .marquee-wrapper::before,
+        .marquee-wrapper::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 15%;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .marquee-wrapper::before {
+            left: 0;
+            background: linear-gradient(to right, #f8f9fa 0%, rgba(248, 249, 250, 0) 100%);
+        }
+
+        .marquee-wrapper::after {
+            right: 0;
+            background: linear-gradient(to left, #f8f9fa 0%, rgba(248, 249, 250, 0) 100%);
+        }
+
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            animation: logoMarquee 30s linear infinite;
+        }
+
+        .marquee-track:hover {
+            animation-play-state: paused;
+        }
+
+        .marquee-logo-card {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 220px;
+            height: 100px;
+            margin: 0 1.25rem;
+            padding: 1.25rem;
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .marquee-logo-card:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+            border-color: rgba(19, 203, 232, 0.4);
+        }
+
+        .marquee-logo-card img {
+            max-height: 55px;
+            max-width: 100%;
             object-fit: contain;
-            transition: filter 0.3s ease, transform 0.3s ease;
-            filter: grayscale(100%) brightness(0.9);
+            filter: grayscale(100%) opacity(0.65);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .partners-section img.grayscale-hover:hover {
-            filter: grayscale(0%) brightness(1);
-            transform: scale(1.05);
+        .marquee-logo-card:hover img {
+            filter: grayscale(0%) opacity(1);
+        }
+
+        @keyframes logoMarquee {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
         }
 
         
@@ -2170,18 +2240,83 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <!-- </div>-->
     <!-- </section>-->
 
-        <!-- Companies We've Worked With Section -->
+    <!-- Brands We Work With Section -->
     <section class="partners-section py-5">
-            <h2 class="fw-bold mb-5">Brands We Work With</h2>
+        <div class="container mb-4">
+            <h2 class="fw-bold">Brands We Work With</h2>
+        </div>
+        
+        <div class="marquee-wrapper">
+            <div class="marquee-track">
+                <!-- Original Set -->
+                <div class="marquee-logo-card">
+                    <img src="assets/CompanyLogos/Tata.svg" alt="Tata">
+                </div>
+                <div class="marquee-logo-card">
+                    <img src="assets/CompanyLogos/Adani Group (parent of Adani Defence).svg" alt="Adani Group">
+                </div>
+                <div class="marquee-logo-card">
+                    <img src="assets/CompanyLogos/Kineco Aerospace and Defense (light bg).png" alt="Kineco Aerospace and Defense">
+                </div>
+                <div class="marquee-logo-card">
+                    <img src="assets/CompanyLogos/Josmo_Logo-min_1_1.svg" alt="Josmo">
+                </div>
+                <div class="marquee-logo-card">
+                    <img src="assets/CompanyLogos/Jai Bhuvan Group.png" alt="Jai Bhuvan Group">
+                </div>
+                <div class="marquee-logo-card">
+                    <img src="assets/CompanyLogos/BuoyancyConsult_transparent.png" alt="Buoyancy Consult">
+                </div>
+                <div class="marquee-logo-card">
+                    <img src="assets/CompanyLogos/MyOwnBrews-Logo-White-Background.svg" alt="MyOwnBrews">
+                </div>
+                <div class="marquee-logo-card">
+                    <img src="assets/CompanyLogos/TDOC-logo.png" alt="TDOC">
+                </div>
+                <div class="marquee-logo-card">
+                    <img src="assets/CompanyLogos/FC_405x130px.svg" alt="Fluid Control">
+                </div>
+                <div class="marquee-logo-card">
+                    <img src="assets/CompanyLogos/PRA7i.jpg" alt="PRA7i">
+                </div>
+                <div class="marquee-logo-card">
+                    <img src="assets/CompanyLogos/puro_global.jpg" alt="Puro Global">
+                </div>
 
-            <div class="row justify-content-center align-items-center g-4">
-            <!-- Example Company Logos -->
-            <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-                <img src="assets/company1.webp" alt="Company 1" class="img-fluid grayscale-hover">
-            </div>
-            <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-                <img src="assets/company2.webp" alt="Company 2" class="img-fluid grayscale-hover">
-            </div>
+                <!-- Duplicate Set for Seamless Loop -->
+                <div class="marquee-logo-card">
+                    <img src="assets/CompanyLogos/Tata.svg" alt="Tata">
+                </div>
+                <div class="marquee-logo-card">
+                    <img src="assets/CompanyLogos/Adani Group (parent of Adani Defence).svg" alt="Adani Group">
+                </div>
+                <div class="marquee-logo-card">
+                    <img src="assets/CompanyLogos/Kineco Aerospace and Defense (light bg).png" alt="Kineco Aerospace and Defense">
+                </div>
+                <div class="marquee-logo-card">
+                    <img src="assets/CompanyLogos/Josmo_Logo-min_1_1.svg" alt="Josmo">
+                </div>
+                <div class="marquee-logo-card">
+                    <img src="assets/CompanyLogos/Jai Bhuvan Group.png" alt="Jai Bhuvan Group">
+                </div>
+                <div class="marquee-logo-card">
+                    <img src="assets/CompanyLogos/BuoyancyConsult_transparent.png" alt="Buoyancy Consult">
+                </div>
+                <div class="marquee-logo-card">
+                    <img src="assets/CompanyLogos/MyOwnBrews-Logo-White-Background.svg" alt="MyOwnBrews">
+                </div>
+                <div class="marquee-logo-card">
+                    <img src="assets/CompanyLogos/TDOC-logo.png" alt="TDOC">
+                </div>
+                <div class="marquee-logo-card">
+                    <img src="assets/CompanyLogos/FC_405x130px.svg" alt="Fluid Control">
+                </div>
+                <div class="marquee-logo-card">
+                    <img src="assets/CompanyLogos/PRA7i.jpg" alt="PRA7i">
+                </div>
+                <div class="marquee-logo-card">
+                    <img src="assets/CompanyLogos/puro_global.jpg" alt="Puro Global">
+                </div>                
             </div>
         </div>
     </section>
