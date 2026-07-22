@@ -717,54 +717,37 @@
           </div>
 
           <div class="col-lg-5 offset-lg-1">
-            <div class="quote-form-card bg-white p-4 rounded-4 shadow">
+            <div class="quote-form-card bg-white p-4 rounded-4 shadow crmWebToEntityForm" id="crmWebToEntityForm">
               <h3 class="h4 mb-4">Request a Quote</h3>
-              <form id="quoteForm">
+              <form id="webform959578000001028019" action="https://crm.zoho.in/crm/WebToLeadForm" name="WebToLeads959578000001028019" method="POST" onSubmit='javascript:document.charset="UTF-8"; return checkMandatory959578000001028019()' accept-charset="UTF-8">
+                <input type="text" style="display:none;" name="xnQsjsdp" value="46766c544bb0c378c4c017cf579ec3df7fb6f1faba52d285e5d43b9c2c2df45b">
+                <input type="hidden" name="zc_gad" id="zc_gad" value="">
+                <input type="text" style="display:none;" name="xmIwtLD" value="6374598dc187fa13ee3aeb5f0d9e190b439530828053e8589289dd9b74e2db30485d68124001d6d73f8493ac24dcee9b">
+                <input type="text" style="display:none;" name="actionType" value="TGVhZHM=">
+                <input type="text" style="display:none;" name="returnURL" value="https&#x3a;&#x2f;&#x2f;nirmitsu.com&#x2f;ads-thankyou&#x2f;">
+                
                 <div class="mb-3">
-                  <input
-                    type="text"
-                    class="form-control rounded-pill"
-                    placeholder="Your Name"
-                    required
-                  />
+                  <input type="text" class="form-control rounded-pill" id="Last_Name" name="Last Name" placeholder="Your Name *" maxlength="80" required>
                 </div>
                 <div class="mb-3">
-                  <input
-                    type="email"
-                    class="form-control rounded-pill"
-                    placeholder="Email Address"
-                    required
-                  />
+                  <input type="email" class="form-control rounded-pill" id="Email" name="Email" ftype="email" autocomplete="false" placeholder="Email Address *" maxlength="100" required>
                 </div>
                 <div class="mb-3">
-                  <input
-                    type="tel"
-                    class="form-control rounded-pill"
-                    placeholder="Phone Number"
-                  />
+                  <input type="tel" class="form-control rounded-pill" id="Phone" name="Phone" placeholder="Phone Number *" maxlength="30" required>
                 </div>
                 <div class="mb-3">
-                  <select class="form-select rounded-pill">
-                    <option selected>Select Service</option>
-                    <option>Additive Manufacturing</option>
-                    <option>⁠Prototyping</option>
-                    <option>3D Modelling & Design</option>
-                    <option>Other's</option>
-                  </select>
+                  <input type="text" class="form-control rounded-pill" id="Company" name="Company" placeholder="Company Name *" maxlength="200" required>
                 </div>
                 <div class="mb-3">
-                  <textarea
-                    class="form-control rounded-3"
-                    rows="3"
-                    placeholder="Project Details"
-                  ></textarea>
+                  <textarea class="form-control rounded-3" rows="3" id="Description" name="Description" placeholder="Project Details"></textarea>
                 </div>
-                <button
-                  type="submit"
-                  class="btn btn-primary w-100 rounded-pill"
-                >
-                  Submit Request
-                </button>
+                
+                <input type="text" style="display: none;" name="aG9uZXlwb3Q" value=""/>
+                <button type="submit" id="formsubmit" class="btn btn-primary w-100 rounded-pill formsubmit">Submit Request</button>
+                
+                <!-- Do not remove this --- Analytics Tracking code starts -->
+                <script id="wf_anal" src="https://crm.zohopublic.in/crm/WebFormAnalyticsServeServlet?rid=457e94ecb3b3938e7fb14d1ef2bd3d74f6fdf4019cce83160143e4e72b7016aab80ed048a7f0b6c77bab921f36142ebdgid85f4db345ef751de462b8c61ce328c6ab239d81817da05ce7d3412413640f86agid550ae7553666ea2f09f8a570397d7ae314c1bd1b43b9b13d8c2563073b75cef1gid453484299345b31480f2c462d3ec92eeaca0e2adf41dfd72f4141330797527b6&tw=9731b1a9d771ab000e965ff3881e1888762fef28ec7a594bbd938966cc364f28"></script>
+                <!-- Do not remove this --- Analytics Tracking code ends. -->
               </form>
             </div>
           </div>
@@ -1034,8 +1017,78 @@
               item.classList.add("hidden");
             }
           });
-        });
       });
+    </script>
+    <script>
+      function validateEmail959578000001028019(){
+          var form = document.forms['WebToLeads959578000001028019'];
+          var emailFld = form.querySelectorAll('[ftype=email]');
+          var i;
+          for(i = 0; i < emailFld.length; i++ ) {
+              var emailVal = emailFld[i].value;
+              if ((emailVal.replace (/^\s+|\s+$/g,'') ) .length != 0) {
+                  var atpos = emailVal.indexOf('@');
+                  var dotpos = emailVal.lastIndexOf('.');
+                  if(atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= emailVal.length) {
+                      alert('Please enter a valid email address. ');
+                      emailFld[i].focus();
+                      return false;
+                  }
+              }
+          }
+          return true;
+      }
+      function checkMandatory959578000001028019(){
+          var mndFileds = new Array('Company', 'Last Name', 'Email', 'Phone');
+          var fldLangVal = new Array('Company', 'Name', 'Email', 'Phone');
+          for (i = 0; i < mndFileds.length; i++ ) {
+              var fieldObj = document.forms['WebToLeads959578000001028019'] [mndFileds[i]];
+              if (fieldObj) {
+                  if(((fieldObj.value) .replace (/^\s+|\s+$/g,'') ) .length == 0) {
+                      if (fieldObj.type == 'file') {
+                          alert('Please select a file to upload.');
+                          fieldObj.focus();
+                          return false;
+                      }
+                      alert(fldLangVal[i] + ' cannot be empty.');
+                      fieldObj.focus();
+                      return false;
+                  } else if (fieldObj.nodeName == 'SELECT') {
+                      if (fieldObj.options[fieldObj.selectedIndex].value == '-None-') {
+                          alert(fldLangVal[i] + ' cannot be none.');
+                          fieldObj.focus();
+                          return false;
+                      }
+                  } else if (fieldObj.type == 'checkbox') {
+                      if (fieldObj.checked == false) {
+                          alert('Please accept  ' + fldLangVal[i]);
+                          fieldObj.focus();
+                          return false;
+                      }
+                  }
+                  try{
+                      if (fieldObj.name == 'Last Name') {
+                          name = fieldObj.value;
+                      }
+                  } catch (e){}
+              }
+          }
+          if ( !validateEmail959578000001028019 () ) {
+              return false;
+          }
+          var urlparams = new URLSearchParams(window.location.search);
+          if (urlparams.has ('service') && (urlparams.get ('service') === 'smarturl') ) {
+              var webform = document.getElementById('webform959578000001028019');
+              var service = urlparams.get('service');
+              var smarturlfield = document.createElement('input');
+              smarturlfield.setAttribute('type', 'hidden');
+              smarturlfield.setAttribute('value', service);
+              smarturlfield.setAttribute('name', 'service');
+              webform.appendChild(smarturlfield);
+          }
+          document.querySelector('.crmWebToEntityForm .formsubmit').setAttribute('disabled', true);
+          return true;
+      }
     </script>
   </body>
 </html>
