@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Precision Scale Models & Architectural Physical Models | Nirmitsu Design Labs</title>
+    <meta name="description" content="High-precision architectural, industrial, defense, marine, and masterplan scale models crafted with advanced 3D printing, laser cutting, LED integration, and artisan finishing.">
+    <link rel="icon" href="assets/favicon.png" type="image/png">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" as="style"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    </noscript>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5XBCZ6DZ');</script>
+    <!-- End Google Tag Manager -->
+
+    <style>
+        /* GSAP Initial Visibility */
+        [data-gsap] {
+            will-change: transform;
+        }
+
+        html,
+        body {
+            font-size: 16px;
+            overflow-x: hidden;
+        }
+
+        @font-face {
+            font-family: 'MADE Regular';
+            src: url('fonts/MADE-Regular.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'MADE';
+            src: url('fonts/MADE.otf') format('opentype');
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        :root {
+            --primary-color: #13CBE8;
+            --secondary-color: #000000;
+            --light-bg: #ffffff;
+            --dark-bg: #111827;
+            --accent-glow: rgba(19, 203, 232, 0.15);
+        }
+
+        body {
+            font-family: 'MADE Regular', sans-serif;
+            background-color: var(--light-bg);
+            color: #1f2937;
+        }
+
+        /* Typography */
+        h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+            font-family: 'MADE', sans-serif;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            font-family: 'MADE', sans-serif;
+            color: black;
+            padding: 0.8rem 2rem;
+            font-size: 1rem;
+            border-radius: 50rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #0fb2cc;
+            border-color: #0fb2cc;
+            color: black;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(19, 203, 232, 0.3);
+        }
+
+        .btn-outline-dark {
+            border-radius: 50rem;
+            padding: 0.8rem 2rem;
+            font-family: 'MADE', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        /* Navbar */
+        .navbar {
+            padding: 0.4rem 0;
+            background: #ffffff;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .navbar-brand img {
+            max-height: 70px;
+        }
+
+        .nav-link {
+            color: #1f2937 !important;
+            font-size: 0.94rem;
+            font-weight: 550;
+            margin: 0 0.3rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary-color) !important;
+        }
+
+        .dropdown-menu {
+            border: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            padding: 0.8rem;
+        }
+
+        .dropdown-item {
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+        }
+
+        .dropdown-item:hover {
+            background-color: rgba(19, 203, 232, 0.1);
+            color: var(--secondary-color);
+        }
+
+        /* Hero Banner Styles (Consistent with Site) */
+        .tech-banner {
+            position: relative;
+            padding: 80px 0;
+            color: white;
+            overflow: hidden;
+        }
+
+        .tech-banner .banner-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .tech-banner::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: -1;
+        }
+
+        .scale-hero::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(19, 203, 232, 0.2) 0%, rgba(0, 0, 0, 0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(19, 203, 232, 0.15);
+            border: 1px solid rgba(19, 203, 232, 0.4);
+            color: var(--primary-color);
+            padding: 0.4rem 1.2rem;
+            border-radius: 50rem;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+        }
+
+        .stat-item h4 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .stat-item p {
+            color: #9ca3af;
+            font-size: 0.85rem;
+            margin: 0;
+        }
+
+        .project-item {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Project Cards */
+        .project-card {
+            opacity: 1;
+            visibility: visible;
+            background: #ffffff;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-color: rgba(19, 203, 232, 0.3);
+        }
+
+        .project-img-wrapper {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 4 / 3;
+            background: #f1f5f9;
+        }
+
+        .project-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .project-card:hover .project-img-wrapper img {
+            transform: scale(1.08);
+        }
+
+        .scale-tag {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(8px);
+            color: #ffffff;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 2;
+        }
+
+        .category-tag {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--primary-color);
+            color: #000000;
+            font-size: 0.75rem;
+            font-weight: bold;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50rem;
+            z-index: 2;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .project-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.6rem;
+            color: #0f172a;
+        }
+
+        .project-desc {
+            color: #64748b;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 1.2rem;
+            flex-grow: 1;
+        }
+
+        .view-gallery-btn {
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            color: #1e293b;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            width: 100%;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .project-card:hover .view-gallery-btn {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            color: #000000;
+        }
+
+        /* Craftsmanship Workflow Section */
+        .workflow-section {
+            background: #0b0f19;
+            color: #ffffff;
+            padding: 5rem 0;
+        }
+
+        .feature-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .feature-box:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(19, 203, 232, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(19, 203, 232, 0.1);
+            color: var(--primary-color);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.2rem;
+        }
+
+        /* Sectors Section */
+        .sector-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 1.8rem;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .sector-card:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+            border-color: var(--primary-color);
+        }
+
+        /* Lightbox Modal */
+        .modal-content {
+            border-radius: 16px;
+            border: none;
+            overflow: hidden;
+        }
+
+        .modal-body {
+            padding: 0;
+        }
+
+        .modal-details {
+            padding: 2rem;
+        }
+
+        .spec-badge {
+            background: #f1f5f9;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: #334155;
+            display: inline-block;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #0a0a0a;
+            color: #ffffff;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #a0a0a0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .social-icons a {
+            color: #ffffff;
+            margin-right: 1rem;
+            display: inline-block;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--primary-color);
+        }
+
+        .copyright {
+            border-top: 1px solid #222;
+            padding-top: 1.5rem;
+            margin-top: 3rem;
+            text-align: center;
+            color: #666;
+        }
+
+        /* WhatsApp Floating Button */
+        .whatsapp-button {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 1000;
+        }
+
+        .whatsapp-button a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background-color: #25d366;
+            color: #ffffff;
+            border-radius: 50%;
+            font-size: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .whatsapp-button a:hover {
+            transform: scale(1.1);
+            background-color: #128c7e;
+        }
+
+        .whatsapp-tooltip {
+            position: absolute;
+            right: 70px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #ffffff;
+            color: #000000;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-button:hover .whatsapp-tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5XBCZ6DZ"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="assets/logo.webp" alt="Nirmitsu Logo" />
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="technology">Our Technologies</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown">
+                            Our Solution
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="additive-manufacturing">Additive Manufacturing</a></li>
+                            <li><a class="dropdown-item" href="3d-modeling">3D Modelling & Design</a></li>
+                            <li><a class="dropdown-item active" href="scale-models">Scale Models</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="materials">Materials</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="gallery">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="case-studies">Case Studies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact">Contact Us</a>
+                    </li>
+                </ul>
+                <div class="ms-lg-4">
+                    <a href="contact" class="btn btn-primary">Get Quote</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Banner Section -->
+    <section class="tech-banner" data-gsap>
+        <img src="assets/architecture-and-design.png" alt="Scale Models Banner" class="banner-video" />
+        <div class="container text-center">
+            <h1 class="display-3 fw-bold mb-4">Scale Models</h1>
+            <p class="lead">
+                Transforming complex architectural blueprints, industrial plant layouts, marine vessels, and defense prototypes into high-precision physical scale models
+            </p>
+        </div>
+    </section>
+
+    <!-- Projects Grid Section -->
+    <section id="showcase" class="py-5 bg-light" data-gsap>
+        <div class="container">
+            <div class="row g-4" id="projectsGrid">
+                <!-- Real Estate Card 1 -->
+                <div class="col-lg-4 col-md-6 project-item">
+                    <div class="project-card">
+                        <div class="project-img-wrapper">
+                            <span class="category-tag">REAL ESTATE</span>
+                            <img src="assets/architecture-and-design.png" alt="Luxury Real Estate Residential Complex">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Luxury Real Estate Residential Complex</h3>
+                            <p class="project-desc">High-detail physical model featuring modular apartment towers, realistic landscaping, illuminated interior spaces, and miniature amenities.</p>
+                            <button class="view-gallery-btn" onclick="openProjectModal('Luxury Real Estate Residential Complex', '1:100', 'REAL ESTATE', 'Multi-material SLA & FDM 3D printing with acrylic glass cladding and programmable warm LED lighting.', 'assets/architecture-and-design.png')">
+                                <i class="fas fa-expand me-1"></i> View Project Gallery & Specs
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Marine Card 1 -->
+                <div class="col-lg-4 col-md-6 project-item">
+                    <div class="project-card">
+                        <div class="project-img-wrapper">
+                            <span class="category-tag">MARINE</span>
+                            <img src="assets/marine.png" alt="Naval Patrol Vessel & Offshore Support Ship">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Naval Patrol Vessel & Offshore Support Ship</h3>
+                            <p class="project-desc">Intricate marine scale model showing hull architecture, deck equipment, radar arrays, and working LED navigation lights.</p>
+                            <button class="view-gallery-btn" onclick="openProjectModal('Naval Patrol Vessel & Offshore Support Ship', '1:250', 'MARINE', 'Laser-etched acrylic and micro-SLA resin details with resin water displacement base.', 'assets/marine.png')">
+                                <i class="fas fa-expand me-1"></i> View Project Gallery & Specs
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Infrastructure Card 1 -->
+                <div class="col-lg-4 col-md-6 project-item">
+                    <div class="project-card">
+                        <div class="project-img-wrapper">
+                            <span class="category-tag">INFRASTRUCTURE</span>
+                            <img src="assets/hero-background.png" alt="International Airport & Highway Transit Masterplan">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">International Airport & Highway Transit Masterplan</h3>
+                            <p class="project-desc">Large-format infrastructure masterplan detailing runways, terminal buildings, elevated transit hubs, and surrounding green zones.</p>
+                            <button class="view-gallery-btn" onclick="openProjectModal('International Airport & Highway Transit Masterplan', '1:1000', 'INFRASTRUCTURE', 'CNC milled terrain base with SLA printed micro buildings and fiber-optic runway lighting.', 'assets/hero-background.png')">
+                                <i class="fas fa-expand me-1"></i> View Project Gallery & Specs
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Aerospace and Drones Card 1 -->
+                <div class="col-lg-4 col-md-6 project-item">
+                    <div class="project-card">
+                        <div class="project-img-wrapper">
+                            <span class="category-tag">AEROSPACE AND DRONES</span>
+                            <img src="assets/hero-drone.png" alt="Tactical Defense UAV & Drone Prototype">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Tactical Defense UAV & Drone Prototype</h3>
+                            <p class="project-desc">Precision aerodynamic physical scale model crafted for wind-tunnel testing, defense exhibitions, and military stakeholder presentations.</p>
+                            <button class="view-gallery-btn" onclick="openProjectModal('Tactical Defense UAV & Drone Prototype', '1:20', 'AEROSPACE AND DRONES', 'Composite carbon-fiber reinforced SLA resin with matte military polyurethane coating.', 'assets/hero-drone.png')">
+                                <i class="fas fa-expand me-1"></i> View Project Gallery & Specs
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real Estate Card 2 -->
+                <div class="col-lg-4 col-md-6 project-item">
+                    <div class="project-card">
+                        <div class="project-img-wrapper">
+                            <span class="category-tag">REAL ESTATE</span>
+                            <img src="assets/case-study-hero.png" alt="Commercial High-Rise & Interior Cut-Away">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Commercial High-Rise & Interior Cut-Away</h3>
+                            <p class="project-desc">Architectural section model displaying office floorplates, structural columns, glass facades, and illuminated atrium spaces.</p>
+                            <button class="view-gallery-btn" onclick="openProjectModal('Commercial High-Rise & Interior Cut-Away', '1:50', 'REAL ESTATE', 'Precision laser-cut acrylic with SLA printed micro furniture and warm ceiling LED arrays.', 'assets/case-study-hero.png')">
+                                <i class="fas fa-expand me-1"></i> View Project Gallery & Specs
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Infrastructure Card 2 -->
+                <div class="col-lg-4 col-md-6 project-item">
+                    <div class="project-card">
+                        <div class="project-img-wrapper">
+                            <span class="category-tag">INFRASTRUCTURE</span>
+                            <img src="assets/3d-modeling-banner.png" alt="Smart City Energy & Utility Grid Model">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Smart City Energy & Utility Grid Model</h3>
+                            <p class="project-desc">Scale model illustrating power generation units, sub-station layouts, transmission towers, and underground utility networks.</p>
+                            <button class="view-gallery-btn" onclick="openProjectModal('Smart City Energy & Utility Grid Model', '1:500', 'INFRASTRUCTURE', 'Modular resin SLA parts with color-coded utility conduit wiring and illuminated status indicators.', 'assets/3d-modeling-banner.png')">
+                                <i class="fas fa-expand me-1"></i> View Project Gallery & Specs
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Marine Card 2 -->
+                <div class="col-lg-4 col-md-6 project-item">
+                    <div class="project-card">
+                        <div class="project-img-wrapper">
+                            <span class="category-tag">MARINE</span>
+                            <img src="assets/gal-5.webp" alt="Subsea Oil Rig & Deepwater Platform Model">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Subsea Oil Rig & Deepwater Platform Model</h3>
+                            <p class="project-desc">Detailed marine engineering scale model showcasing underwater jacket structures, piping manifolds, and helideck facilities.</p>
+                            <button class="view-gallery-btn" onclick="openProjectModal('Subsea Oil Rig & Deepwater Platform Model', '1:200', 'MARINE', 'High-strength Nylon SLS 3D printing with metallic protective coating and clear acrylic water casing.', 'assets/gal-5.webp')">
+                                <i class="fas fa-expand me-1"></i> View Project Gallery & Specs
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Aerospace and Drones Card 2 -->
+                <div class="col-lg-4 col-md-6 project-item">
+                    <div class="project-card">
+                        <div class="project-img-wrapper">
+                            <span class="category-tag">AEROSPACE AND DRONES</span>
+                            <img src="assets/aerospace-and-defense.webp" alt="Next-Gen VTOL Commercial & Cargo Drone">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Next-Gen VTOL Commercial & Cargo Drone</h3>
+                            <p class="project-desc">High-precision composite scale prototype featuring multi-rotor propulsion assemblies and lightweight carbon-fiber aero body.</p>
+                            <button class="view-gallery-btn" onclick="openProjectModal('Next-Gen VTOL Commercial & Cargo Drone', '1:15', 'AEROSPACE AND DRONES', 'High-temp SLA resin with carbon-fiber reinforced wings and motorized rotor blades.', 'assets/aerospace-and-defense.webp')">
+                                <i class="fas fa-expand me-1"></i> View Project Gallery & Specs
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Craftsmanship & Technology Section -->
+    <section class="workflow-section" data-gsap>
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="text-info text-uppercase tracking-wider fw-bold">Engineering Excellence</span>
+                <h2 class="display-5 fw-bold text-white mt-2 mb-3">Our Scale Model Fabrication Process</h2>
+                <p class="text-light-50 col-lg-7 mx-auto">
+                    We combine digital precision 3D fabrication with traditional model-making craftsmanship to ensure structural accuracy, crisp micro-details, and seamless aesthetic appeal.
+                </p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="feature-box">
+                        <div class="feature-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <h4 class="h5 text-white mb-3">1. 3D Data & CAD Extraction</h4>
+                        <p class="text-light-50 small mb-0">We process BIM, Revit, AutoCAD, and Rhino files, converting complex architectural digital data into 3D-printable physical components.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="feature-box">
+                        <div class="feature-icon">
+                            <i class="fas fa-layer-group"></i>
+                        </div>
+                        <h4 class="h5 text-white mb-3">2. Hybrid 3D Printing & CNC</h4>
+                        <p class="text-light-50 small mb-0">Utilizing SLA resin, SLS nylon 3D printing, and CNC routing for sub-millimeter accuracy on intricate structural facades.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="feature-box">
+                        <div class="feature-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h4 class="h5 text-white mb-3">3. Artisan Detailing & LEDs</h4>
+                        <p class="text-light-50 small mb-0">Airbrush finishing, realistic foliage landscaping, and micro-wired smart LED circuits for realistic ambient lighting.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="feature-box">
+                        <div class="feature-icon">
+                            <i class="fas fa-box-open"></i>
+                        </div>
+                        <h4 class="h5 text-white mb-3">4. Acrylic Display & Shipping</h4>
+                        <p class="text-light-50 small mb-0">Custom UV-blocking acrylic dust covers, integrated pedestals, and shock-resistant flight crates for safe global transit.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industry Sectors Section -->
+    <section class="py-5 bg-white" data-gsap>
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold mb-3">Industries & Applications</h2>
+                <p class="text-muted col-lg-7 mx-auto">Physical scale models provide tangible value for sales galleries, investor pitches, engineering validations, and public exhibitions.</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="sector-card">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="bg-info bg-opacity-10 text-info p-3 rounded-3 me-3">
+                                <i class="fas fa-city fa-2x"></i>
+                            </div>
+                            <div>
+                                <h4 class="h5 mb-1">Real Estate Developers</h4>
+                                <span class="text-muted small">Sales Experience Centers</span>
+                            </div>
+                        </div>
+                        <p class="text-muted small mb-0">Engage homebuyers and investors with interactive illuminated masterplan and building models during property pre-launches.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="sector-card">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="bg-info bg-opacity-10 text-info p-3 rounded-3 me-3">
+                                <i class="fas fa-cogs fa-2x"></i>
+                            </div>
+                            <div>
+                                <h4 class="h5 mb-1">Industrial & Energy</h4>
+                                <span class="text-muted small">Plant & Machinery Layouts</span>
+                            </div>
+                        </div>
+                        <p class="text-muted small mb-0">Demonstrate plant workflows, chemical piping systems, and heavy industrial machinery to clients and safety inspectors.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="sector-card">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="bg-info bg-opacity-10 text-info p-3 rounded-3 me-3">
+                                <i class="fas fa-anchor fa-2x"></i>
+                            </div>
+                            <div>
+                                <h4 class="h5 mb-1">Defense & Marine</h4>
+                                <span class="text-muted small">Exhibition & Prototype Models</span>
+                            </div>
+                        </div>
+                        <p class="text-muted small mb-0">High-security physical prototypes of defense systems, naval vessels, and aerospace equipment for military expos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lead Quote Form Section -->
+    <section class="py-5 bg-light" data-gsap>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+                        <div class="card-body p-4 p-md-5">
+                            <div class="text-center mb-4">
+                                <h2 class="fw-bold mb-2">Request a Scale Model Quote</h2>
+                                <p class="text-muted">Upload your CAD drawings or project specifications to receive a detailed cost estimate and timeline.</p>
+                            </div>
+
+                            <form action="https://crm.zoho.in/crm/WebToLeadForm" name="WebToLeads959578000001028019" method="POST" onSubmit="javascript:document.charset='UTF-8'; return checkMandatory959578000001028019()" accept-charset="UTF-8" id="webform959578000001028019">
+                                <input type="text" style="display:none;" name="xnQsjsdp" value="85f4db345ef751de462b8c61ce328c6ab239d81817da05ce7d3412413640f86a" />
+                                <input type="hidden" name="zc_gad" id="zc_gad" value="" />
+                                <input type="text" style="display:none;" name="xmIosncp" value="457e94ecb3b3938e7fb14d1ef2bd3d74f6fdf4019cce83160143e4e72b7016aab80ed048a7f0b6c77bab921f36142ebdgid550ae7553666ea2f09f8a570397d7ae314c1bd1b43b9b13d8c2563073b75cef1gid453484299345b31480f2c462d3ec92eeaca0e2adf41dfd72f4141330797527b6" />
+                                <input type="text" style="display:none;" name="actionType" value="TGVhZHM=" />
+                                <input type="text" style="display:none;" name="returnURL" value="https://nirmitsu.com/contact" />
+
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold">Company / Organization *</label>
+                                        <input type="text" class="form-control form-control-lg" name="Company" placeholder="Your Company Name" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold">Contact Name *</label>
+                                        <input type="text" class="form-control form-control-lg" name="Last Name" placeholder="Your Full Name" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold">Email Address *</label>
+                                        <input type="email" class="form-control form-control-lg" name="Email" ftype="email" placeholder="name@company.com" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold">Phone Number *</label>
+                                        <input type="tel" class="form-control form-control-lg" name="Phone" placeholder="+91 00000 00000" required>
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label fw-bold">Scale Model Requirements</label>
+                                        <textarea class="form-control form-control-lg" name="Description" rows="4" placeholder="Describe your required model scale (e.g. 1:100), dimensions, lighting features, and timeline..."></textarea>
+                                    </div>
+                                    <div class="col-12 text-center mt-4">
+                                        <button type="submit" id="formsubmit" class="btn btn-primary btn-lg w-100 rounded-pill formsubmit">Submit Scale Model Request</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                    <img src="assets/logo.webp" alt="Logo" class="mb-3" style="max-width: 200px">
+                    <p>Your trusted partner in high-precision additive manufacturing, 3D design, and physical scale models.</p>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+                    <h5>Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="about">About Us</a></li>
+                        <li><a href="materials">Materials</a></li>
+                        <li><a href="case-studies">Case Studies</a></li>
+                        <li><a href="contact">Contact</a></li>
+                        <li><a href="careers">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+                    <h5>Our Solutions</h5>
+                    <ul class="footer-links">
+                        <li><a href="3d-modeling">3D Modelling & Design</a></li>
+                        <li><a href="additive-manufacturing">Additive Manufacturing</a></li>
+                        <li><a href="scale-models">Scale Models</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <h5>Contact Us</h5>
+                    <p>32-36, Ella High Street Mall, Ella Cidade, NH4A Highway Old Goa by-pass road Ella, Kadamba, Goa 403402</p>
+                    <p>Email: <a href="mailto:support@nirmitsu.com">support@nirmitsu.com</a></p>
+                    <p>Phone: <a href="tel:+917391086524">+91 7391086524 / +91 8322990536</a></p>
+                    <div class="social-icons mt-3">
+                        <a href="#" aria-label="Facebook"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+                        <a href="https://www.linkedin.com/company/nirmitsu-design-labs-pvt-ltd/" aria-label="LinkedIn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 Nirmitsu Design Labs. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <div class="whatsapp-button">
+        <div class="whatsapp-tooltip">
+            Hi! Chat with us on WhatsApp for quick scale model queries 👋
+        </div>
+        <a href="https://wa.me/+917391086524" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- Project Lightbox Modal -->
+    <div class="modal fade" id="projectModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header border-0 bg-dark text-white p-4">
+                    <div>
+                        <span class="badge bg-info text-dark mb-1" id="modalCategory">Category</span>
+                        <h4 class="modal-title mb-0" id="modalTitle">Project Title</h4>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img id="modalImg" src="" class="img-fluid w-100" style="max-height: 420px; object-fit: cover;" alt="Scale Model Preview">
+                    <div class="modal-details">
+                        <div class="mb-3">
+                            <span class="spec-badge"><strong>Ratio:</strong> <span id="modalScale">1:100</span></span>
+                            <span class="spec-badge"><strong>Lighting:</strong> Integrated LED</span>
+                            <span class="spec-badge"><strong>Casing:</strong> Custom Acrylic Cover</span>
+                        </div>
+                        <h5 class="h6 fw-bold">Fabrication Details</h5>
+                        <p class="text-muted small" id="modalSpecs">Details here...</p>
+                        <div class="text-end mt-4">
+                            <a href="contact" class="btn btn-primary">Inquire About This Model</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        if (typeof gsap !== "undefined") {
+            if (typeof ScrollTrigger !== "undefined") {
+                gsap.registerPlugin(ScrollTrigger);
+            }
+            gsap.from(".project-card", {
+                scrollTrigger: {
+                    trigger: "#projectsGrid",
+                    start: "top 90%",
+                    toggleActions: "play none none none"
+                },
+                y: 30,
+                opacity: 0,
+                duration: 0.6,
+                stagger: 0.1,
+                clearProps: "all"
+            });
+        }
+
+        // Lightbox Modal Handler
+        function openProjectModal(title, scale, category, specs, imgSrc) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalScale').innerText = scale;
+            document.getElementById('modalCategory').innerText = category;
+            document.getElementById('modalSpecs').innerText = specs;
+            document.getElementById('modalImg').src = imgSrc;
+            const projectModal = new bootstrap.Modal(document.getElementById('projectModal'));
+            projectModal.show();
+        }
+    </script>
+</body>
+
+</html>

@@ -236,33 +236,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 220px;
-            height: 100px;
-            margin: 0 1.25rem;
-            padding: 1.25rem;
-            background: #ffffff;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
-            border: 1px solid rgba(0, 0, 0, 0.04);
+            width: 250px;
+            height: 110px;
+            margin: 0 1.75rem;
+            padding: 0.5rem;
+            background: transparent;
+            border: none;
+            box-shadow: none;
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .marquee-logo-card:hover {
-            transform: translateY(-6px) scale(1.02);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-            border-color: rgba(19, 203, 232, 0.4);
+            transform: translateY(-4px);
         }
 
         .marquee-logo-card img {
-            max-height: 55px;
+            max-height: 95px;
             max-width: 100%;
             object-fit: contain;
-            opacity: 0.65;
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .marquee-logo-card:hover img {
-            opacity: 1;
+            transform: scale(1.08);
         }
 
         @keyframes logoMarquee {
@@ -1462,6 +1458,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <li>
                   <a class="dropdown-item" href="3d-modeling"
                     >3D Modelling & Design</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="scale-models"
+                    >Scale Models</a
                   >
                 </li>
               </ul>
@@ -2950,6 +2951,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <ul class="footer-links">
                         <li><a href="/3d-modeling">3D Modelling & Design</a></li>
                         <li><a href="/additive-manufacturing">Additive Manufacturing</a></li>
+                        <li><a href="/scale-models">Scale Models</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-4 col-md-6">
