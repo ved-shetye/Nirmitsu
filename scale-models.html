@@ -51,11 +51,11 @@
         }
 
         :root {
-            --primary-color: #13CBE8;
+            --primary-color: #6bc9d9;
             --secondary-color: #000000;
             --light-bg: #ffffff;
             --dark-bg: #111827;
-            --accent-glow: rgba(19, 203, 232, 0.15);
+            --accent-glow: rgba(107, 201, 217, 0.15);
         }
 
         body {
@@ -85,7 +85,7 @@
             border-color: #25c7ae;
             color: black;
             transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(19, 203, 232, 0.3);
+            box-shadow: 0 6px 15px rgba(107, 201, 217, 0.3);
         }
 
         /* Navigation Styles */
@@ -181,8 +181,8 @@
 
         .project-card:hover {
             transform: translateY(-6px);
-            box-shadow: 0 15px 30px rgba(19, 203, 232, 0.15);
-            border-color: rgba(19, 203, 232, 0.5);
+            box-shadow: 0 15px 30px rgba(107, 201, 217, 0.15);
+            border-color: rgba(107, 201, 217, 0.5);
         }
 
         .project-img-wrapper {
@@ -224,7 +224,7 @@
         }
 
         .project-card:hover .project-title {
-            color: #0284c7;
+            color: #6bc9d9;
         }
 
         .project-action-link {
@@ -257,8 +257,8 @@
         .feature-icon {
             width: 48px;
             height: 48px;
-            background: rgba(19, 203, 232, 0.1);
-            color: #0284c7;
+            background: rgba(107, 201, 217, 0.1);
+            color: #6bc9d9;
             border-radius: 12px;
             display: flex;
             align-items: center;
@@ -302,8 +302,8 @@
 
         .form-control:focus,
         .form-select:focus {
-            border-color: #13CBE8;
-            box-shadow: 0 0 0 0.25rem rgba(46, 234, 205, 0.25);
+            border-color: #6bc9d9;
+            box-shadow: 0 0 0 0.25rem rgba(107, 201, 217, 0.25);
         }
 
         /* Footer */
@@ -336,7 +336,7 @@
         }
 
         .footer-links a:hover {
-            color: #13cbe8;
+            color: #6bc9d9;
         }
 
         .social-icons {
@@ -350,7 +350,7 @@
         }
 
         .social-icons a:hover {
-            color: #13cbe8;
+            color: #6bc9d9;
         }
 
         .copyright {
@@ -546,58 +546,58 @@
         <div class="container py-2">
             <div class="text-center mb-5 mt-4">
                 <p class="text-muted fs-5 mx-auto" style="max-width: 1000px;">
-                    Explore our physical scale models crafted across architectural, marine, infrastructure, and defense sectors. Click any card to inspect full specifications.
+                    Explore our physical scale models crafted across architectural, marine, infrastructure, and defense sectors. Click any card to inspect more.
                 </p>
             </div>
 
             <div class="row g-4 justify-content-center" id="projectsGrid">
-                <!-- Real Estate Card -->
+                <!-- Construction Card -->
                 <div class="col-lg-4 col-md-6 project-item">
-                    <div class="project-card" onclick="openProjectModal('REAL ESTATE', '1:100', 'REAL ESTATE', 'Multi-material SLA & FDM 3D printing with acrylic glass cladding and programmable warm LED lighting.', 'assets/architecture-and-design.png')">
+                    <div class="project-card" onclick="openProjectModal('CONSTRUCTION', '1:100', 'CONSTRUCTION', 'Multi-material SLA & FDM 3D printing with acrylic glass cladding and programmable warm LED lighting.', 'assets/architecture-and-design.png')">
                         <div class="project-img-wrapper">
-                            <img src="assets/architecture-and-design.png" alt="REAL ESTATE">
+                            <img src="assets/architecture-and-design.png" alt="CONSTRUCTION">
                         </div>
                         <div class="project-content">
-                            <h3 class="project-title">REAL ESTATE</h3>
+                            <h3 class="project-title">CONSTRUCTION</h3>
                             <span class="project-action-link">View More <i class="fas fa-arrow-right ms-1"></i></span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Marine Card -->
+                <!-- Industrial Card -->
                 <div class="col-lg-4 col-md-6 project-item">
-                    <div class="project-card" onclick="openProjectModal('MARINE', '1:250', 'MARINE', 'Laser-etched acrylic and micro-SLA resin details with resin water displacement base.', 'assets/marine.png')">
+                    <div class="project-card" onclick="openProjectModal('INDUSTRIAL', '1:1000', 'INDUSTRIAL', 'CNC milled terrain base with SLA printed micro buildings and fiber-optic runway lighting.', 'assets/hero-background.png')">
                         <div class="project-img-wrapper">
-                            <img src="assets/marine.png" alt="MARINE">
+                            <img src="assets/hero-background.png" alt="INDUSTRIAL">
                         </div>
                         <div class="project-content">
-                            <h3 class="project-title">MARINE</h3>
+                            <h3 class="project-title">INDUSTRIAL</h3>
                             <span class="project-action-link">View More <i class="fas fa-arrow-right ms-1"></i></span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Infrastructure Card -->
+                <!-- Automotive Card -->
                 <div class="col-lg-4 col-md-6 project-item">
-                    <div class="project-card" onclick="openProjectModal('INFRASTRUCTURE', '1:1000', 'INFRASTRUCTURE', 'CNC milled terrain base with SLA printed micro buildings and fiber-optic runway lighting.', 'assets/hero-background.png')">
+                    <div class="project-card" onclick="openProjectModal('AUTOMOTIVE', '1:10', 'AUTOMOTIVE', 'High-durability functional prototypes & wind-tunnel testing scale models for automotive engineering.', 'assets/automotive.webp')">
                         <div class="project-img-wrapper">
-                            <img src="assets/hero-background.png" alt="INFRASTRUCTURE">
+                            <img src="assets/automotive.webp" alt="AUTOMOTIVE">
                         </div>
                         <div class="project-content">
-                            <h3 class="project-title">INFRASTRUCTURE</h3>
+                            <h3 class="project-title">AUTOMOTIVE</h3>
                             <span class="project-action-link">View More <i class="fas fa-arrow-right ms-1"></i></span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Aerospace and Drones Card -->
+                <!-- Aerospace Card -->
                 <div class="col-lg-4 col-md-6 project-item">
-                    <div class="project-card" onclick="openProjectModal('AEROSPACE AND DRONES', '1:20', 'AEROSPACE AND DRONES', 'Composite carbon-fiber reinforced SLA resin with matte military polyurethane coating.', 'assets/hero-drone.png')">
+                    <div class="project-card" onclick="openProjectModal('AEROSPACE', '1:20', 'AEROSPACE', 'Composite carbon-fiber reinforced SLA resin with matte military polyurethane coating.', 'assets/hero-drone.png')">
                         <div class="project-img-wrapper">
-                            <img src="assets/hero-drone.png" alt="AEROSPACE AND DRONES">
+                            <img src="assets/hero-drone.png" alt="AEROSPACE">
                         </div>
                         <div class="project-content">
-                            <h3 class="project-title">AEROSPACE & DRONES</h3>
+                            <h3 class="project-title">AEROSPACE</h3>
                             <span class="project-action-link">View More <i class="fas fa-arrow-right ms-1"></i></span>
                         </div>
                     </div>
@@ -616,14 +616,14 @@
                     </div>
                 </div>
 
-                <!-- Automotive Card -->
+                <!-- Marine Card -->
                 <div class="col-lg-4 col-md-6 project-item">
-                    <div class="project-card" onclick="openProjectModal('AUTOMOTIVE', '1:10', 'AUTOMOTIVE', 'High-durability functional prototypes & wind-tunnel testing scale models for automotive engineering.', 'assets/automotive.webp')">
+                    <div class="project-card" onclick="openProjectModal('MARINE', '1:250', 'MARINE', 'Laser-etched acrylic and micro-SLA resin details with resin water displacement base.', 'assets/marine.png')">
                         <div class="project-img-wrapper">
-                            <img src="assets/automotive.webp" alt="AUTOMOTIVE">
+                            <img src="assets/marine.png" alt="MARINE">
                         </div>
                         <div class="project-content">
-                            <h3 class="project-title">AUTOMOTIVE</h3>
+                            <h3 class="project-title">MARINE</h3>
                             <span class="project-action-link">View More <i class="fas fa-arrow-right ms-1"></i></span>
                         </div>
                     </div>
