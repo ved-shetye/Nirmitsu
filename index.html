@@ -119,21 +119,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         .nav-link {
             color: var(--secondary-color) !important;
             font-family: 'MADE Regular', sans-serif;
-            font-size: 0.95rem;
-            padding: 0.5rem 0.7rem !important;
+            font-size: 1rem;
+            padding: 0.5rem 0.45rem !important;
+            white-space: nowrap;
         }
 
-        .nav-link:hover {
+        .nav-link:hover, .nav-link.active {
             color: var(--primary-color) !important;
         }
 
         .navbar {
             padding: 0.5rem 0;
             z-index: 99;
+            background-color: #ffffff;
+            transition: all 0.3s ease;
         }
 
         .navbar-brand img {
-            max-width: 10rem;
+            max-width: 9rem;
             height: auto;
         }
 
@@ -165,8 +168,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
         @media (min-width: 992px) {
             .hero-content {
-                padding-top: 2rem;
-                padding-bottom: 2rem;
+                padding-top: 1rem;
+                padding-bottom: 1rem;
             }
         }
 
@@ -1416,9 +1419,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5XBCZ6DZ"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-    <nav class="navbar navbar-expand-lg navbar-light">
-      <div class="container">
-        <a class="navbar-brand" href="/">
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top bg-white border-bottom shadow-sm">
+      <div class="container-fluid px-lg-4 px-xl-5">
+        <a class="navbar-brand me-2 me-xl-3" href="/">
           <img src="assets/logo.webp" alt="Logo" />
         </a>
         <button
@@ -1430,9 +1433,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
+          <ul class="navbar-nav ms-auto align-items-lg-center">
             <li class="nav-item">
-              <a class="nav-link" href="/">Home</a>
+              <a class="nav-link active" href="/">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="about">About Us</a>
@@ -1460,12 +1463,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     >3D Modelling & Design</a
                   >
                 </li>
-                <li>
-                  <a class="dropdown-item" href="scale-models"
-                    >Scale Models</a
-                  >
-                </li>
               </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="scale-models">Scale Models</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="materials">Materials</a>
@@ -1480,8 +1481,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <a class="nav-link" href="contact">Contact Us</a>
             </li>
           </ul>
-          <div class="ms-lg-4">
-            <a href="contact" class="btn btn-primary rounded-pill"
+          <div class="ms-lg-2 ms-xl-3 my-2 my-lg-0">
+            <a href="contact" class="btn btn-primary rounded-pill text-nowrap px-3"
               >Get Quote</a
             >
           </div>
@@ -1491,7 +1492,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <!-- Hero Section (Funnel Parallax Light Theme) -->
         <section class="hero-section position-relative text-center overflow-hidden bg-white">
-        <div class="hero-content container py-5">
+        <div class="hero-content container py-3">
             <h1 class="display-5 fw-bold mb-3 text-dark">
             Your Trusted Additive Manufacturing Partner
             </h1>

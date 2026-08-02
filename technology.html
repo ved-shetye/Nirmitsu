@@ -112,20 +112,24 @@
       .nav-link {
         color: var(--secondary-color) !important;
         font-family: "MADE Regular", sans-serif;
-        font-size: 0.94rem;
-        padding: 0.5rem 0.7rem !important;
+        font-size: 1rem;
+        padding: 0.5rem 0.45rem !important;
+        white-space: nowrap;
       }
 
-      .nav-link:hover {
+      .nav-link:hover, .nav-link.active {
         color: var(--primary-color) !important;
       }
 
       .navbar {
         padding: 0.5rem 0;
+        z-index: 99;
+        background-color: #ffffff;
+        transition: all 0.3s ease;
       }
 
       .navbar-brand img {
-        max-width: 150px;
+        max-width: 9rem;
         height: auto;
       }
 
@@ -147,7 +151,7 @@
       /* Technology Page Specific Styles */
       .tech-banner {
         position: relative;
-        padding: 120px 0;
+        padding: 80px 0;
         color: white;
         overflow: hidden;
       }
@@ -914,9 +918,9 @@
 
   <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light">
-      <div class="container">
-        <a class="navbar-brand" href="/">
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top bg-white border-bottom shadow-sm">
+      <div class="container-fluid px-lg-4 px-xl-5">
+        <a class="navbar-brand me-2 me-xl-3" href="/">
           <img src="assets/logo.webp" alt="Logo" />
         </a>
         <button
@@ -928,7 +932,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
+          <ul class="navbar-nav ms-auto align-items-lg-center">
             <li class="nav-item">
               <a class="nav-link" href="/">Home</a>
             </li>
@@ -936,7 +940,7 @@
               <a class="nav-link" href="about">About Us</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="technology">Our Technologies</a>
+              <a class="nav-link active" href="technology">Our Technologies</a>
             </li>
             <li class="nav-item dropdown">
               <a
@@ -958,12 +962,10 @@
                     >3D Modelling & Design</a
                   >
                 </li>
-                <li>
-                  <a class="dropdown-item" href="scale-models"
-                    >Scale Models</a
-                  >
-                </li>
               </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="scale-models">Scale Models</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="materials">Materials</a>
@@ -978,8 +980,8 @@
               <a class="nav-link" href="contact">Contact Us</a>
             </li>
           </ul>
-          <div class="ms-lg-4">
-            <a href="contact" class="btn btn-primary rounded-pill"
+          <div class="ms-lg-2 ms-xl-3 my-2 my-lg-0">
+            <a href="contact" class="btn btn-primary rounded-pill text-nowrap px-3"
               >Get Quote</a
             >
           </div>
@@ -1098,119 +1100,78 @@
           </p>
         </div>
 
-        <div class="row">
-          <div class="col-lg-3">
-            <!-- Modified Vertical/Horizontal tabs -->
-            <div class="nav tech-tabs me-lg-3" id="v-pills-tab" role="tablist">
-              <button
-                class="nav-link active mb-lg-3 text-start"
-                id="v-pills-sls-tab"
-                data-bs-toggle="pill"
-                data-bs-target="#v-pills-sls"
-                type="button"
-                role="tab"
-              >
-                <span class="h5 mb-0">SLS</span>
-                <small class="d-none d-sm-block text-muted"
-                  >Selective Laser Sintering</small
-                >
-              </button>
-              <button
-                class="nav-link mb-lg-3 text-start"
-                id="v-pills-sla-tab"
-                data-bs-toggle="pill"
-                data-bs-target="#v-pills-sla"
-                type="button"
-                role="tab"
-              >
-                <span class="h5 mb-0">SLA</span>
-                <small class="d-none d-sm-block text-muted"
-                  >Stereolithography</small
-                >
-              </button>
+        <div class="row g-4">
+          <!-- SLS Technology -->
+          <div class="col-lg-6">
+            <div class="tech-card">
+              <div class="tech-content">
+                <div class="tech-icon">
+                  <i class="fas fa-cube"></i>
+                </div>
+                <h3 class="h4 mb-4">Selective Laser Sintering (SLS)</h3>
+                <p class="mb-4">
+                  SLS technology uses a high-power laser to sinter powdered
+                  material, binding it together to create solid structures.
+                </p>
+
+                <div class="mt-4">
+                  <h4 class="h5 mb-3">Perfect for:</h4>
+                  <ul class="list-unstyled">
+                    <li class="mb-2">
+                      <i class="fas fa-check text-primary me-2"></i> Complex
+                      geometries
+                    </li>
+                    <li class="mb-2">
+                      <i class="fas fa-check text-primary me-2"></i>
+                      Functional prototypes
+                    </li>
+                    <li class="mb-2">
+                      <i class="fas fa-check text-primary me-2"></i> End-use
+                      parts
+                    </li>
+                    <li class="mb-2">
+                      <i class="fas fa-check text-primary me-2"></i>
+                      High-strength components
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div class="col-lg-9">
-            <!-- Tab content -->
-            <div class="tab-content" id="v-pills-tabContent">
-              <!-- SLS Content -->
-              <div
-                class="tab-pane fade show active"
-                id="v-pills-sls"
-                role="tabpanel"
-              >
-                <div class="tech-card">
-                  <div class="tech-content">
-                    <div class="tech-icon">
-                      <i class="fas fa-cube"></i>
-                    </div>
-                    <h3 class="h4 mb-4">Selective Laser Sintering (SLS)</h3>
-                    <p class="mb-4">
-                      SLS technology uses a high-power laser to sinter powdered
-                      material, binding it together to create solid structures.
-                    </p>
-
-                    <div class="mt-4">
-                      <h4 class="h5 mb-3">Perfect for:</h4>
-                      <ul class="list-unstyled">
-                        <li class="mb-2">
-                          <i class="fas fa-check text-primary me-2"></i> Complex
-                          geometries
-                        </li>
-                        <li class="mb-2">
-                          <i class="fas fa-check text-primary me-2"></i>
-                          Functional prototypes
-                        </li>
-                        <li class="mb-2">
-                          <i class="fas fa-check text-primary me-2"></i> End-use
-                          parts
-                        </li>
-                        <li class="mb-2">
-                          <i class="fas fa-check text-primary me-2"></i>
-                          High-strength components
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
+          <!-- SLA Technology -->
+          <div class="col-lg-6">
+            <div class="tech-card">
+              <div class="tech-content">
+                <div class="tech-icon">
+                  <i class="fas fa-layer-group"></i>
                 </div>
-              </div>
+                <h3 class="h4 mb-4">Stereolithography (SLA)</h3>
+                <p class="mb-4">
+                  SLA technology uses a laser to cure liquid resin into
+                  hardened plastic.
+                </p>
 
-              <!-- SLA Content -->
-              <div class="tab-pane fade" id="v-pills-sla" role="tabpanel">
-                <div class="tech-card">
-                  <div class="tech-content">
-                    <div class="tech-icon">
-                      <i class="fas fa-layer-group"></i>
-                    </div>
-                    <h3 class="h4 mb-4">Stereolithography (SLA)</h3>
-                    <p class="mb-4">
-                      SLA technology uses a laser to cure liquid resin into
-                      hardened plastic.
-                    </p>
-
-                    <div class="mt-4">
-                      <h4 class="h5 mb-3">Ideal for:</h4>
-                      <ul class="list-unstyled">
-                        <li class="mb-2">
-                          <i class="fas fa-check text-primary me-2"></i> High
-                          detail models
-                        </li>
-                        <li class="mb-2">
-                          <i class="fas fa-check text-primary me-2"></i> Smooth
-                          surface finish
-                        </li>
-                        <li class="mb-2">
-                          <i class="fas fa-check text-primary me-2"></i> Visual
-                          prototypes
-                        </li>
-                        <li class="mb-2">
-                          <i class="fas fa-check text-primary me-2"></i> Small,
-                          intricate parts
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
+                <div class="mt-4">
+                  <h4 class="h5 mb-3">Ideal for:</h4>
+                  <ul class="list-unstyled">
+                    <li class="mb-2">
+                      <i class="fas fa-check text-primary me-2"></i> High
+                      detail models
+                    </li>
+                    <li class="mb-2">
+                      <i class="fas fa-check text-primary me-2"></i> Smooth
+                      surface finish
+                    </li>
+                    <li class="mb-2">
+                      <i class="fas fa-check text-primary me-2"></i> Visual
+                      prototypes
+                    </li>
+                    <li class="mb-2">
+                      <i class="fas fa-check text-primary me-2"></i> Small,
+                      intricate parts
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>

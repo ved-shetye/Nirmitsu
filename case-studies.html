@@ -104,20 +104,24 @@
       .nav-link {
         color: var(--secondary-color) !important;
         font-family: "MADE Regular", sans-serif;
-        font-size: 0.95rem;
-        padding: 0.5rem 0.7rem !important;
+        font-size: 1rem;
+        padding: 0.5rem 0.45rem !important;
+        white-space: nowrap;
       }
 
-      .nav-link:hover {
+      .nav-link:hover, .nav-link.active {
         color: var(--primary-color) !important;
       }
 
       .navbar {
         padding: 0.5rem 0;
+        z-index: 99;
+        background-color: #ffffff;
+        transition: all 0.3s ease;
       }
 
       .navbar-brand img {
-        max-width: 150px;
+        max-width: 9rem;
         height: auto;
       }
 
@@ -139,7 +143,7 @@
       /* Banner Section */
       .tech-banner {
         position: relative;
-        padding: 110px 0;
+        padding: 80px 0;
         color: white;
         overflow: hidden;
       }
@@ -579,6 +583,7 @@
         margin-bottom: 20px;
         display: -webkit-box;
         -webkit-line-clamp: 3;
+        line-clamp: 3;
         -webkit-box-orient: vertical;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -907,9 +912,9 @@
   </head>
   <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light">
-      <div class="container">
-        <a class="navbar-brand" href="/">
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top bg-white border-bottom shadow-sm">
+      <div class="container-fluid px-lg-4 px-xl-5">
+        <a class="navbar-brand me-2 me-xl-3" href="/">
           <img src="assets/logo.webp" alt="Logo" />
         </a>
         <button
@@ -921,7 +926,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
+          <ul class="navbar-nav ms-auto align-items-lg-center">
             <li class="nav-item">
               <a class="nav-link" href="/">Home</a>
             </li>
@@ -951,12 +956,10 @@
                     >3D Modelling & Design</a
                   >
                 </li>
-                <li>
-                  <a class="dropdown-item" href="scale-models"
-                    >Scale Models</a
-                  >
-                </li>
               </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="scale-models">Scale Models</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="materials">Materials</a>
@@ -965,14 +968,14 @@
               <a class="nav-link" href="gallery">Gallery</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="case-studies">Case Studies</a>
+              <a class="nav-link active" href="case-studies">Case Studies</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="contact">Contact Us</a>
             </li>
           </ul>
-          <div class="ms-lg-4">
-            <a href="contact" class="btn btn-primary rounded-pill">Get Quote</a>
+          <div class="ms-lg-2 ms-xl-3 my-2 my-lg-0">
+            <a href="contact" class="btn btn-primary rounded-pill text-nowrap px-3">Get Quote</a>
           </div>
         </div>
       </div>
@@ -1002,10 +1005,6 @@
     <!-- Featured Case Studies Slider Section -->
     <section class="cs-section">
       <div class="container">
-        <div class="cs-section-head text-center text-md-start">
-          <p class="cs-section-label">Selected Works</p>
-          <h2 class="cs-section-title">Case Studies & Deployments</h2>
-        </div>
 
         <div class="cs-slider-outer">
           <div class="cs-slider" id="csSlider">

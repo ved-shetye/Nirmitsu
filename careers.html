@@ -113,20 +113,24 @@
       .nav-link {
         color: var(--secondary-color) !important;
         font-family: "MADE Regular", sans-serif;
-        font-size: 0.95rem;
-        padding: 0.5rem 0.7rem !important;
+        font-size: 1rem;
+        padding: 0.5rem 0.45rem !important;
+        white-space: nowrap;
       }
 
-      .nav-link:hover {
+      .nav-link:hover, .nav-link.active {
         color: var(--primary-color) !important;
       }
 
       .navbar {
         padding: 0.5rem 0;
+        z-index: 99;
+        background-color: #ffffff;
+        transition: all 0.3s ease;
       }
 
       .navbar-brand img {
-        max-width: 150px;
+        max-width: 9rem;
         height: auto;
       }
 
@@ -151,7 +155,7 @@
           url("assets/career.jpeg");
         background-size: cover;
         background-position: center;
-        padding: 120px 0;
+        padding: 80px 0;
         color: white;
       }
 
@@ -238,7 +242,7 @@
 
       @media (max-width: 768px) {
         .career-banner {
-          padding: 60px 0;
+          padding: 80px 0;
         }
 
         .career-banner h1.display-3 {
@@ -310,7 +314,7 @@
 
       @media (max-width: 480px) {
         .career-banner {
-          padding: 50px 0;
+          padding: 80px 0;
         }
 
         .career-banner h1.display-3 {
@@ -672,9 +676,9 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light">
-      <div class="container">
-        <a class="navbar-brand" href="/">
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top bg-white border-bottom shadow-sm">
+      <div class="container-fluid px-lg-4 px-xl-5">
+        <a class="navbar-brand me-2 me-xl-3" href="/">
           <img src="assets/logo.webp" alt="Logo" />
         </a>
         <button
@@ -686,7 +690,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
+          <ul class="navbar-nav ms-auto align-items-lg-center">
             <li class="nav-item">
               <a class="nav-link" href="/">Home</a>
             </li>
@@ -716,12 +720,10 @@
                     >3D Modelling & Design</a
                   >
                 </li>
-                <li>
-                  <a class="dropdown-item" href="scale-models"
-                    >Scale Models</a
-                  >
-                </li>
               </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="scale-models">Scale Models</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="materials">Materials</a>
@@ -736,8 +738,8 @@
               <a class="nav-link" href="contact">Contact Us</a>
             </li>
           </ul>
-          <div class="ms-lg-4">
-            <a href="contact" class="btn btn-primary rounded-pill"
+          <div class="ms-lg-2 ms-xl-3 my-2 my-lg-0">
+            <a href="contact" class="btn btn-primary rounded-pill text-nowrap px-3"
               >Get Quote</a
             >
           </div>
@@ -1503,6 +1505,8 @@
               btn.textContent = "View Details";
               btn.classList.remove("active");
             });
+          });
+        });
       });
     </script>
     <script>
