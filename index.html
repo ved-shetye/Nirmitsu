@@ -1295,20 +1295,36 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   align-items: center;
   justify-content: flex-start;
   text-align: center;
-  height: 67vh;
+  min-height: 67vh;
   background-color: #ffffff;
   overflow: hidden;
-  padding-top: 2vh;
-
-  /* True carbon fiber weave pattern with radial fade */
-  background-image: url("assets/hero-background.png");
-  background-size: 100vh 100vw;
-  background-position: center;
+  padding-top: 3.5rem;
+  padding-bottom: 2rem;
 }
 
+/* Background Texture Layer Only (z-index: 0, with Mask Fade-Out at Bottom) */
+.hero-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
 
+  /* Enhanced High-Tech Blueprint Grid Texture + Ambient Glow */
+  background-image: 
+    radial-gradient(circle at 50% 25%, rgba(107, 201, 217, 0.35) 0%, rgba(255, 255, 255, 0) 70%),
+    radial-gradient(rgba(107, 201, 217, 0.45) 2px, transparent 2px),
+    linear-gradient(to right, rgba(148, 163, 184, 0.45) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.45) 1px, transparent 1px);
+  background-size: 100% 100%, 28px 28px, 56px 56px, 56px 56px;
+  background-position: center center;
 
-/* Hero Text */
+  /* Fade out background pattern towards bottom ONLY (does not touch hero image or text) */
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.75) 50%, rgba(0, 0, 0, 0) 95%);
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.75) 50%, rgba(0, 0, 0, 0) 95%);
+}
+
+/* Hero Text (z-index: 2) */
 .hero-content {
   z-index: 2;
   max-width: 1280px;
@@ -1317,17 +1333,151 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   position: relative;
 }
 
-/* Radial white fade behind the hero content */
-.hero-section::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at center, rgba(255, 255, 255, 1) 40%, rgba(255, 255, 255, 0) 80%);
-  pointer-events: none;
-  z-index: 0;
+/* Feature List Section - Prominent Floating Pill Spec Bar */
+section.feature-list {
+  position: relative;
+  background-color: #ffffff !important;
+  background-image: none !important;
+  padding: 2.25rem 0;
 }
 
-/* Image Container */
+.feature-bar-wrapper {
+  background: #f8fafc;
+  border-radius: 100px;
+  padding: 1.25rem 2rem;
+  border: 1px solid #cbd5e1;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+.feature-col {
+  border-right: 1px solid #cbd5e1;
+  padding: 0.75rem 1rem;
+}
+
+@media (max-width: 991px) {
+  .feature-bar-wrapper {
+    border-radius: 24px;
+    padding: 1rem;
+  }
+  .feature-col {
+    border-right: none;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 1rem 0.5rem;
+  }
+}
+
+.feature-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  transition: transform 0.25s ease;
+  cursor: default;
+}
+
+.feature-item:hover {
+  transform: translateY(-3px);
+}
+
+.feature-item .icon-wrapper {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(107, 201, 217, 0.12);
+  border: 1px solid rgba(107, 201, 217, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.6rem;
+  transition: all 0.25s ease;
+}
+
+.feature-item:hover .icon-wrapper {
+  background: rgba(107, 201, 217, 0.25);
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(107, 201, 217, 0.35);
+}
+
+.feature-title {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #0f172a;
+  transition: color 0.25s ease;
+  white-space: nowrap;
+}
+
+.feature-item:hover .feature-title {
+  color: #6bc9d9;
+}
+
+/* Industrial Applications Section Enhancement */
+.applications-section {
+  background-color: #f8fafc;
+  padding: 3.5rem 0;
+}
+
+.application-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 1.5rem;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.application-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(107, 201, 217, 0.5);
+  box-shadow: 0 16px 35px rgba(107, 201, 217, 0.14);
+}
+
+.application-image {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 1.25rem;
+  background-color: #f1f5f9;
+}
+
+.application-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.application-card:hover .application-image img {
+  transform: scale(1.08);
+}
+
+.application-card h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 0.75rem;
+  transition: color 0.3s ease;
+}
+
+.application-card:hover h3 {
+  color: #6bc9d9;
+}
+
+.application-card p {
+  color: #475569;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+/* Hero Image Container (z-index: 3, completely above background fade) */
 .hero-image-wrapper {
   position: absolute;
   bottom: 40px;
@@ -1335,7 +1485,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   transform: translateX(-50%);
   width: 90%;
   max-width: 650px;
-  z-index: 1;
+  z-index: 3;
   pointer-events: none;
   overflow: visible;
 }
@@ -1420,6 +1570,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         margin-bottom: 1.75rem !important;
       }
       .tight-spacing { display: none; }
+    
+      
     </style>
 
 </head>
@@ -1501,8 +1653,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </nav>
 
     <!-- Hero Section (Funnel Parallax Light Theme) -->
-        <section class="hero-section position-relative text-center overflow-hidden bg-white">
-        <div class="hero-content container py-3">
+        <section class="hero-section position-relative text-center overflow-hidden">
+        <div class="hero-content container pt-2 pb-2">
             <h1 class="display-5 fw-bold mb-3 text-dark">
             Your Trusted Additive Manufacturing Partner
             </h1>
@@ -1541,144 +1693,92 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-    <!-- Feature List Section -->
-<section class="feature-list py-4">
-  <div class="container">
-    <div class="py-4 row text-center justify-content-center g-4">
-      <!-- Additive Manufacturing -->
-      <div class="col-6 col-md-4 col-lg">
-        <div class="feature-item">
-          <div class="icon-wrapper mx-auto mb-3"
-            style="background-color: rgba(107, 201, 217, 0.1); padding: 12px; border-radius: 24px; width: 84px; height: 84px; display: flex; align-items: center; justify-content: center;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
-              stroke="#6bc9d9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-              class="lucide lucide-cube">
-              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-              <path d="m3.27 6.96 8.73 5.02 8.74-5.02M12 22V12"/>
-            </svg>
+    <!-- Feature List Section (Prominent Floating Spec Pill Bar) -->
+    <section class="feature-list pt-7 pb-4">
+      <div class="container">
+        <div class="feature-bar-wrapper">
+          <div class="row text-center justify-content-center align-items-center g-0">
+            <!-- Additive Manufacturing -->
+            <div class="col-6 col-md-4 col-lg feature-col">
+              <div class="feature-item">
+                <div class="icon-wrapper">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                    stroke="#6bc9d9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-cube">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                    <path d="m3.27 6.96 8.73 5.02 8.74-5.02M12 22V12"/>
+                  </svg>
+                </div>
+                <span class="feature-title">Additive Manufacturing</span>
+              </div>
+            </div>
+
+            <!-- End-Use Production -->
+            <div class="col-6 col-md-4 col-lg feature-col">
+              <div class="feature-item">
+                <div class="icon-wrapper">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                    stroke="#6bc9d9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-factory">
+                    <path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/>
+                    <path d="M17 18h1"/>
+                    <path d="M12 18h1"/>
+                    <path d="M7 18h1"/>
+                  </svg>
+                </div>
+                <span class="feature-title">End-Use Production</span>
+              </div>
+            </div>
+
+            <!-- Rapid Prototyping -->
+            <div class="col-6 col-md-4 col-lg feature-col">
+              <div class="feature-item">
+                <div class="icon-wrapper">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" 
+                      stroke="#6bc9d9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" 
+                      class="lucide lucide-chevrons-up">
+                      <path d="m17 11-5-5-5 5"/>
+                      <path d="m17 18-5-5-5 5"/>
+                  </svg>
+                </div>
+                <span class="feature-title">Rapid Prototyping</span>
+              </div>
+            </div>
+
+            <!-- Design Consultation -->
+            <div class="col-6 col-md-4 col-lg feature-col">
+              <div class="feature-item">
+                <div class="icon-wrapper">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                    stroke="#6bc9d9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-compass">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+                  </svg>
+                </div>
+                <span class="feature-title">Design Consultation</span>
+              </div>
+            </div>
+
+            <!-- Titan 1070 EXT -->
+            <div class="col-6 col-md-4 col-lg feature-col border-0">
+              <div class="feature-item">
+                <div class="icon-wrapper">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                    stroke="#6bc9d9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-cpu">
+                    <rect x="4" y="4" width="16" height="16" rx="2"/>
+                    <rect x="9" y="9" width="6" height="6"/>
+                    <path d="M15 2v2M9 2v2M15 20v2M9 20v2M2 15h2M2 9h2M20 15h2M20 9h2"/>
+                  </svg>
+                </div>
+                <span class="feature-title">Titan 1070 EXT</span>
+              </div>
+            </div>
           </div>
-          <h6 class="fw-semibold">Additive Manufacturing</h6>
         </div>
       </div>
-
-      <!-- End-Use Production -->
-      <div class="col-6 col-md-4 col-lg">
-        <div class="feature-item">
-          <div class="icon-wrapper mx-auto mb-3"
-            style="background-color: rgba(107, 201, 217, 0.1); padding: 12px; border-radius: 24px; width: 84px; height: 84px; display: flex; align-items: center; justify-content: center;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
-              stroke="#6bc9d9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-              class="lucide lucide-factory">
-              <path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/>
-              <path d="M17 18h1"/>
-              <path d="M12 18h1"/>
-              <path d="M7 18h1"/>
-            </svg>
-          </div>
-          <h6 class="fw-semibold">End-Use Production</h6>
-        </div>
-      </div>
-
-      <!-- Rapid Prototyping -->
-      <div class="col-6 col-md-4 col-lg">
-        <div class="feature-item">
-          <div class="icon-wrapper mx-auto mb-3"
-            style="background-color: rgba(107, 201, 217, 0.1); padding: 12px; border-radius: 24px; width: 84px; height: 84px; display: flex; align-items: center; justify-content: center;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" 
-                stroke="#6bc9d9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" 
-                class="lucide lucide-chevrons-up-icon lucide-chevrons-up">
-                <path d="m17 11-5-5-5 5"/>
-                <path d="m17 18-5-5-5 5"/>
-            </svg>
-          </div>
-          <h6 class="fw-semibold">Rapid Prototyping</h6>
-        </div>
-      </div>
-
-      <!-- Design Consultation -->
-      <div class="col-6 col-md-4 col-lg">
-        <div class="feature-item">
-          <div class="icon-wrapper mx-auto mb-3"
-            style="background-color: rgba(107, 201, 217, 0.1); padding: 12px; border-radius: 24px; width: 84px; height: 84px; display: flex; align-items: center; justify-content: center;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
-              stroke="#6bc9d9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-              class="lucide lucide-compass">
-              <circle cx="12" cy="12" r="10"/>
-              <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
-            </svg>
-          </div>
-          <h6 class="fw-semibold">Design Consultation</h6>
-        </div>
-      </div>
-
-      <!-- Titan 1070 EXT -->
-      <div class="col-6 col-md-4 col-lg">
-        <div class="feature-item">
-          <div class="icon-wrapper mx-auto mb-3"
-            style="background-color: rgba(107, 201, 217, 0.1); padding: 12px; border-radius: 24px; width: 84px; height: 84px; display: flex; align-items: center; justify-content: center;">
-            <?xml version="1.0" encoding="UTF-8"?>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 800" width="1100" height="800" aria-labelledby="title desc" role="img">
-            <title>EXT 1070 Titan Pellet - Simplified Lineart</title>
-            <desc>Simplified orthographic outline of the Titan EXT 1070 industrial 3D printer in Lucide-style vector format.</desc>
-
-            <style>
-                .line { fill: none; stroke: #6bc9d9; stroke-width: 48; stroke-linecap: round; stroke-linejoin: round; }
-            
-      /* Compact Vertical Spacing */
-      .py-5 {
-        padding-top: 2.25rem !important;
-        padding-bottom: 2.25rem !important;
-      }
-      .mb-5 {
-        margin-bottom: 1.75rem !important;
-      }
-      .tight-spacing { display: none; }
-    </style>
-
-            <!-- Ground line -->
-            <line class="line" x1="40" y1="740" x2="1060" y2="740" />
-
-            <!-- Control Station -->
-            <g transform="translate(70,340)">
-                <rect class="line" x="0" y="60" width="160" height="220" rx="4" ry="4" />
-                <rect class="line" x="20" y="0" width="120" height="50" rx="4" ry="4" />
-                <line class="line" x1="80" y1="50" x2="80" y2="60" />
-                <circle class="line" cx="50" cy="290" r="8" />
-                <circle class="line" cx="130" cy="290" r="8" />
-            </g>
-
-            <!-- Main Machine -->
-            <g transform="translate(280,100)">
-                <!-- Top canopy -->
-                <rect class="line" x="0" y="0" width="720" height="110" rx="4" ry="4" />
-                <!-- Cabinet -->
-                <rect class="line" x="-10" y="110" width="740" height="550" rx="4" ry="4" />
-                <!-- Door divider -->
-                <line class="line" x1="360" y1="110" x2="360" y2="660" />
-                <!-- Left door window -->
-                <rect class="line" x="120" y="250" width="140" height="220" rx="18" ry="18" />
-                <!-- Right door window -->
-                <rect class="line" x="470" y="250" width="120" height="220" rx="18" ry="18" />
-                <!-- Handles -->
-                <line class="line" x1="350" y1="360" x2="350" y2="410" />
-                <line class="line" x1="370" y1="360" x2="370" y2="410" />
-                <!-- Base -->
-                <rect class="line" x="-5" y="660" width="730" height="25" rx="4" ry="4" />
-                <!-- Light tower -->
-                <g transform="translate(60,20)">
-                <rect class="line" x="-6" y="-40" width="12" height="50" rx="3" ry="3" />
-                <rect class="line" x="-10" y="-55" width="20" height="10" rx="2" ry="2" />
-                </g>
-            </g>
-            </svg>
-
-          </div>
-          <h6 class="fw-semibold">State-of-the-Art Titan 1070 EXT</h6>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
 
 
@@ -2907,6 +3007,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         margin-bottom: 1.75rem !important;
       }
       .tight-spacing { display: none; }
+    
+      
     </style>
 
     <!-- Pre-Footer CTA Section -->
