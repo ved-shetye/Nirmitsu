@@ -565,7 +565,12 @@
             <div class="row g-4 justify-content-center" id="projectsGrid">
                 <!-- Construction Card -->
                 <div class="col-lg-4 col-md-6 project-item">
-                    <div class="project-card" onclick="openProjectModal('CONSTRUCTION', '1:100', 'CONSTRUCTION', 'Multi-material SLA & FDM 3D printing with acrylic glass cladding and programmable warm LED lighting.', 'assets/architecture-and-design.png')">
+                    <div class="project-card" onclick="openProjectModal('CONSTRUCTION', [
+                        {type:'image', src:'assets/architecture-and-design.png'},
+                        {type:'image', src:'assets/hero-background.png'},
+                        {type:'image', src:'assets/automotive.webp'},
+                        {type:'image', src:'assets/hero-drone.png'}
+                    ])">
                         <div class="project-img-wrapper">
                             <img src="assets/architecture-and-design.png" alt="CONSTRUCTION">
                         </div>
@@ -578,7 +583,12 @@
 
                 <!-- Industrial Card -->
                 <div class="col-lg-4 col-md-6 project-item">
-                    <div class="project-card" onclick="openProjectModal('INDUSTRIAL', '1:1000', 'INDUSTRIAL', 'CNC milled terrain base with SLA printed micro buildings and fiber-optic runway lighting.', 'assets/hero-background.png')">
+                    <div class="project-card" onclick="openProjectModal('INDUSTRIAL', [
+                        {type:'image', src:'assets/hero-background.png'},
+                        {type:'image', src:'assets/architecture-and-design.png'},
+                        {type:'image', src:'assets/marine.png'},
+                        {type:'image', src:'assets/medical.png'}
+                    ])">
                         <div class="project-img-wrapper">
                             <img src="assets/hero-background.png" alt="INDUSTRIAL">
                         </div>
@@ -591,7 +601,12 @@
 
                 <!-- Automotive Card -->
                 <div class="col-lg-4 col-md-6 project-item">
-                    <div class="project-card" onclick="openProjectModal('AUTOMOTIVE', '1:10', 'AUTOMOTIVE', 'High-durability functional prototypes & wind-tunnel testing scale models for automotive engineering.', 'assets/automotive.webp')">
+                    <div class="project-card" onclick="openProjectModal('AUTOMOTIVE', [
+                        {type:'image', src:'assets/automotive.webp'},
+                        {type:'image', src:'assets/hero-drone.png'},
+                        {type:'image', src:'assets/architecture-and-design.png'},
+                        {type:'image', src:'assets/hero-background.png'}
+                    ])">
                         <div class="project-img-wrapper">
                             <img src="assets/automotive.webp" alt="AUTOMOTIVE">
                         </div>
@@ -604,7 +619,12 @@
 
                 <!-- Aerospace Card -->
                 <div class="col-lg-4 col-md-6 project-item">
-                    <div class="project-card" onclick="openProjectModal('AEROSPACE', '1:20', 'AEROSPACE', 'Composite carbon-fiber reinforced SLA resin with matte military polyurethane coating.', 'assets/hero-drone.png')">
+                    <div class="project-card" onclick="openProjectModal('AEROSPACE', [
+                        {type:'image', src:'assets/hero-drone.png'},
+                        {type:'image', src:'assets/automotive.webp'},
+                        {type:'image', src:'assets/marine.png'},
+                        {type:'image', src:'assets/architecture-and-design.png'}
+                    ])">
                         <div class="project-img-wrapper">
                             <img src="assets/hero-drone.png" alt="AEROSPACE">
                         </div>
@@ -617,7 +637,12 @@
 
                 <!-- Healthcare Card -->
                 <div class="col-lg-4 col-md-6 project-item">
-                    <div class="project-card" onclick="openProjectModal('HEALTHCARE', '1:1', 'HEALTHCARE', 'Anatomical & surgical training models printed in biocompatible SLA & flexible silicone resin.', 'assets/medical.png')">
+                    <div class="project-card" onclick="openProjectModal('HEALTHCARE', [
+                        {type:'image', src:'assets/medical.png'},
+                        {type:'image', src:'assets/architecture-and-design.png'},
+                        {type:'image', src:'assets/hero-background.png'},
+                        {type:'image', src:'assets/automotive.webp'}
+                    ])">
                         <div class="project-img-wrapper">
                             <img src="assets/medical.png" alt="HEALTHCARE">
                         </div>
@@ -630,7 +655,12 @@
 
                 <!-- Marine Card -->
                 <div class="col-lg-4 col-md-6 project-item">
-                    <div class="project-card" onclick="openProjectModal('MARINE', '1:250', 'MARINE', 'Laser-etched acrylic and micro-SLA resin details with resin water displacement base.', 'assets/marine.png')">
+                    <div class="project-card" onclick="openProjectModal('MARINE', [
+                        {type:'image', src:'assets/marine.png'},
+                        {type:'image', src:'assets/hero-background.png'},
+                        {type:'image', src:'assets/hero-drone.png'},
+                        {type:'image', src:'assets/medical.png'}
+                    ])">
                         <div class="project-img-wrapper">
                             <img src="assets/marine.png" alt="MARINE">
                         </div>
@@ -813,33 +843,130 @@
 
     <!-- Project Lightbox Modal -->
     <div class="modal fade" id="projectModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-                <div class="modal-header border-0 bg-dark text-white p-4">
-                    <div>
-                        <span class="badge bg-info text-dark mb-1" id="modalCategory">Category</span>
-                        <h4 class="modal-title mb-0" id="modalTitle">Project Title</h4>
-                    </div>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content" style="border-radius: 16px; overflow: hidden; border: none;">
+
+                <!-- Title bar -->
+                <div class="modal-header border-0 px-4 py-3">
+                    <h4 class="modal-title mb-0 fw-bold" id="modalTitle" style="font-family:'MADE',sans-serif; letter-spacing:0.05em;"></h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <img id="modalImg" src="" class="img-fluid w-100" style="max-height: 420px; object-fit: cover;" alt="Scale Model Preview">
-                    <div class="modal-details">
-                        <div class="mb-3">
-                            <span class="spec-badge"><strong>Ratio:</strong> <span id="modalScale">1:100</span></span>
-                            <span class="spec-badge"><strong>Lighting:</strong> Integrated LED</span>
-                            <span class="spec-badge"><strong>Casing:</strong> Custom Acrylic Cover</span>
-                        </div>
-                        <h5 class="h6 fw-bold">Fabrication Details</h5>
-                        <p class="text-muted small" id="modalSpecs">Details here...</p>
-                        <div class="text-end mt-4">
-                            <a href="contact" class="btn btn-primary">Inquire About This Model</a>
-                        </div>
+
+                <!-- Main viewer -->
+                <div class="modal-body p-0">
+
+                    <!-- Big media + arrows -->
+                    <div class="lbx-main-wrap" id="lbxMainWrap">
+                        <!-- rendered by JS -->
                     </div>
+
+                    <!-- Thumbnails strip -->
+                    <div class="lbx-thumbs" id="lbxThumbs">
+                        <!-- rendered by JS -->
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
+
+    <style>
+        /* ── Lightbox Modal ── */
+        #projectModal .modal-content { background: #fff; }
+        #projectModal .modal-header  { background: #fff; border-bottom: 1px solid #f0f0f0; }
+
+        /* Main viewer */
+        .lbx-main-wrap {
+            position: relative;
+            width: 100%;
+            max-height: 340px;
+            background: #111;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+        }
+
+        .lbx-main-wrap img,
+        .lbx-main-wrap video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Prev / Next arrows */
+        .lbx-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(255,255,255,0.9);
+            color: #111;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+        }
+        .lbx-arrow:hover { background: #6bc9d9; color: #fff; }
+        .lbx-arrow.prev { left: 12px; }
+        .lbx-arrow.next { right: 12px; }
+
+        /* Thumbnails strip */
+        .lbx-thumbs {
+            display: flex;
+            gap: 8px;
+            padding: 10px 16px 14px;
+            background: #fff;
+            overflow-x: auto;
+            scrollbar-width: thin;
+        }
+
+        .lbx-thumb {
+            flex: 0 0 calc(33.333% - 6px);
+            aspect-ratio: 16 / 9;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2.5px solid #e5e5e5;
+            transition: border-color 0.2s, opacity 0.2s;
+            background: #eee;
+            position: relative;
+        }
+
+        .lbx-thumb img,
+        .lbx-thumb video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
+        }
+
+        /* video play icon overlay on thumbs */
+        .lbx-thumb .lbx-play-icon {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,0.3);
+            color: #fff;
+            font-size: 1.4rem;
+        }
+
+        .lbx-thumb:hover { opacity: 0.75; border-color: #6bc9d9; }
+
+        @media (max-width: 576px) {
+            .lbx-thumb { flex: 0 0 calc(50% - 4px); }
+            .lbx-arrow { width: 32px; height: 32px; font-size: 0.75rem; }
+        }
+    </style>
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
@@ -863,14 +990,112 @@
         }
 
         // Lightbox Modal Handler
-        function openProjectModal(title, scale, category, specs, imgSrc) {
+        let lbxMedia   = [];   // array of {type, src}
+        let lbxCurrent = 0;    // index of the item shown in the BIG viewer
+
+        function openProjectModal(title, mediaArray) {
+            lbxMedia   = mediaArray;
+            lbxCurrent = 0;
+
             document.getElementById('modalTitle').innerText = title;
-            document.getElementById('modalScale').innerText = scale;
-            document.getElementById('modalCategory').innerText = category;
-            document.getElementById('modalSpecs').innerText = specs;
-            document.getElementById('modalImg').src = imgSrc;
+            renderLightbox();
+
             const projectModal = new bootstrap.Modal(document.getElementById('projectModal'));
             projectModal.show();
+
+            document.getElementById('projectModal').addEventListener('hidden.bs.modal', function () {
+                const v = document.querySelector('#lbxMainWrap video');
+                if (v) v.pause();
+            }, { once: true });
+        }
+
+        function renderLightbox() {
+            renderMain();
+            renderThumbs();
+        }
+
+        // ── Big viewer ──────────────────────────────────────────────
+        function renderMain() {
+            const wrap = document.getElementById('lbxMainWrap');
+            const oldVid = wrap.querySelector('video');
+            if (oldVid) oldVid.pause();
+
+            const item = lbxMedia[lbxCurrent];
+            const mediaEl = item.type === 'video'
+                ? `<video src="${item.src}" controls playsinline></video>`
+                : `<img src="${item.src}" alt="Scale model media">`;
+
+            const arrows = lbxMedia.length > 1 ? `
+                <button class="lbx-arrow prev" onclick="lbxGo(-1)" aria-label="Previous">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <button class="lbx-arrow next" onclick="lbxGo(1)" aria-label="Next">
+                    <i class="fas fa-arrow-right"></i>
+                </button>` : '';
+
+            // fade out existing media
+            const existing = wrap.querySelector('img, video');
+            if (existing) {
+                existing.style.transition = 'opacity 0.25s ease';
+                existing.style.opacity = '0';
+            }
+
+            setTimeout(() => {
+                wrap.innerHTML = mediaEl + arrows;
+                const newEl = wrap.querySelector('img, video');
+                if (newEl) {
+                    newEl.style.opacity = '0';
+                    newEl.style.transition = 'opacity 0.3s ease';
+                    // force reflow
+                    newEl.getBoundingClientRect();
+                    newEl.style.opacity = '1';
+                }
+            }, existing ? 220 : 0);
+        }
+
+        // ── Thumbnail strip ──────────────────────────────────────────
+        function renderThumbs() {
+            const strip = document.getElementById('lbxThumbs');
+            const total = lbxMedia.length;
+            if (total < 2) { strip.innerHTML = ''; return; }
+
+            // fade strip out
+            strip.style.transition = 'opacity 0.2s ease';
+            strip.style.opacity = '0';
+
+            const slots = [1, 2, 3].map(offset => (lbxCurrent + offset) % total);
+
+            setTimeout(() => {
+                strip.innerHTML = slots.map(i => {
+                    const item = lbxMedia[i];
+                    if (item.type === 'video') {
+                        return `<div class="lbx-thumb" onclick="lbxGoTo(${i})">
+                                    <video src="${item.src}" muted preload="metadata"></video>
+                                    <div class="lbx-play-icon"><i class="fas fa-play"></i></div>
+                                </div>`;
+                    } else {
+                        return `<div class="lbx-thumb" onclick="lbxGoTo(${i})">
+                                    <img src="${item.src}" alt="Media ${i + 1}">
+                                </div>`;
+                    }
+                }).join('');
+
+                // fade strip back in
+                strip.getBoundingClientRect();
+                strip.style.opacity = '1';
+            }, 180);
+        }
+
+        // ── Navigation ───────────────────────────────────────────────
+        function lbxGo(dir) {
+            lbxCurrent = (lbxCurrent + dir + lbxMedia.length) % lbxMedia.length;
+            renderLightbox();
+        }
+
+        // clicking a thumbnail makes that item the new "current" (big view)
+        function lbxGoTo(index) {
+            lbxCurrent = index;
+            renderLightbox();
         }
 
         function validateEmail959578000001028019(){

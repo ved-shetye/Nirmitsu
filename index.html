@@ -1297,7 +1297,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   text-align: center;
   min-height: 67vh;
   background-color: #ffffff;
-  overflow: hidden;
+  overflow: visible;
   padding-top: 3.5rem;
   padding-bottom: 2rem;
 }
@@ -1480,12 +1480,12 @@ section.feature-list {
 /* Hero Image Container (z-index: 3, completely above background fade) */
 .hero-image-wrapper {
   position: absolute;
-  bottom: 40px;
+  bottom: -20px;
   left: 50%;
   transform: translateX(-50%);
   width: 90%;
   max-width: 650px;
-  z-index: 3;
+  z-index: 10;
   pointer-events: none;
   overflow: visible;
 }
@@ -1515,7 +1515,7 @@ section.feature-list {
   }
 
   .hero-image-wrapper {
-    bottom: 20px;
+    bottom: -10px;
     width: 85%;
     max-width: 480px;
   }
@@ -1653,7 +1653,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </nav>
 
     <!-- Hero Section (Funnel Parallax Light Theme) -->
-        <section class="hero-section position-relative text-center overflow-hidden">
+        <section class="hero-section position-relative text-center">
         <div class="hero-content container pt-2 pb-2">
             <h1 class="display-5 fw-bold mb-3 text-dark">
             Your Trusted Additive Manufacturing Partner

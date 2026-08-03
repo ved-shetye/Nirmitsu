@@ -923,8 +923,143 @@
         margin-bottom: 1.75rem !important;
       }
       .tight-spacing { display: none; }
-    
-      
+
+      /* ── Product Example Carousel ── */
+      .product-example-wrapper {
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+        overflow: hidden;
+      }
+
+      .product-example-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1.25rem 1.75rem;
+        border-bottom: 1px solid rgba(107, 201, 217, 0.2);
+        background: rgba(107, 201, 217, 0.06);
+      }
+
+      .product-example-label {
+        display: inline-block;
+        background: var(--primary-color);
+        color: #000;
+        font-family: "MADE", sans-serif;
+        font-size: 0.7rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 0.3rem 0.85rem;
+        border-radius: 999px;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+
+      .product-example-header h2 {
+        font-family: "MADE", sans-serif;
+        color: #000;
+        font-size: 1.1rem;
+        margin-bottom: 0;
+      }
+
+      .product-carousel {
+        position: relative;
+      }
+
+      .product-card {
+        padding: 1.5rem 1.75rem 0;
+      }
+
+      .product-img-wrap {
+        position: relative;
+        border-radius: 12px;
+        overflow: hidden;
+        background: #f5f5f5;
+        aspect-ratio: 4 / 3;
+      }
+
+      .product-img-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.4s ease;
+      }
+
+      .product-example-wrapper:hover .product-img-wrap img {
+        transform: scale(1.03);
+      }
+
+      .product-img-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 0.6rem 1rem;
+        background: linear-gradient(transparent, rgba(0, 0, 0, 0.45));
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      .product-count {
+        font-family: "MADE", sans-serif;
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.9);
+        letter-spacing: 0.05em;
+      }
+
+      .product-carousel-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 1.75rem 1.25rem;
+      }
+
+      .product-carousel-footer .carousel-indicators.custom-indicators {
+        position: static;
+        margin: 0;
+        justify-content: flex-start;
+      }
+
+      .product-carousel-arrows {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .product-arrow {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: 1.5px solid var(--primary-color);
+        background: transparent;
+        color: var(--primary-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.8rem;
+        transition: all 0.25s ease;
+        cursor: pointer;
+        line-height: 1;
+      }
+
+      .product-arrow:hover {
+        background: var(--primary-color);
+        color: #000;
+      }
+
+      @media (max-width: 768px) {
+        .product-example-header {
+          flex-wrap: wrap;
+          gap: 0.5rem;
+          padding: 1rem 1.25rem;
+        }
+        .product-card {
+          padding: 1rem 1.25rem 0;
+        }
+        .product-carousel-footer {
+          padding: 0.75rem 1.25rem 1rem;
+        }
+      }
     </style>
   </head>
 
@@ -1250,19 +1385,7 @@
                       font-weight: bold;
                       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
                     }
-                  
-      /* Compact Vertical Spacing */
-      .py-5 {
-        padding-top: 2.25rem !important;
-        padding-bottom: 2.25rem !important;
-      }
-      .mb-5 {
-        margin-bottom: 1.75rem !important;
-      }
-      .tight-spacing { display: none; }
-    
-      
-    </style>
+                  </style>
                 </div>
               </div>
             </div>
@@ -1270,135 +1393,112 @@
 
           <!-- Right side with materials carousel -->
           <div class="col-lg-6">
-            <h2 class="h3 mb-2 text-center">Product Example</h2>
-            <div
-              id="materialsCarouselOne"
-              class="carousel slide"
-              data-bs-ride="carousel"
-              data-bs-interval="5000"
-            >
-              <div class="carousel-inner">
-                <!-- Material 1 -->
-                <div class="carousel-item active">
-                  <div class="material-card bg-white rounded-3">
-                    <div class="material-image">
-                      <img
-                        src="assets/machine-one-mat-one.webp"
-                        class="img-fluid"
-                        loading="lazy"
-                        width="600"
-                        height="400"
-                        alt="Material One"
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Material 2 -->
-                <div class="carousel-item">
-                  <div class="material-card bg-white rounded-3">
-                    <div class="material-image">
-                      <img
-                        src="assets/machine-one-mat-two.webp"
-                        class="img-fluid"
-                        loading="lazy"
-                        width="600"
-                        height="400"
-                        alt="Material Two"
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Material 3 -->
-                <div class="carousel-item">
-                  <div class="material-card bg-white rounded-3">
-                    <div class="material-image">
-                      <img
-                        src="assets/machine-one-mat-three.webp"
-                        class="img-fluid"
-                        loading="lazy"
-                        width="600"
-                        height="400"
-                        alt="Material Three"
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Material 4 -->
-                <div class="carousel-item">
-                  <div class="material-card bg-white rounded-3">
-                    <div class="material-image">
-                      <img
-                        src="assets/machine-one-mat-four.webp"
-                        class="img-fluid"
-                        loading="lazy"
-                        width="600"
-                        height="400"
-                        alt="Material Four"
-                      />
-                    </div>
-                  </div>
-                </div>
+            <div class="product-example-wrapper">
+              <div class="product-example-header">
+                <span class="product-example-label">Product Examples</span>
+                <h2 class="h4 mb-0">Parts We've Produced</h2>
               </div>
-              <!-- Carousel Controls -->
-              <button
-                class="carousel-control-prev"
-                type="button"
-                data-bs-target="#materialsCarouselOne"
-                data-bs-slide="prev"
-              >
-                <span
-                  class="carousel-control-prev-icon"
-                  aria-hidden="true"
-                ></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button
-                class="carousel-control-next"
-                type="button"
-                data-bs-target="#materialsCarouselOne"
-                data-bs-slide="next"
-              >
-                <span
-                  class="carousel-control-next-icon"
-                  aria-hidden="true"
-                ></span>
-                <span class="visually-hidden">Next</span>
-              </button>
-              <!-- Carousel Indicators -->
               <div
-                class="carousel-indicators custom-indicators"
-                style="margin-bottom: 0"
-                role="tablist"
+                id="materialsCarouselOne"
+                class="carousel slide product-carousel"
+                data-bs-ride="carousel"
+                data-bs-interval="5000"
               >
-                <button
-                  type="button"
-                  data-bs-target="#materialsCarouselOne"
-                  data-bs-slide-to="0"
-                  class="active"
-                  aria-current="true"
-                  aria-label="Material 1"
-                ></button>
-                <button
-                  type="button"
-                  data-bs-target="#materialsCarouselOne"
-                  data-bs-slide-to="1"
-                  aria-label="Material 2"
-                ></button>
-                <button
-                  type="button"
-                  data-bs-target="#materialsCarouselOne"
-                  data-bs-slide-to="2"
-                  aria-label="Material 3"
-                ></button>
-                <button
-                  type="button"
-                  data-bs-target="#materialsCarouselOne"
-                  data-bs-slide-to="3"
-                  aria-label="Material 4"
-                ></button>
+                <div class="carousel-inner">
+                  <!-- Material 1 -->
+                  <div class="carousel-item active">
+                    <div class="product-card">
+                      <div class="product-img-wrap">
+                        <img
+                          src="assets/machine-one-mat-one.webp"
+                          class="img-fluid"
+                          loading="lazy"
+                          width="600"
+                          height="400"
+                          alt="Material One"
+                        />
+                        <div class="product-img-overlay">
+                          <span class="product-count">01 / 04</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Material 2 -->
+                  <div class="carousel-item">
+                    <div class="product-card">
+                      <div class="product-img-wrap">
+                        <img
+                          src="assets/machine-one-mat-two.webp"
+                          class="img-fluid"
+                          loading="lazy"
+                          width="600"
+                          height="400"
+                          alt="Material Two"
+                        />
+                        <div class="product-img-overlay">
+                          <span class="product-count">02 / 04</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Material 3 -->
+                  <div class="carousel-item">
+                    <div class="product-card">
+                      <div class="product-img-wrap">
+                        <img
+                          src="assets/machine-one-mat-three.webp"
+                          class="img-fluid"
+                          loading="lazy"
+                          width="600"
+                          height="400"
+                          alt="Material Three"
+                        />
+                        <div class="product-img-overlay">
+                          <span class="product-count">03 / 04</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Material 4 -->
+                  <div class="carousel-item">
+                    <div class="product-card">
+                      <div class="product-img-wrap">
+                        <img
+                          src="assets/machine-one-mat-four.webp"
+                          class="img-fluid"
+                          loading="lazy"
+                          width="600"
+                          height="400"
+                          alt="Material Four"
+                        />
+                        <div class="product-img-overlay">
+                          <span class="product-count">04 / 04</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Carousel Footer: indicators + arrows in one row -->
+                <div class="product-carousel-footer">
+                  <div class="carousel-indicators custom-indicators mb-0" role="tablist">
+                    <button type="button" data-bs-target="#materialsCarouselOne" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Material 1"></button>
+                    <button type="button" data-bs-target="#materialsCarouselOne" data-bs-slide-to="1" aria-label="Material 2"></button>
+                    <button type="button" data-bs-target="#materialsCarouselOne" data-bs-slide-to="2" aria-label="Material 3"></button>
+                    <button type="button" data-bs-target="#materialsCarouselOne" data-bs-slide-to="3" aria-label="Material 4"></button>
+                  </div>
+                  <div class="product-carousel-arrows">
+                    <button class="product-arrow" type="button" data-bs-target="#materialsCarouselOne" data-bs-slide="prev" aria-label="Previous">
+                      <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <button class="product-arrow" type="button" data-bs-target="#materialsCarouselOne" data-bs-slide="next" aria-label="Next">
+                      <i class="fas fa-arrow-right"></i>
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -1412,135 +1512,109 @@
         <div class="row align-items-center">
           <!-- Left side with materials carousel -->
           <div class="col-lg-6 order-2 order-lg-1">
-            <h2 class="h3 mb-4 text-center">Product Example</h2>
-            <div
-              id="materialsCarouselTwo"
-              class="carousel slide h-100"
-              data-bs-ride="carousel"
-              data-bs-interval="5000"
-            >
-              <div class="carousel-inner h-100">
-                <!-- Material 1 -->
-                <div class="carousel-item active h-100">
-                  <div class="material-card p-4 bg-white rounded-4 h-100">
-                    <div class="material-image">
-                      <img
-                        src="assets/machine-two-mat-one.webp"
-                        class="img-fluid rounded-4"
-                        loading="lazy"
-                        width="600"
-                        height="400"
-                        alt="Material One"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <!-- Material 2 -->
-                <div class="carousel-item h-100">
-                  <div class="material-card p-4 bg-white rounded-4 h-100">
-                    <div class="material-image">
-                      <img
-                        src="assets/machine-two-mat-two.webp"
-                        class="img-fluid rounded-4"
-                        loading="lazy"
-                        width="600"
-                        height="400"
-                        alt="Material Two"
-                        style="object-fit: contain"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <!-- Material 3 -->
-                <div class="carousel-item h-100">
-                  <div class="material-card p-4 bg-white rounded-4 h-100">
-                    <div class="material-image">
-                      <img
-                        src="assets/machine-two-mat-three.webp"
-                        class="img-fluid rounded-4"
-                        loading="lazy"
-                        width="600"
-                        height="400"
-                        alt="Material Three"
-                        style="object-fit: contain"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <!-- Material 4 -->
-                <div class="carousel-item h-100">
-                  <div class="material-card p-4 bg-white rounded-4 h-100">
-                    <div class="material-image">
-                      <img
-                        src="assets/machine-two-mat-four.webp"
-                        class="img-fluid rounded-4"
-                        loading="lazy"
-                        width="600"
-                        height="400"
-                        alt="Material Four"
-                        style="object-fit: contain"
-                      />
-                    </div>
-                  </div>
-                </div>
+            <div class="product-example-wrapper">
+              <div class="product-example-header">
+                <span class="product-example-label">Product Examples</span>
+                <h2 class="h4 mb-0">Parts We've Produced</h2>
               </div>
-              <!-- Carousel Controls -->
-              <button
-                class="carousel-control-prev"
-                type="button"
-                data-bs-target="#materialsCarouselTwo"
-                data-bs-slide="prev"
-              >
-                <span
-                  class="carousel-control-prev-icon"
-                  aria-hidden="true"
-                ></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button
-                class="carousel-control-next"
-                type="button"
-                data-bs-target="#materialsCarouselTwo"
-                data-bs-slide="next"
-              >
-                <span
-                  class="carousel-control-next-icon"
-                  aria-hidden="true"
-                ></span>
-                <span class="visually-hidden">Next</span>
-              </button>
-              <!-- Carousel Indicators -->
               <div
-                class="carousel-indicators custom-indicators"
-                style="margin-bottom: 0"
-                role="tablist"
+                id="materialsCarouselTwo"
+                class="carousel slide product-carousel"
+                data-bs-ride="carousel"
+                data-bs-interval="5000"
               >
-                <button
-                  type="button"
-                  data-bs-target="#materialsCarouselTwo"
-                  data-bs-slide-to="0"
-                  class="active"
-                  aria-current="true"
-                  aria-label="Material 1"
-                ></button>
-                <button
-                  type="button"
-                  data-bs-target="#materialsCarouselTwo"
-                  data-bs-slide-to="1"
-                  aria-label="Material 2"
-                ></button>
-                <button
-                  type="button"
-                  data-bs-target="#materialsCarouselTwo"
-                  data-bs-slide-to="2"
-                  aria-label="Material 3"
-                ></button>
-                <button
-                  type="button"
-                  data-bs-target="#materialsCarouselTwo"
-                  data-bs-slide-to="3"
-                  aria-label="Material 4"
-                ></button>
+                <div class="carousel-inner">
+                  <!-- Material 1 -->
+                  <div class="carousel-item active">
+                    <div class="product-card">
+                      <div class="product-img-wrap">
+                        <img
+                          src="assets/machine-two-mat-one.webp"
+                          class="img-fluid"
+                          loading="lazy"
+                          width="600"
+                          height="400"
+                          alt="Material One"
+                        />
+                        <div class="product-img-overlay">
+                          <span class="product-count">01 / 04</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Material 2 -->
+                  <div class="carousel-item">
+                    <div class="product-card">
+                      <div class="product-img-wrap">
+                        <img
+                          src="assets/machine-two-mat-two.webp"
+                          class="img-fluid"
+                          loading="lazy"
+                          width="600"
+                          height="400"
+                          alt="Material Two"
+                        />
+                        <div class="product-img-overlay">
+                          <span class="product-count">02 / 04</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Material 3 -->
+                  <div class="carousel-item">
+                    <div class="product-card">
+                      <div class="product-img-wrap">
+                        <img
+                          src="assets/machine-two-mat-three.webp"
+                          class="img-fluid"
+                          loading="lazy"
+                          width="600"
+                          height="400"
+                          alt="Material Three"
+                        />
+                        <div class="product-img-overlay">
+                          <span class="product-count">03 / 04</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Material 4 -->
+                  <div class="carousel-item">
+                    <div class="product-card">
+                      <div class="product-img-wrap">
+                        <img
+                          src="assets/machine-two-mat-four.webp"
+                          class="img-fluid"
+                          loading="lazy"
+                          width="600"
+                          height="400"
+                          alt="Material Four"
+                        />
+                        <div class="product-img-overlay">
+                          <span class="product-count">04 / 04</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Carousel Footer: indicators + arrows in one row -->
+                <div class="product-carousel-footer">
+                  <div class="carousel-indicators custom-indicators mb-0" role="tablist">
+                    <button type="button" data-bs-target="#materialsCarouselTwo" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Material 1"></button>
+                    <button type="button" data-bs-target="#materialsCarouselTwo" data-bs-slide-to="1" aria-label="Material 2"></button>
+                    <button type="button" data-bs-target="#materialsCarouselTwo" data-bs-slide-to="2" aria-label="Material 3"></button>
+                    <button type="button" data-bs-target="#materialsCarouselTwo" data-bs-slide-to="3" aria-label="Material 4"></button>
+                  </div>
+                  <div class="product-carousel-arrows">
+                    <button class="product-arrow" type="button" data-bs-target="#materialsCarouselTwo" data-bs-slide="prev" aria-label="Previous">
+                      <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <button class="product-arrow" type="button" data-bs-target="#materialsCarouselTwo" data-bs-slide="next" aria-label="Next">
+                      <i class="fas fa-arrow-right"></i>
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -1599,19 +1673,7 @@
                       font-weight: bold;
                       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
                     }
-                  
-      /* Compact Vertical Spacing */
-      .py-5 {
-        padding-top: 2.25rem !important;
-        padding-bottom: 2.25rem !important;
-      }
-      .mb-5 {
-        margin-bottom: 1.75rem !important;
-      }
-      .tight-spacing { display: none; }
-    
-      
-    </style>
+                  </style>
                 </div>
               </div>
             </div>
@@ -1823,19 +1885,7 @@
                 font-size: 16px;
                 color: #333;
               }
-            
-      /* Compact Vertical Spacing */
-      .py-5 {
-        padding-top: 2.25rem !important;
-        padding-bottom: 2.25rem !important;
-      }
-      .mb-5 {
-        margin-bottom: 1.75rem !important;
-      }
-      .tight-spacing { display: none; }
-    
-      
-    </style>
+            </style>
           </div>
 
           <div class="col-lg-3">
