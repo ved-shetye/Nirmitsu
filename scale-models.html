@@ -917,7 +917,7 @@
                 <!-- Title bar -->
                 <div class="modal-header border-0 px-4 py-3">
                     <h4 class="modal-title mb-0 fw-bold" id="modalTitle" style="font-family:'MADE',sans-serif; letter-spacing:0.05em;"></h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" onclick="bootstrap.Modal.getOrCreateInstance(document.getElementById('projectModal')).hide()"></button>
                 </div>
 
                 <!-- Main viewer -->
@@ -942,7 +942,8 @@
         /* ── Lightbox Modal ── */
         #projectModal .modal-content { background: #0b0f19; color: #fff; }
         #projectModal .modal-header  { background: #0b0f19; color: #fff; border-bottom: 1px solid #1e293b; }
-        #projectModal .btn-close     { filter: invert(1) grayscale(100%) brightness(200%); }
+        #projectModal .btn-close     { filter: invert(1) grayscale(100%) brightness(200%); position: relative; z-index: 1060; cursor: pointer; opacity: 0.85; transition: opacity 0.2s ease, transform 0.2s ease; }
+        #projectModal .btn-close:hover { opacity: 1; transform: scale(1.1); }
 
         /* Main viewer */
         .lbx-main-wrap {
@@ -1102,7 +1103,7 @@
             document.getElementById('modalTitle').innerText = title;
             renderLightbox();
 
-            const projectModal = new bootstrap.Modal(document.getElementById('projectModal'));
+            const projectModal = bootstrap.Modal.getOrCreateInstance(document.getElementById('projectModal'));
             projectModal.show();
 
             document.getElementById('projectModal').addEventListener('hidden.bs.modal', function () {

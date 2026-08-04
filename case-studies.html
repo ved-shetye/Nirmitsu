@@ -204,7 +204,7 @@
 
       .cs-slides {
         position: relative;
-        min-height: 475px;
+        min-height: 455px;
       }
 
       .cs-slide {
@@ -709,6 +709,115 @@
         border: 1px solid rgba(0,0,0,0.05);
       }
 
+      /* Case Study Modal Media Showcase */
+      .modal-media-showcase {
+        width: 100%;
+        background: #090d16;
+        border-radius: 14px;
+        overflow: hidden;
+        border: 1px solid rgba(107, 201, 217, 0.3);
+        box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+      }
+      .cs-media-main {
+        position: relative;
+        width: 100%;
+        height: 380px;
+        background: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+      .cs-media-main img,
+      .cs-media-main video {
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        transition: opacity 0.3s ease;
+      }
+      .cs-media-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 10;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: none;
+        background: rgba(255, 255, 255, 0.85);
+        color: #111;
+        font-size: 0.95rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      }
+      .cs-media-arrow:hover {
+        background: #6bc9d9;
+        color: #000;
+        transform: translateY(-50%) scale(1.08);
+      }
+      .cs-media-arrow.prev { left: 14px; }
+      .cs-media-arrow.next { right: 14px; }
+
+      .cs-media-thumbs {
+        display: flex;
+        gap: 10px;
+        padding: 10px 14px;
+        background: #070a10;
+        overflow-x: auto;
+        border-top: 1px solid rgba(255,255,255,0.08);
+        scrollbar-width: thin;
+        scrollbar-color: #6bc9d9 #1e293b;
+      }
+      .cs-media-thumb {
+        flex: 0 0 80px;
+        height: 52px;
+        border-radius: 6px;
+        overflow: hidden;
+        cursor: pointer;
+        border: 2px solid #1e293b;
+        opacity: 0.6;
+        transition: all 0.2s ease;
+        position: relative;
+        background: #000;
+      }
+      .cs-media-thumb img,
+      .cs-media-thumb video {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        pointer-events: none;
+      }
+      .cs-media-thumb .play-icon {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0,0,0,0.35);
+        color: #fff;
+        font-size: 0.9rem;
+      }
+      .cs-media-thumb:hover {
+        opacity: 0.9;
+        border-color: #6bc9d9;
+      }
+      .cs-media-thumb.active {
+        opacity: 1;
+        border-color: #6bc9d9;
+        box-shadow: 0 0 8px rgba(107, 201, 217, 0.6);
+        transform: scale(1.03);
+      }
+      @media (max-width: 576px) {
+        .cs-media-main { height: 260px; }
+        .cs-media-thumb { flex: 0 0 65px; height: 44px; }
+      }
+
       /* Lead Form Section */
       .quote-form-section {
         background-color: #f8f9fa;
@@ -1179,7 +1288,7 @@
               <h3 class="modal-title h2 text-white" id="modalTitle">Project Title</h3>
               <p class="mb-0 text-light opacity-75" id="modalClient">Client Company Name</p>
             </div>
-            <button type="button" class="btn-close" data-bs-close="modal" aria-label="Close"></button>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" onclick="bootstrap.Modal.getOrCreateInstance(document.getElementById('caseDetailModal')).hide()"></button>
           </div>
           <div class="modal-body">
             <div class="row g-4">
@@ -1218,6 +1327,8 @@
                 </div>
               </div>
             </div>
+            <!-- Project Media Showcase at the End -->
+            <div id="modalMediaShowcase" class="modal-media-showcase mt-4" style="display: none;"></div>
           </div>
         </div>
       </div>
@@ -1417,6 +1528,9 @@
           title: "Large-Scale Architectural Model for a Presentation",
           category: "Architecture & Design",
           badge: "Architecture & Design",
+          media: [
+            { type: "video", src: "assets/Case-Studies/pra7i/vid1.mp4" }
+          ],
           description: "Pai Raikar & Associates / PRA7i approached Nirmitsu Design Labs to develop a large township scale model for an important presentation. The model had to communicate the site layout, proportions, and overall design intent clearly, while maintaining a clean and professional finish suitable for a formal approval discussion. The client provided CAD files and renders, which were then prepared and adapted for manufacturing. Since the model had to be completed within a short timeline, the process required careful file preparation, production planning, 3D printing, assembly, finishing, and coordination.",
           challenge: "The project had three key requirements: speed, scale, and accuracy. The model needed to closely match the architectural drawings, clearly represent the township layout, and be ready one day before the scheduled presentation. With only seven days available, the work had to move quickly without compromising the final appearance or presentation quality.",
           approach: "Nirmitsu worked closely with the client to understand the project requirements and prepare the CAD data for 3D printing. The files were corrected where required, and practical design adjustments were made to ensure the model could be manufactured, assembled, and finished within the deadline. The complete model was fully 3D printed, assembled, finished, packed, and delivered in six days.",
@@ -1431,6 +1545,15 @@
           title: "Marine Components, Scale Models and Interior Lampshades",
           category: "Marine & Hospitality",
           badge: "Marine & Interiors",
+          media: [
+            { type: "image", src: "assets/Case-Studies/delta-corp/img1.jpeg" },
+            { type: "image", src: "assets/Case-Studies/delta-corp/img2.jpeg" },
+            { type: "image", src: "assets/Case-Studies/delta-corp/img3.jpeg" },
+            { type: "image", src: "assets/Case-Studies/delta-corp/img4.jpeg" },
+            { type: "image", src: "assets/Case-Studies/delta-corp/img5.jpeg" },
+            { type: "image", src: "assets/Case-Studies/delta-corp/img6.jpeg" },
+            { type: "image", src: "assets/Case-Studies/delta-corp/img7.jpeg" }
+          ],
           description: "Delta Corp Ltd. approached Nirmitsu Design Labs for a range of custom manufacturing requirements across marine components, scale models, and interior decorative elements. The work involved both functional and presentation-focused applications, requiring accuracy, finish, and dependable execution.<br><br>For their feeder vessels, Delta Corp required functional replacement parts connected to the motor shaft of the boats. These components were responsible for transmitting the direction of the motor, making fit, strength, and reliability critical. In addition to the marine components, Nirmitsu also manufactured scale models and decorative lampshades for Deltin Royale. The lampshades were installed across every floor of the stairwell inside Deltin Royale, where the visual finish and consistency of the parts were important to the overall interior environment.",
           challenge: "The project involved different requirements across different applications. The marine components had to match existing samples accurately and withstand the demands of a marine environment. Since the parts were connected to the motor shaft, strength and durability were important.<br><br>The lampshades required a different approach. They had to be visually clean, consistent, and suitable for a premium hospitality setting inside Deltin Royale. This meant the work had to balance functional manufacturing with aesthetic finishing.",
           approach: "Delta Corp provided physical samples, which Nirmitsu used to develop the required design files and prepare the parts for manufacturing. Nirmitsu handled everything from the design to the finish on the ready components.<br><br>The marine components were designed and printed, all within a day. The scale models and lampshades were developed over a few weeks, allowing time for production, finishing, and delivery.<br><br>For the decorative lampshades, the focus was on achieving a clean surface finish suitable for interior use. For the marine components, the focus was on matching the original part and ensuring the component could perform reliably in use.",
@@ -1445,6 +1568,9 @@
           title: "Urgent Industrial Spare Part Produced Within a Day",
           category: "Industrial Spares",
           badge: "Industrial Spares",
+          media: [
+            { type: "video", src: "assets/Case-Studies/goa-carbonic/vid.mp4" }
+          ],
           description: "Goa Carbonic Industries Pvt. Ltd. approached Nirmitsu Design Labs with an urgent requirement for an industrial spare part. The original component had broken, and a replacement was unavailable from the OEM, creating the need for a fast and reliable local manufacturing solution.<br><br>The part was required to fit into an existing machine and withstand extreme negative temperatures, making accuracy and alignment critical. Goa Carbonic provided the original sample along with measurements, which were used to reverse engineer the component and prepare it for manufacturing. Since the spare was needed urgently, the project had to be completed within a very short timeframe without compromising fit, function, or dimensional accuracy.",
           challenge: "The main challenge was to recreate a broken and unavailable machine component from the available sample while ensuring that it would fit and function correctly inside the machine.<br><br>Before printing, Nirmitsu identified that the nature of the component and its ability to align correctly were critical to the success of the part. Producing the component without addressing this could have resulted in an incorrect fit or poor performance. Careful material selection was also carried out to ensure the printed spare met the functional requirements of the application and could perform reliably in its intended industrial environment. The project required urgency, dimensional accuracy, and a practical understanding of how the part would function in an industrial setting.",
           approach: "Nirmitsu reverse engineered the spare part from the sample and measurements provided by the client. The component was prepared for 3D printing, with attention given to fit, alignment, and functional use inside the machine.<br><br>The part was fully 3D printed and post-processed to ensure it was suitable for installation and use. The complete job was completed within a few hours, allowing the client to receive the replacement part on the same day.",
@@ -1459,6 +1585,10 @@
           title: "Integrated Airlock Lid for Home Fermentation",
           category: "Product Development",
           badge: "Product Design",
+          media: [
+            { type: "image", src: "assets/Case-Studies/my-own-brew/img1.jpeg" },
+            { type: "video", src: "assets/Case-Studies/my-own-brew/vid1.mp4" }
+          ],
           description: "MyOwnBrews Pvt. Ltd. approached Nirmitsu Design Labs to develop an integrated airlock lid for home fermentation. The requirement was not limited to producing a part; the product needed to be functional, usable, and suitable for the intended application.<br><br>The client came with an idea, CAD file, and sample, which Nirmitsu used as the starting point for design development and prototyping. The project required custom manufacturing support, where the design could be tested, refined, and improved through multiple iterations before reaching a successful functional prototype. Nirmitsu handled the design, prototyping, printing, post-processing, and development support required to move the product from concept to a working component.",
           challenge: "The main challenge was to develop a lid that could function reliably in a home fermentation setup. Fitment and airtightness were critical, as the part needed to work correctly with the brewing jug and support the airlock function.<br><br>The project also required attention to usability, product aesthetics, food-contact considerations, and functional testing. Since the part was intended for real use rather than visual demonstration, each design decision had to support both function and user experience. Multiple iterations were required to refine the design and validate the component.",
           approach: "Nirmitsu worked with the client through a back-and-forth development process, using the provided idea, CAD file, and sample to guide the design. The product was prototyped, tested, adjusted, and improved across four iterations. The part was fully 3D printed and post-processed, with each prototype helping identify improvements in fit, sealing, usability, and overall product performance. This collaborative development process continued over a few months until the client had successful functional prototypes.",
@@ -1473,6 +1603,10 @@
           title: "Manufacturing Partner for Continuous Design Iterations",
           category: "Forensic Technology",
           badge: "Forensic Technology",
+          media: [
+            { type: "image", src: "assets/Case-Studies/phosic/img1.jpeg" },
+            { type: "image", src: "assets/Case-Studies/phosic/img2.jpeg" }
+          ],
           description: "Phosic India Pvt. Ltd., a forensic technology company, worked with Nirmitsu Design Labs for the development of prototype camera bodies. The project required custom manufacturing support through multiple stages of design refinement, investor discussions, and approval rounds.<br><br>The client provided CAD files, which were used as the starting point for manufacturing. Since the parts were prototypes, the focus was not only on producing the design, but also on helping improve printability, fitment, and feasibility across each iteration. Over the course of the collaboration, Nirmitsu supported Phosic with 3D printed prototypes, design suggestions, printability adjustments, and development-stage manufacturing.",
           challenge: "The project required continuous design iteration. As the product developed, changes were a regular part of the process, and each updated version needed to be manufactured quickly and accurately.<br><br>The main requirements were testing feasibility, producing functional prototypes, achieving accurate fitment, and adapting the design for additive manufacturing. Since the prototypes were part of investor rounds and approval discussions, the parts also needed to support clear product communication.",
           approach: "Nirmitsu worked closely with Phosic across multiple rounds of development. The CAD files were reviewed, adjusted where required, and prepared for 3D printing. Practical design suggestions were made to improve manufacturability and ensure that each prototype could be printed and evaluated effectively. The parts were fully 3D printed, allowing the client to move through design changes faster than conventional custom manufacturing would typically allow. This gave Phosic the flexibility to test, review, and update the camera body design throughout the development process.",
@@ -1487,6 +1621,9 @@
           title: "Custom Manufacturing Support for Aqua Engineers",
           category: "Surveillance & Robotics",
           badge: "Robotics & Surveillance",
+          media: [
+            { type: "video", src: "assets/Case-Studies/aqua-engineers/vid1.mp4" }
+          ],
           description: "Aqua Engineers approached Nirmitsu Design Labs for the manufacturing of a component used in a remote surveillance system. The part was intended for end use, which made quality, accuracy, and reliable execution important.<br><br>The client provided CAD files, and Nirmitsu supported the project through 3D printing. Since the requirement was urgent, the component had to be produced quickly while still meeting the expected quality standard.",
           challenge: "The main requirement was immediate turnaround without compromising the final part quality. Since the component was intended for use in a remote surveillance system, the print had to be accurate, clean, and suitable for its application. The project required reliable execution, clear communication, and the ability to deliver within a short timeline.",
           approach: "Nirmitsu used the CAD files provided by Aqua Engineers and manufactured the component using SLA/resin 3D printing. The process was focused on producing a high-quality part within the required timeframe. Since the client needed the part immediately, the work was planned and completed in less than a day.",
@@ -1496,6 +1633,87 @@
           role: "Founder & Principal Engineer, Aqua Engineers"
         }
       };
+
+      // Modal media state & functions
+      let currentCsMedia = [];
+      let currentCsIndex = 0;
+
+      function renderCaseStudyMedia(mediaList) {
+        const container = document.getElementById('modalMediaShowcase');
+        if (!container) return;
+
+        if (!mediaList || mediaList.length === 0) {
+          container.style.display = 'none';
+          container.innerHTML = '';
+          return;
+        }
+
+        container.style.display = 'block';
+        currentCsMedia = mediaList;
+        currentCsIndex = 0;
+
+        renderCsMain();
+      }
+
+      function renderCsMain() {
+        const container = document.getElementById('modalMediaShowcase');
+        if (!container || !currentCsMedia.length) return;
+
+        const item = currentCsMedia[currentCsIndex];
+        const hasMultiple = currentCsMedia.length > 1;
+
+        const mediaHtml = item.type === 'video'
+          ? `<video src="${item.src}" controls playsinline autoplay loop muted></video>`
+          : `<img src="${item.src}" alt="Case Study Media">`;
+
+        const arrowsHtml = hasMultiple ? `
+          <button class="cs-media-arrow prev" onclick="navigateCsMedia(-1)" aria-label="Previous">
+            <i class="fas fa-arrow-left"></i>
+          </button>
+          <button class="cs-media-arrow next" onclick="navigateCsMedia(1)" aria-label="Next">
+            <i class="fas fa-arrow-right"></i>
+          </button>
+        ` : '';
+
+        const thumbsHtml = hasMultiple ? `
+          <div class="cs-media-thumbs">
+            ${currentCsMedia.map((m, idx) => `
+              <div class="cs-media-thumb ${idx === currentCsIndex ? 'active' : ''}" onclick="setCsMediaIndex(${idx})">
+                ${m.type === 'video'
+                  ? `<video src="${m.src}" muted preload="metadata"></video><div class="play-icon"><i class="fas fa-play"></i></div>`
+                  : `<img src="${m.src}" alt="Thumb ${idx + 1}">`}
+              </div>
+            `).join('')}
+          </div>
+        ` : '';
+
+        container.innerHTML = `
+          <h4 class="modal-section-title px-3 pt-3 mb-2"><i class="fas fa-photo-film text-primary"></i> Project Media & Gallery</h4>
+          <div class="cs-media-main">
+            ${mediaHtml}
+            ${arrowsHtml}
+          </div>
+          ${thumbsHtml}
+        `;
+
+        const activeThumb = container.querySelector('.cs-media-thumb.active');
+        if (activeThumb) {
+          activeThumb.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        }
+      }
+
+      function navigateCsMedia(dir) {
+        if (!currentCsMedia.length) return;
+        currentCsIndex = (currentCsIndex + dir + currentCsMedia.length) % currentCsMedia.length;
+        renderCsMain();
+      }
+
+      function setCsMediaIndex(index) {
+        if (index >= 0 && index < currentCsMedia.length) {
+          currentCsIndex = index;
+          renderCsMain();
+        }
+      }
 
       // Modal open function
       function openCaseDetails(id) {
@@ -1513,8 +1731,15 @@
         document.getElementById('modalAuthor').textContent = data.author;
         document.getElementById('modalAuthorRole').textContent = data.role;
         
-        const modal = new bootstrap.Modal(document.getElementById('caseDetailModal'));
+        renderCaseStudyMedia(data.media);
+
+        const modal = bootstrap.Modal.getOrCreateInstance(document.getElementById('caseDetailModal'));
         modal.show();
+
+        document.getElementById('caseDetailModal').addEventListener('hidden.bs.modal', function () {
+          const v = document.querySelector('#modalMediaShowcase video');
+          if (v) v.pause();
+        }, { once: true });
       }
 
       // Slider Logic
